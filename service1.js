@@ -9,11 +9,25 @@ let consul = require('consul')();
 
 const port = 10000;
 
+const serviceName = "Summarizer Service";
+const serviceId = "sum";
+const checkName = "sum_check";
+
+
+let check = {
+  "name": checkName,
+  "serviceid": serviceId,
+  "ttl": "15s",
+  "http": "http://localhost:" + port
+};
+
 consul.agent.service.register({
-  "name": "sum",
+  "name": serviceName,
+  "id": serviceId,
   "notes": "summarizer service",
   "port": port,
-  "tags": ["consumer"],
+  "check": check,
+  "tags": ["consumer", "singleton"],
 }, function(err) {
   if (err) {
     console.log(err);
@@ -30,7 +44,37 @@ consul.agent.service.register({
   server.listen(port);
 
   console.log("service: port=" + port);
+
+  /*
+    consul.agent.check.register(check, function(err) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+
+      consul.agent.check.pass(checkName, function() {
+        console.log("check passed");
+      });
+    });
+  */
+
+
+
 });
+
+
+function unregister() {
+  consul.agent.service.deregister(serviceId, function(err) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log("deregister service");
+  });
+}
+
+process.on('exit', unregister);
+
 
 /*
 consul.agent.self(function(err, result) {
