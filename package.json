@@ -9,6 +9,7 @@
   "author": "Markus Felten <markus.felten@gmx.de>",
   "license": "ISC",
   "dependencies": {
-    "consul": "^0.14.0"
+    "consul": "^0.14.0",
+    "service-manager": "git+ssh://donkey@mfelten.de/Groups/donkey/git/service-manager.git"
   }
 }

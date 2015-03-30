@@ -4,6 +4,7 @@
 
 "use strict";
 
+let sm = require('service-manager');
 let http = require('http');
 let consul = require('consul')();
 
@@ -15,37 +16,37 @@ const checkName = "sum_check";
 
 
 let check = {
-	"name": checkName,
-	"serviceid": serviceId,
-	"ttl": "15s",
-	"http": "http://localhost:" + port
+  "name": checkName,
+  "serviceid": serviceId,
+  "ttl": "15s",
+  "http": "http://localhost:" + port
 };
 
 consul.agent.service.register({
-	"name": serviceName,
-	"id": serviceId,
-	"notes": "summarizer service",
-	"port": port,
-	"check": check,
-	"tags": ["consumer", "singleton"],
-}, function(err) {
-	if (err) {
-		console.log(err);
-		return;
-	}
+  "name": serviceName,
+  "id": serviceId,
+  "notes": "summarizer service",
+  "port": port,
+  "check": check,
+  "tags": ["consumer", "singleton"],
+}, function (err) {
+  if (err) {
+    console.log(err);
+    return;
+  }
 
-	let server = http.createServer(function(request, response) {
-		response.writeHead(200, {
-			"Content-Type": "text/html"
-		});
-		response.end("sum: xxx");
-	});
+  let server = http.createServer(function (request, response) {
+    response.writeHead(200, {
+      "Content-Type": "text/html"
+    });
+    response.end("sum: xxx");
+  });
 
-	server.listen(port);
+  server.listen(port);
 
-	console.log("service: port=" + port);
+  console.log("service: port=" + port);
 
-	/*
+  /*
 	  consul.agent.check.register(check, function(err) {
 	    if (err) {
 	      console.log(err);
@@ -64,13 +65,13 @@ consul.agent.service.register({
 
 
 function unregister() {
-	consul.agent.service.deregister(serviceId, function(err) {
-		if (err) {
-			console.log(err);
-			return;
-		}
-		console.log("deregister service");
-	});
+  consul.agent.service.deregister(serviceId, function (err) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log("deregister service");
+  });
 }
 
 process.on('exit', unregister);
@@ -96,11 +97,11 @@ consul.agent.members(function(err, result) {
 });
 */
 
-consul.catalog.node.services('mbpmarkus', function(err, result) {
-	if (err) {
-		console.log(err);
-		return;
-	}
+consul.catalog.node.services('mbpmarkus', function (err, result) {
+  if (err) {
+    console.log(err);
+    return;
+  }
 
-	console.log('result: ' + JSON.stringify(result));
+  console.log('result: ' + JSON.stringify(result));
 });
