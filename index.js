@@ -10,25 +10,23 @@ let consul = require('consul')();
 
 const port = 10000;
 
-const serviceName = "Summarizer Service";
-const serviceId = "sum";
-const checkName = "sum_check";
+const serviceName = "donkey_node";
+const serviceId = serviceName + "001";
+const checkName = "donkey_check";
 
 
 let check = {
   "name": checkName,
-  "serviceid": serviceId,
   "ttl": "15s",
   "http": "http://localhost:" + port
 };
 
 consul.agent.service.register({
   "name": serviceName,
-  "id": serviceId,
-  "notes": "summarizer service",
+  "notes": "donkey node",
   "port": port,
   "check": check,
-  "tags": ["consumer", "singleton"],
+  "tags": ["donkey"],
 }, function (err) {
   if (err) {
     console.log(err);
@@ -39,7 +37,8 @@ consul.agent.service.register({
     response.writeHead(200, {
       "Content-Type": "text/html"
     });
-    response.end("sum: xxx");
+    response.end("ok");
+    console.log("check");
   });
 
   server.listen(port);
@@ -58,9 +57,6 @@ consul.agent.service.register({
 	    });
 	  });
 	*/
-
-
-
 });
 
 
@@ -78,16 +74,7 @@ process.on('exit', unregister);
 
 
 /*
-consul.agent.self(function(err, result) {
-	if (err) {
-		console.log(err);
-		return;
-	}
-
-	console.log('result: ' + JSON.stringify(result));
-});
-
-consul.agent.members(function(err, result) {
+consul.catalog.node.services('mbpmarkus', function (err, result) {
 	if (err) {
 		console.log(err);
 		return;
@@ -96,12 +83,3 @@ consul.agent.members(function(err, result) {
 	console.log('result: ' + JSON.stringify(result));
 });
 */
-
-consul.catalog.node.services('mbpmarkus', function (err, result) {
-  if (err) {
-    console.log(err);
-    return;
-  }
-
-  console.log('result: ' + JSON.stringify(result));
-});
