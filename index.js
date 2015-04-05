@@ -11,9 +11,9 @@ let consul = require('consul')();
 
 const manager = sm.manager();
 
-const donkeyNodeServiceName = "donkey_node";
+const donkeyNodeServiceName = "donkey-node";
 const donkeyNodeServiceId = donkeyNodeServiceName;
-const donkeyNodeServiceCheckName = "donkey_node_check";
+const donkeyNodeServiceCheckName = "donkey-node-check";
 const defaultDonkeyNodeServicePort = 10000;
 
 const donkeyNodeServiceCheck = {
