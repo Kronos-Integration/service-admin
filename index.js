@@ -14,12 +14,12 @@ const manager = sm.manager();
 const donkeyNodeServiceName = "donkey_node";
 const serviceId = donkeyNodeServiceName + "001";
 const checkName = "donkey_check";
-const port = 10000;
+const defaultDonkeyNodeServicePort = 10000;
 
 let check = {
   "name": checkName,
   "ttl": "15s",
-  "http": "http://localhost:" + port
+  "http": "http://localhost:" + defaultDonkeyNodeServicePort
 };
 
 registerDonkeyNodeService(function (err) {
@@ -31,7 +31,7 @@ registerDonkeyNodeService(function (err) {
 
 
 
-function unregister() {
+function unregisterDonkeyNodeService() {
   consul.agent.service.deregister(serviceId, function (err) {
     if (err) {
       console.log(err);
@@ -41,7 +41,7 @@ function unregister() {
   });
 }
 
-process.on('exit', unregister);
+process.on('exit', unregisterDonkeyNodeService);
 
 consul.status.leader(function (err, result) {
   console.log(`Leader: ${err} ${result}`);
@@ -59,6 +59,25 @@ consul.catalog.node.services('mbpmarkus', function (err, result) {
 */
 
 function registerDonkeyNodeService(cb) {
+
+  let port = defaultDonkeyNodeServicePort;
+
+  function donkeyNodeService() {
+    let server = http.createServer(function (request, response) {
+      response.writeHead(200, {
+        "Content-Type": "text/html"
+      });
+      response.end("ok");
+      console.log("check");
+    });
+
+    server.listen(port);
+
+    console.log("service: port=" + port);
+
+    return server;
+  }
+
   consul.agent.service.list(function (err, result) {
     if (err) {
       cb(err);
@@ -71,54 +90,35 @@ function registerDonkeyNodeService(cb) {
         `${donkeyNodeServiceName} already defined Port=${myService.Port}`
       );
 
+      port = myService.Port;
+    } else {
       consul.agent.service.register({
         "name": donkeyNodeServiceName,
         "notes": "donkey node",
         "port": port,
         "check": check,
         "tags": ["donkey"],
-      }, function (err) {
-        if (err) {
-          cb(err);
-          return;
-        }
-
-        let server = http.createServer(function (request, response) {
-          response.writeHead(200, {
-            "Content-Type": "text/html"
-          });
-          response.end("ok");
-          console.log("check");
-        });
-
-        server.listen(port);
-
-        console.log("service: port=" + port);
-
-        consul.agent.check.register(check, function (err) {
-          if (err) {
-            cb(err);
-            return;
-          }
-
-          consul.agent.check.list(function (err, result) {
-            console.log(
-              `list checks: ${JSON.stringify(result)}`);
-
-          });
-
-          /*
-			    	    consul.agent.check.pass(checkName, function() {
-			    	      console.log("check passed");
-			    	    });
-			    			*/
-        });
-      });
-
+      }, cb);
     }
-    cb(undefined);
+
+    cb(undefined, donkeyNodeService());
 
     //console.log(`list services: ${err} : ${JSON.stringify(result)}`);
   });
-
 }
+
+/*
+consul.agent.check.register(check, function (err) {
+	if (err) {
+		cb(err);
+		return;
+	}
+
+	consul.agent.check.list(function (err, result) {
+		console.log(
+			`list checks: ${JSON.stringify(result)}`);
+
+	});
+});
+
+*/
