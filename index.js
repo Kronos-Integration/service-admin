@@ -45,18 +45,23 @@ consul.agent.service.register({
 
   console.log("service: port=" + port);
 
-  /*
-	  consul.agent.check.register(check, function(err) {
-	    if (err) {
-	      console.log(err);
-	      return;
-	    }
+  consul.agent.check.register(check, function (err) {
+    if (err) {
+      console.log(err);
+      return;
+    }
 
-	    consul.agent.check.pass(checkName, function() {
-	      console.log("check passed");
-	    });
-	  });
-	*/
+    consul.agent.check.list(function (err, result) {
+      console.log(`list checks: ${JSON.stringify(result)}`);
+
+    });
+
+    /*
+    	    consul.agent.check.pass(checkName, function() {
+    	      console.log("check passed");
+    	    });
+    			*/
+  });
 });
 
 
@@ -72,6 +77,10 @@ function unregister() {
 
 process.on('exit', unregister);
 
+
+consul.status.leader(function (err, result) {
+  console.log(`Leader: ${err} ${result}`);
+});
 
 /*
 consul.catalog.node.services('mbpmarkus', function (err, result) {
