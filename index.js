@@ -18,8 +18,7 @@ const defaultDonkeyNodeServicePort = 10000;
 
 const donkeyNodeServiceCheck = {
   "name": donkeyNodeServiceCheckName,
-  "ttl": "15s",
-  "http": "http://localhost:" + defaultDonkeyNodeServicePort,
+  "ttl": "30s",
   "serviceid": donkeyNodeServiceId
 };
 
@@ -74,6 +73,24 @@ function registerDonkeyNodeCheck(cb) {
     }
 
     cb(undefined);
+
+    setInterval(function () {
+      consul.agent.check.pass(donkeyNodeServiceCheckName, function (
+        err) {
+        if (err) {
+          return;
+        }
+        consul.agent.check.list(function (err, result) {
+          const myCheck = result[donkeyNodeServiceCheckName];
+          if (myCheck) {
+            console.log(
+              `${donkeyNodeServiceCheckName} (${myCheck.Status}): ${JSON.stringify(myCheck)}`
+            );
+          }
+        });
+
+      });
+    }, 29000);
   });
 }
 
