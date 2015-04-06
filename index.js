@@ -27,13 +27,13 @@ registerDonkeyNodeService(function (err) {
   if (err) {
     return;
   }
-  console.log(`${donkeyNodeServiceName} registerd`);
+  console.log(`${donkeyNodeServiceName} registered`);
 
   registerDonkeyNodeCheck(function (err) {
     if (err) {
       return;
     }
-    console.log(`${donkeyNodeServiceCheckName} registerd`);
+    console.log(`${donkeyNodeServiceCheckName} registered`);
   });
 });
 
