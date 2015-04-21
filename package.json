@@ -1,15 +1,15 @@
 {
-  "name": "consul-service-manager",
-  "version": "0.0.1",
-  "description": "consul backet server manager",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Markus Felten <markus.felten@gmx.de>",
-  "license": "ISC",
-  "dependencies": {
-    "consul": "^0.14.0",
-    "service-manager": "git+ssh://donkey@mfelten.de/Groups/donkey/git/service-manager.git"
-  }
+	"name": "consul-service-manager",
+	"version": "0.0.1",
+	"description": "consul backet server manager",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Markus Felten <markus.felten@gmx.de>",
+	"license": "ISC",
+	"dependencies": {
+		"consul": "^0.14.0",
+		"kronos-service-manager": "git+ssh://donkey@mfelten.de/Groups/donkey/git/kronos-service-manager.git"
+	}
 }

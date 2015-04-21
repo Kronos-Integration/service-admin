@@ -4,7 +4,7 @@
 
 "use strict";
 
-let sm = require('service-manager');
+let sm = require('kronos-service-manager');
 let http = require('http');
 let consul = require('consul')();
 
@@ -17,134 +17,134 @@ const donkeyNodeServiceCheckName = "donkey-node-check";
 const defaultDonkeyNodeServicePort = 10000;
 
 const donkeyNodeServiceCheck = {
-	"name": donkeyNodeServiceCheckName,
-	"ttl": "30s",
-	"serviceid": donkeyNodeServiceId
+  "name": donkeyNodeServiceCheckName,
+  "ttl": "30s",
+  "serviceid": donkeyNodeServiceId
 };
 
 
 registerDonkeyNodeService(function (err) {
-	if (err) {
-		return;
-	}
-	console.log(`${donkeyNodeServiceName} registered`);
+  if (err) {
+    return;
+  }
+  console.log(`${donkeyNodeServiceName} registered`);
 
-	registerDonkeyNodeCheck(function (err) {
-		if (err) {
-			return;
-		}
-		console.log(`${donkeyNodeServiceCheckName} registered`);
-	});
+  registerDonkeyNodeCheck(function (err) {
+    if (err) {
+      return;
+    }
+    console.log(`${donkeyNodeServiceCheckName} registered`);
+  });
 });
 
 
 
 function unregisterDonkeyNodeService() {
-	consul.agent.service.deregister(donkeyNodeServiceId, function (err) {
-		if (err) {
-			console.log(err);
-			return;
-		}
-		console.log("deregister service");
-	});
+  consul.agent.service.deregister(donkeyNodeServiceId, function (err) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log("deregister service");
+  });
 }
 
 process.on('exit', unregisterDonkeyNodeService);
 
 consul.status.leader(function (err, result) {
-	console.log(`Leader: ${err} ${result}`);
+  console.log(`Leader: ${err} ${result}`);
 });
 
 
 function registerDonkeyNodeCheck(cb) {
-	consul.agent.check.list(function (err, result) {
-		if (err) {
-			cb(err);
-			return;
-		}
+  consul.agent.check.list(function (err, result) {
+    if (err) {
+      cb(err);
+      return;
+    }
 
-		const myCheck = result[donkeyNodeServiceCheckName];
+    const myCheck = result[donkeyNodeServiceCheckName];
 
-		if (myCheck) {
-			console.log(
-				`${donkeyNodeServiceCheckName} already defined (${myCheck.Status}): ${JSON.stringify(myCheck)}`
-			);
+    if (myCheck) {
+      console.log(
+        `${donkeyNodeServiceCheckName} already defined (${myCheck.Status}): ${JSON.stringify(myCheck)}`
+      );
 
-			cb(undefined);
-		} else {
-			consul.agent.check.register(donkeyNodeServiceCheck, cb);
-		}
+      cb(undefined);
+    } else {
+      consul.agent.check.register(donkeyNodeServiceCheck, cb);
+    }
 
-		setInterval(function () {
-			consul.agent.check.pass(donkeyNodeServiceCheckName, function (
-				err) {
-				if (err) {
-					return;
-				}
-				consul.agent.check.list(function (err, result) {
-					const myCheck = result[donkeyNodeServiceCheckName];
-					if (myCheck) {
-						console.log(
-							`${donkeyNodeServiceCheckName} (${myCheck.Status}): ${JSON.stringify(myCheck)}`
-						);
-					}
-				});
+    setInterval(function () {
+      consul.agent.check.pass(donkeyNodeServiceCheckName, function (
+        err) {
+        if (err) {
+          return;
+        }
+        consul.agent.check.list(function (err, result) {
+          const myCheck = result[donkeyNodeServiceCheckName];
+          if (myCheck) {
+            console.log(
+              `${donkeyNodeServiceCheckName} (${myCheck.Status}): ${JSON.stringify(myCheck)}`
+            );
+          }
+        });
 
-			});
-		}, 29000);
-	});
+      });
+    }, 29000);
+  });
 }
 
 function registerDonkeyNodeService(cb) {
 
-	let port = defaultDonkeyNodeServicePort;
+  let port = defaultDonkeyNodeServicePort;
 
-	function donkeyNodeService() {
-		let server = http.createServer(function (request, response) {
-			response.writeHead(200, {
-				"Content-Type": "text/html"
-			});
-			response.end("ok");
-			console.log("check");
-		});
+  function donkeyNodeService() {
+    let server = http.createServer(function (request, response) {
+      response.writeHead(200, {
+        "Content-Type": "text/html"
+      });
+      response.end("ok");
+      console.log("check");
+    });
 
-		server.listen(port);
+    server.listen(port);
 
-		console.log(`${donkeyNodeServiceName} started: port=${port}`);
+    console.log(`${donkeyNodeServiceName} started: port=${port}`);
 
-		return server;
-	}
+    return server;
+  }
 
-	consul.agent.service.list(function (err, result) {
-		if (err) {
-			cb(err);
-			return;
-		}
+  consul.agent.service.list(function (err, result) {
+    if (err) {
+      cb(err);
+      return;
+    }
 
-		const myService = result[donkeyNodeServiceName];
-		if (myService) {
-			console.log(
-				`${donkeyNodeServiceName} already defined Port=${myService.Port}`
-			);
-			console.log(
-				`${donkeyNodeServiceName}: ${JSON.stringify(myService)}`
-			);
+    const myService = result[donkeyNodeServiceName];
+    if (myService) {
+      console.log(
+        `${donkeyNodeServiceName} already defined Port=${myService.Port}`
+      );
+      console.log(
+        `${donkeyNodeServiceName}: ${JSON.stringify(myService)}`
+      );
 
-			port = myService.Port;
-		} else {
+      port = myService.Port;
+    } else {
 
-			consul.agent.service.register({
-				"name": donkeyNodeServiceName,
-				"serviceid": donkeyNodeServiceId,
-				"notes": "donkey node",
-				"port": port,
-				"check": donkeyNodeServiceCheck,
-				"tags": ["donkey"],
-			}, cb);
-		}
+      consul.agent.service.register({
+        "name": donkeyNodeServiceName,
+        "serviceid": donkeyNodeServiceId,
+        "notes": "donkey node",
+        "port": port,
+        "check": donkeyNodeServiceCheck,
+        "tags": ["donkey"],
+      }, cb);
+    }
 
-		cb(undefined, donkeyNodeService());
+    cb(undefined, donkeyNodeService());
 
-		//console.log(`list services: ${err} : ${JSON.stringify(result)}`);
-	});
+    //console.log(`list services: ${err} : ${JSON.stringify(result)}`);
+  });
 }
