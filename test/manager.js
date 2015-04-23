@@ -11,35 +11,35 @@ const expect = chai.expect;
 const kronos = require('../lib/manager.js');
 
 describe('service manager', function () {
-  const flowDecl = {
-    "myFlow": {
-      "steps": {
-        "s1": {
-          "type": "copy",
-          "config": {
-            "key1": "value1"
-          },
-          "endpoints": {
-            "in": "stdin",
-            "out": function* () {
-              do {
-                let request =
-                  yield;
-              } while (true);
-            }
-          }
-        }
-      }
-    }
-  };
+	const flowDecl = {
+		"myFlow": {
+			"steps": {
+				"s1": {
+					"type": "copy",
+					"config": {
+						"key1": "value1"
+					},
+					"endpoints": {
+						"in": "stdin",
+						"out": function* () {
+							do {
+								let request =
+									yield;
+							} while (true);
+						}
+					}
+				}
+			}
+		}
+	};
 
-  describe('buildin step implementations', function () {
-    it('should be present', function (done) {
-      kronos.manager({
-        flows: flowDecl
-      }).then(function (manager) {
-        done();
-      });
-    });
-  });
+	describe('buildin step implementations', function () {
+		it('should be present', function (done) {
+			kronos.manager({
+				flows: flowDecl
+			}).then(function (manager) {
+				done();
+			});
+		});
+	});
 });
