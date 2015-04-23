@@ -7,6 +7,7 @@ const chai = require('chai');
 chai.use(require("chai-as-promised"));
 const assert = chai.assert;
 const expect = chai.expect;
+const should = chai.should();
 
 const kronos = require('../lib/manager.js');
 
@@ -33,13 +34,12 @@ describe('service manager', function () {
 		}
 	};
 
-	describe('buildin step implementations', function () {
-		it('should be present', function (done) {
-			kronos.manager({
+	describe('creation', function () {
+		it('promise should be fullfilled', function () {
+			const promise = kronos.manager({
 				flows: flowDecl
-			}).then(function (manager) {
-				done();
 			});
+			return promise.should.be.fulfilled;
 		});
 	});
 });
