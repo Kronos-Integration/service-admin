@@ -12,34 +12,34 @@ const should = chai.should();
 const kronos = require('../lib/manager.js');
 
 describe('service manager', function () {
-	const flowDecl = {
-		"myFlow": {
-			"steps": {
-				"s1": {
-					"type": "copy",
-					"config": {
-						"key1": "value1"
-					},
-					"endpoints": {
-						"in": "stdin",
-						"out": function* () {
-							do {
-								let request =
-									yield;
-							} while (true);
-						}
-					}
-				}
-			}
-		}
-	};
+  const flowDecl = {
+    "flow1": {
+      "steps": {
+        "s1": {
+          "type": "copy",
+          "config": {
+            "key1": "value1"
+          },
+          "endpoints": {
+            "in": "stdin",
+            "out": function* () {
+              do {
+                let request =
+                  yield;
+              } while (true);
+            }
+          }
+        }
+      }
+    }
+  };
 
-	describe('creation', function () {
-		it('promise should be fullfilled', function () {
-			const promise = kronos.manager({
-				flows: flowDecl
-			});
-			return promise.should.be.fulfilled;
-		});
-	});
+  describe('creation', function () {
+    it('promise should be fullfilled', function () {
+      const promise = kronos.manager({
+        flows: flowDecl
+      });
+      return promise.should.be.fulfilled;
+    });
+  });
 });
