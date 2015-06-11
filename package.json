@@ -9,7 +9,7 @@
   "author": "Markus Felten <markus.felten@gmx.de>",
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "chai": "2.3.0",
+    "chai": "3.0.0",
     "chai-as-promised": "5.1.0",
     "mocha": "2.2.5"
   },
