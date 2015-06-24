@@ -16,7 +16,7 @@ describe('service manager', function () {
     "flow1": {
       "steps": {
         "s1": {
-          "type": "copy",
+          "type": "kronos-copy",
           "config": {
             "key1": "value1"
           },
