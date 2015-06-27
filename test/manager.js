@@ -22,12 +22,7 @@ describe('service manager', function () {
           },
           "endpoints": {
             "in": "stdin",
-            "out": function* () {
-              do {
-                let request =
-                  yield;
-              } while (true);
-            }
+            "out": "stdout"
           }
         }
       }
