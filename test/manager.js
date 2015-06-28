@@ -29,12 +29,14 @@ describe('service manager', function () {
     }
   };
 
-  describe('creation', function () {
+  describe('creation', function (done) {
     it('promise should be fullfilled', function () {
       const promise = kronos.manager({
         flows: flowDecl
+      }).then(function(manager) {
+        manager.httpServer.close();
+        done();
       });
-      return promise.should.be.fulfilled;
     });
   });
 });

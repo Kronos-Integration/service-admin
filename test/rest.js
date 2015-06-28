@@ -36,13 +36,33 @@ describe('service manager', function () {
       });
 
       promise.then(function (manager) {
-        console.log(`manager: ${manager.app}`);
-
         request(manager.app.listen())
           .get('/state')
           .set('Accept', 'application/json')
           //.expect('Content-Type', /json/)
-          .expect(200, done);
+          .expect(200, function() {
+            manager.httpServer.close();
+            done();
+            });
+      });
+    });
+  });
+
+  describe('GET /flows', function () {
+    it('respond with json', function (done) {
+      const promise = kronos.manager({
+        flows: flowDecl
+      });
+
+      promise.then(function (manager) {
+        request(manager.app.listen())
+          .get('/state')
+          .set('Accept', 'application/json')
+          //.expect('Content-Type', /json/)
+          .expect(200, function() {
+            manager.httpServer.close();
+            done();
+            });
       });
     });
   });
