@@ -34,8 +34,7 @@ describe('service manager', function () {
       const promise = kronos.manager({
         flows: flowDecl
       }).then(function(manager) {
-        manager.shutdown();
-        done();
+        manager.shutdown().then(function() { done(); });
       });
     });
   });

@@ -11,6 +11,8 @@ const should = chai.should();
 const request = require('supertest');
 const kronos = require('../lib/manager.js');
 
+let testPort = 12345;
+
 describe('service manager', function () {
   const flowDecl = {
     "flow1": {
@@ -32,7 +34,8 @@ describe('service manager', function () {
   describe('GET /health', function () {
     it('respond with json', function (done) {
       const promise = kronos.manager({
-        flows: flowDecl
+        flows: flowDecl,
+        port: testPort
       });
 
       promise.then(function (manager) {
@@ -51,7 +54,8 @@ describe('service manager', function () {
   describe('GET /state', function () {
     it('respond with json', function (done) {
       const promise = kronos.manager({
-        flows: flowDecl
+        flows: flowDecl,
+        port: testPort
       });
 
       promise.then(function (manager) {
@@ -71,7 +75,8 @@ describe('service manager', function () {
   describe('GET /flows', function () {
     it('respond with json', function (done) {
       const promise = kronos.manager({
-        flows: flowDecl
+        flows: flowDecl,
+        port: testPort
       });
 
       promise.then(function (manager) {
@@ -90,7 +95,8 @@ describe('service manager', function () {
   describe('GET /flows/flow1', function () {
     it('respond with json', function (done) {
       const promise = kronos.manager({
-        flows: flowDecl
+        flows: flowDecl,
+        port: testPort
       });
 
       promise.then(function (manager) {
@@ -99,9 +105,7 @@ describe('service manager', function () {
           .set('Accept', 'application/json')
           //.expect('Content-Type', /json/)
           .expect(200, function () {
-            manager.shutdown().then(function () {
-              done();
-            });
+            manager.shutdown().then(function() { done(); });
           });
       });
     });
