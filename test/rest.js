@@ -41,7 +41,7 @@ describe('service manager', function () {
           .set('Accept', 'application/json')
           //.expect('Content-Type', /json/)
           .expect(200, function() {
-            manager.httpServer.close();
+            manager.shutdown();
             done();
             });
       });
@@ -60,7 +60,7 @@ describe('service manager', function () {
           .set('Accept', 'application/json')
           //.expect('Content-Type', /json/)
           .expect(200, function() {
-            manager.httpServer.close();
+            manager.shutdown();
             done();
             });
       });
