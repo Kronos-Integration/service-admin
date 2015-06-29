@@ -29,6 +29,25 @@ describe('service manager', function () {
     }
   };
 
+  describe('GET /health', function () {
+    it('respond with json', function (done) {
+      const promise = kronos.manager({
+        flows: flowDecl
+      });
+
+      promise.then(function (manager) {
+        request(manager.app.listen())
+          .get('/state')
+          //.expect('Content-Type', /json/)
+          .expect(200, function () {
+            manager.shutdown().then(function () {
+              done();
+            });
+          });
+      });
+    });
+  });
+
   describe('GET /state', function () {
     it('respond with json', function (done) {
       const promise = kronos.manager({
@@ -40,10 +59,11 @@ describe('service manager', function () {
           .get('/state')
           .set('Accept', 'application/json')
           //.expect('Content-Type', /json/)
-          .expect(200, function() {
-            manager.shutdown();
-            done();
+          .expect(200, function () {
+            manager.shutdown().then(function () {
+              done();
             });
+          });
       });
     });
   });
@@ -59,11 +79,32 @@ describe('service manager', function () {
           .get('/state')
           .set('Accept', 'application/json')
           //.expect('Content-Type', /json/)
-          .expect(200, function() {
-            manager.shutdown();
-            done();
+          .expect(200, function () {
+            manager.shutdown().then(function () {
+              done();
             });
+          });
       });
     });
   });
+  describe('GET /flows/flow1', function () {
+    it('respond with json', function (done) {
+      const promise = kronos.manager({
+        flows: flowDecl
+      });
+
+      promise.then(function (manager) {
+        request(manager.app.listen())
+          .get('/state')
+          .set('Accept', 'application/json')
+          //.expect('Content-Type', /json/)
+          .expect(200, function () {
+            manager.shutdown().then(function () {
+              done();
+            });
+          });
+      });
+    });
+  });
+
 });
