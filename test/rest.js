@@ -13,7 +13,9 @@ const kronos = require('../lib/manager.js');
 
 let testPort = 12345;
 
-describe('service manager', function () {
+describe('service manager REST', function () {
+  let url;
+
   const flowDecl = {
     "flow1": {
       "steps": {
@@ -31,84 +33,66 @@ describe('service manager', function () {
     }
   };
 
-  describe('GET /health', function () {
-    it('respond with json', function (done) {
-      const promise = kronos.manager({
-        flows: flowDecl,
-        port: testPort
+  function shutdownManager (manager,done) {
+    return function() {
+      manager.shutdown().then(function () {
+        done();
       });
+    };
+  }
 
-      promise.then(function (manager) {
+  function initManager() {
+    return kronos.manager({
+      flows: flowDecl,
+      port: testPort
+    });
+  }
+
+  describe('health', function () {
+    url = '/health';
+    it(`GET ${url}`, function (done) {
+      initManager().then(function (manager) {
         request(manager.app.listen())
-          .get('/state')
+          .get(url)
           //.expect('Content-Type', /json/)
-          .expect(200, function () {
-            manager.shutdown().then(function () {
-              done();
-            });
-          });
+          .expect(200, shutdownManager(manager,done));
       });
     });
   });
 
-  describe('GET /state', function () {
-    it('respond with json', function (done) {
-      const promise = kronos.manager({
-        flows: flowDecl,
-        port: testPort
-      });
-
-      promise.then(function (manager) {
+  describe('state', function () {
+    url = '/state';
+    it(`GET ${url}`, function (done) {
+      initManager().then(function (manager) {
         request(manager.app.listen())
-          .get('/state')
+          .get(url)
           .set('Accept', 'application/json')
           //.expect('Content-Type', /json/)
-          .expect(200, function () {
-            manager.shutdown().then(function () {
-              done();
-            });
-          });
+          .expect(200, shutdownManager(manager,done));
       });
     });
   });
 
-  describe('GET /flows', function () {
-    it('respond with json', function (done) {
-      const promise = kronos.manager({
-        flows: flowDecl,
-        port: testPort
-      });
-
-      promise.then(function (manager) {
+  describe('flows', function () {
+    url = '/flows';
+    it(`GET ${url}`, function (done) {
+      initManager().then(function (manager) {
         request(manager.app.listen())
-          .get('/state')
+          .get(url)
           .set('Accept', 'application/json')
           //.expect('Content-Type', /json/)
-          .expect(200, function () {
-            manager.shutdown().then(function () {
-              done();
-            });
-          });
+          .expect(200, shutdownManager(manager,done));
       });
     });
-  });
-  describe('GET /flows/flow1', function () {
-    it('respond with json', function (done) {
-      const promise = kronos.manager({
-        flows: flowDecl,
-        port: testPort
-      });
-
-      promise.then(function (manager) {
+    url = '/flows/flow1';
+    it(`GET ${url}`, function (done) {
+      initManager().then(function (manager) {
         request(manager.app.listen())
-          .get('/state')
+          .get(url)
           .set('Accept', 'application/json')
           //.expect('Content-Type', /json/)
-          .expect(200, function () {
-            manager.shutdown().then(function() { done(); });
-          });
+          .expect(200, shutdownManager(manager,done));
       });
     });
   });
-
 });
