@@ -67,7 +67,7 @@ describe('service manager REST', function () {
         request(manager.app.listen())
           .get(url)
           .set('Accept', 'application/json')
-          //.expect('Content-Type', /json/)
+          .expect('Content-Type', /json/)
           .expect(200, shutdownManager(manager,done));
       });
     });
@@ -80,7 +80,14 @@ describe('service manager REST', function () {
         request(manager.app.listen())
           .get(url)
           .set('Accept', 'application/json')
-          //.expect('Content-Type', /json/)
+          .expect('Content-Type', /json/)
+          .expect(function(res) {
+            const flow = JSON.parse(res.text);
+            //expect(flow.name === 'xflow1');
+            console.log(`RES: ${flow.name}`);
+            if (flow.name !== 'flow1') throw new Error("flow flow1 missing");
+            return undefined;
+          })
           .expect(200, shutdownManager(manager,done));
       });
     });
@@ -90,7 +97,7 @@ describe('service manager REST', function () {
         request(manager.app.listen())
           .get(url)
           .set('Accept', 'application/json')
-          //.expect('Content-Type', /json/)
+          .expect('Content-Type', /json/)
           .expect(200, shutdownManager(manager,done));
       });
     });
