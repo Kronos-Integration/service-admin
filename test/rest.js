@@ -14,8 +14,6 @@ const kronos = require('../lib/manager.js');
 let testPort = 12345;
 
 describe('service manager REST', function () {
-  let url;
-
   const flowDecl = {
     "flow1": {
       "steps": {
@@ -34,9 +32,10 @@ describe('service manager REST', function () {
   };
 
   function shutdownManager (manager,done) {
-    return function() {
+    return function(error,result) {
       manager.shutdown().then(function () {
-        done();
+        if(error) { return done(error); }
+        else done();
       });
     };
   }
@@ -49,56 +48,64 @@ describe('service manager REST', function () {
   }
 
   describe('health', function () {
-    url = '/health';
-    it(`GET ${url}`, function (done) {
+    it('GET /health', function (done) {
       initManager().then(function (manager) {
         request(manager.app.listen())
-          .get(url)
-          //.expect('Content-Type', /json/)
-          .expect(200, shutdownManager(manager,done));
+          .get('/health')
+          .expect(200)
+          .expect(function(res) {
+            if (res.text !== 'OK') throw Error("not OK");
+          })
+          .end(shutdownManager(manager,done));
       });
     });
   });
 
   describe('state', function () {
-    url = '/state';
-    it(`GET ${url}`, function (done) {
+    it('GET /state', function (done) {
       initManager().then(function (manager) {
         request(manager.app.listen())
-          .get(url)
+          .get('/state')
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
-          .expect(200, shutdownManager(manager,done));
+          .expect(200)
+          .expect(function(res) {
+            const response = JSON.parse(res.text);
+            if (!response.uptime > 0) throw Error("uptime > 0 ?");
+          })
+          .end(shutdownManager(manager,done));
       });
     });
   });
 
   describe('flows', function () {
-    url = '/flows';
-    it(`GET ${url}`, function (done) {
+    it('GET /flows', function (done) {
       initManager().then(function (manager) {
         request(manager.app.listen())
-          .get(url)
+          .get('/flows')
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
           .expect(function(res) {
-            const flow = JSON.parse(res.text);
-            //expect(flow.name === 'xflow1');
-            console.log(`RES: ${flow.name}`);
-            if (flow.name !== 'flow1') throw new Error("flow flow1 missing");
-            return undefined;
+            const response = JSON.parse(res.text);
+            //console.log(`RES: ${JSON.stringify(response)}`);
+            if (response[0].name !== 'flow1') throw Error("flow flow1 missing");
           })
-          .expect(200, shutdownManager(manager,done));
+          .expect(200)
+          .end(shutdownManager(manager,done));
       });
     });
-    url = '/flows/flow1';
-    it(`GET ${url}`, function (done) {
+    it('GET /flows/flow1', function (done) {
       initManager().then(function (manager) {
         request(manager.app.listen())
-          .get(url)
+          .get('/flows/flow1')
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
-          .expect(200, shutdownManager(manager,done));
+          .expect(200)
+          .expect(function(res) {
+            const response = JSON.parse(res.text);
+            if (response.name !== 'flow1') throw Error("flow flow1 missing");
+          })
+          .end(shutdownManager(manager,done));
       });
     });
   });
