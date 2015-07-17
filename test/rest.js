@@ -108,5 +108,45 @@ describe('service manager REST', function () {
           .end(shutdownManager(manager,done));
       });
     });
+
+    it('DELETE /flows/flow1', function (done) {
+      initManager().then(function (manager) {
+        request(manager.app.listen())
+          .delete('/flows/flow1')
+          .set('Accept', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .expect(function(res) {
+            const response = JSON.parse(res.text);
+            if (Object.keys(response).length > 0) throw Error("delete error");
+          })
+/*
+          .get('/flows')
+          .expect(200)
+          .expect(function(res) {
+            const response = JSON.parse(res.text);
+            console.log(`RES: ${JSON.stringify(response)}`);
+          })
+*/
+          .end(shutdownManager(manager,done));
+      });
+    });
+
+/*
+    it('POST /flows/flow2', function (done) {
+      initManager().then(function (manager) {
+        request(manager.app.listen())
+          .post('/flows/flow2')
+          .set('Accept', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .expect(function(res) {
+            const response = JSON.parse(res.text);
+            if (response.name !== 'flow1') throw Error("flow flow1 missing");
+          })
+          .end(shutdownManager(manager,done));
+      });
+    });
+    */
   });
 });
