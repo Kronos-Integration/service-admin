@@ -45,6 +45,8 @@ describe('service manager REST', function () {
       flows: flowDecl,
       port: testPort
     });
+
+    testPort ++; // TODO somhow koa-websocket does not shutdown correctly
   }
 
   describe('health', function () {
