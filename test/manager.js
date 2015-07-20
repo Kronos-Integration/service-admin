@@ -30,12 +30,10 @@ describe('service manager', function () {
   };
 
   describe('creation', function (done) {
-    it('promise should be fullfilled', function () {
-      const promise = kronos.manager({
+    it('promise should be fulfilled', function () {
+      kronos.manager({
         flows: flowDecl
-      }).then(function(manager) {
-        manager.shutdown().then(function() { done(); });
-      });
+      }).should.be.fulfilled.notify(done);
     });
   });
 });
