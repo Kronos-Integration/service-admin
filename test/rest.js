@@ -1,4 +1,4 @@
-/* global describe, it*/
+/* global describe, it */
 /* jslint node: true, esnext: true */
 
 "use strict";
@@ -134,21 +134,20 @@ describe('service manager REST', function () {
       });
     });
 
-/*
-    it('POST /flows/flow2', function (done) {
+    it('POST /flows', function (done) {
       initManager().then(function (manager) {
         request(manager.app.listen())
-          .post('/flows/flow2')
+          .post('/flows')
+          .send({ "a" : { "steps" : {} } })
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
           .expect(200)
           .expect(function(res) {
-            const response = JSON.parse(res.text);
-            if (response.name !== 'flow1') throw Error("flow flow1 missing");
+            //const response = JSON.parse(res.text);
+            //if (response.name !== 'flow1') throw Error("flow flow1 missing");
           })
           .end(shutdownManager(manager,done));
       });
     });
-    */
   });
 });
