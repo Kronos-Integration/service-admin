@@ -17,7 +17,7 @@
     "supertest": "^1.0.1"
   },
   "dependencies": {
-    "consul": "^0.14.0",
+    "consul": "0.15.0",
     "koa": "0.21.0",
     "koa-jwt": "^1.1.1",
     "koa-route": "^2.4.2",
