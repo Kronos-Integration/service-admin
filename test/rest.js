@@ -36,7 +36,7 @@ describe('service manager REST', function () {
       manager.shutdown().then(function () {
         if(error) { return done(error); }
         else done();
-      });
+      },done);
     };
   }
 
@@ -59,7 +59,7 @@ describe('service manager REST', function () {
             if (res.text !== 'OK') throw Error("not OK");
           })
           .end(shutdownManager(manager,done));
-      });
+      },done);
     });
   });
 
@@ -76,7 +76,7 @@ describe('service manager REST', function () {
             if (!response.uptime > 0) throw Error("uptime > 0 ?");
           })
           .end(shutdownManager(manager,done));
-      });
+      },done);
     });
   });
 
@@ -94,7 +94,7 @@ describe('service manager REST', function () {
           })
           .expect(200)
           .end(shutdownManager(manager,done));
-      });
+      },done);
     });
     it('GET /flows/flow1', function (done) {
       initManager().then(function (manager) {
@@ -108,7 +108,7 @@ describe('service manager REST', function () {
             if (response.name !== 'flow1') throw Error("flow flow1 missing");
           })
           .end(shutdownManager(manager,done));
-      });
+      },done);
     });
 
     it('DELETE /flows/flow1', function (done) {
@@ -131,7 +131,7 @@ describe('service manager REST', function () {
           })
 */
           .end(shutdownManager(manager,done));
-      });
+      },done);
     });
 
     it('POST /flows', function (done) {
@@ -147,7 +147,7 @@ describe('service manager REST', function () {
             //if (response.name !== 'flow1') throw Error("flow flow1 missing");
           })
           .end(shutdownManager(manager,done));
-      });
+      },done);
     });
   });
 });
