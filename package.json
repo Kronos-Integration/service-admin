@@ -1,7 +1,7 @@
 {
-  "name": "consul-service-manager",
+  "name": "kronos-service-manager-rest",
   "version": "0.0.1",
-  "description": "kronos server manager with consul",
+  "description": "kronos server manager with rest api",
   "main": "lib/manager.js",
   "scripts": {
     "cover": "node --harmony ./node_modules/istanbul-harmony/lib/cli.js cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --R spec --U exports test",
@@ -17,7 +17,6 @@
     "supertest": "^1.0.1"
   },
   "dependencies": {
-    "consul": "0.15.0",
     "koa": "0.21.0",
     "koa-jwt": "^1.1.1",
     "koa-route": "^2.4.2",
@@ -27,6 +26,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://donkey@mfelten.de/Groups/donkey/git/consul-service-manager.git"
+    "url": "ssh://donkey@mfelten.de/Groups/donkey/git/kronos-service-manager-rest.git"
   }
 }
