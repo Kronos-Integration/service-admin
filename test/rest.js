@@ -9,7 +9,9 @@ const assert = chai.assert;
 const expect = chai.expect;
 const should = chai.should();
 const request = require('supertest');
-const kronos = require('../lib/manager.js');
+
+const kronos = require('kronos-service-manager');
+const rest = require('../lib/manager.js');
 
 let testPort = 12345;
 
@@ -31,22 +33,24 @@ describe('service manager REST', function () {
     }
   };
 
-  function shutdownManager (manager,done) {
-    return function(error,result) {
+  function shutdownManager(manager, done) {
+    return function (error, result) {
       manager.shutdown().then(function () {
-        if(error) { return done(error); }
-        else done();
-      },done);
+        if (error) {
+          return done(error); 
+        } else done();
+      }, done);
     };
   }
 
   function initManager() {
-    return kronos.manager({
-      flows: flowDecl,
+    return rest.manager(kronos.manager({
+      flows: flowDecl
+    }), {
       port: testPort
     });
 
-    testPort ++; // TODO somhow koa-websocket does not shutdown correctly
+    testPort++; // TODO somehow koa-websocket does not shutdown correctly
   }
 
   describe('health', function () {
@@ -55,11 +59,11 @@ describe('service manager REST', function () {
         request(manager.app.listen())
           .get('/health')
           .expect(200)
-          .expect(function(res) {
+          .expect(function (res) {
             if (res.text !== 'OK') throw Error("not OK");
           })
-          .end(shutdownManager(manager,done));
-      },done);
+          .end(shutdownManager(manager, done));
+      }, done);
     });
   });
 
@@ -71,12 +75,12 @@ describe('service manager REST', function () {
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
           .expect(200)
-          .expect(function(res) {
+          .expect(function (res) {
             const response = JSON.parse(res.text);
             if (!response.uptime > 0) throw Error("uptime > 0 ?");
           })
-          .end(shutdownManager(manager,done));
-      },done);
+          .end(shutdownManager(manager, done));
+      }, done);
     });
   });
 
@@ -87,14 +91,14 @@ describe('service manager REST', function () {
           .get('/flows')
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
-          .expect(function(res) {
+          .expect(function (res) {
             const response = JSON.parse(res.text);
             //console.log(`RES: ${JSON.stringify(response)}`);
             if (response[0].name !== 'flow1') throw Error("flow flow1 missing");
           })
           .expect(200)
-          .end(shutdownManager(manager,done));
-      },done);
+          .end(shutdownManager(manager, done));
+      }, done);
     });
     it('GET /flows/flow1', function (done) {
       initManager().then(function (manager) {
@@ -103,12 +107,12 @@ describe('service manager REST', function () {
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
           .expect(200)
-          .expect(function(res) {
+          .expect(function (res) {
             const response = JSON.parse(res.text);
             if (response.name !== 'flow1') throw Error("flow flow1 missing");
           })
-          .end(shutdownManager(manager,done));
-      },done);
+          .end(shutdownManager(manager, done));
+      }, done);
     });
 
     it('DELETE /flows/flow1', function (done) {
@@ -118,36 +122,40 @@ describe('service manager REST', function () {
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
           .expect(200)
-          .expect(function(res) {
+          .expect(function (res) {
             const response = JSON.parse(res.text);
             if (Object.keys(response).length > 0) throw Error("delete error");
           })
-/*
-          .get('/flows')
-          .expect(200)
-          .expect(function(res) {
-            const response = JSON.parse(res.text);
-            console.log(`RES: ${JSON.stringify(response)}`);
-          })
-*/
-          .end(shutdownManager(manager,done));
-      },done);
+          /*
+                    .get('/flows')
+                    .expect(200)
+                    .expect(function(res) {
+                      const response = JSON.parse(res.text);
+                      console.log(`RES: ${JSON.stringify(response)}`);
+                    })
+          */
+          .end(shutdownManager(manager, done));
+      }, done);
     });
 
     it('POST /flows', function (done) {
       initManager().then(function (manager) {
         request(manager.app.listen())
           .post('/flows')
-          .send({ "a" : { "steps" : {} } })
+          .send({
+            "a": {
+              "steps": {}
+            }
+          })
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
           .expect(200)
-          .expect(function(res) {
+          .expect(function (res) {
             //const response = JSON.parse(res.text);
             //if (response.name !== 'flow1') throw Error("flow flow1 missing");
           })
-          .end(shutdownManager(manager,done));
-      },done);
+          .end(shutdownManager(manager, done));
+      }, done);
     });
   });
 });
