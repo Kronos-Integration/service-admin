@@ -1,0 +1,107 @@
+== kronos-service-manager-rest API
+
+=== Status
+
+- *GET* /health
++
+Returns 'OK' if the server is OK.
++
+.returns
+[source]
+----
+OK
+----
+
+- *GET* /state
++
+Returns some status information about the running server.
++
+.returns
+[source,json]
+----
+{
+  "versions":{
+    "http_parser":"2.5.0",
+    "node":"2.0.0",
+    "v8":"4.2.77.18",
+    ...
+  },
+  "platform":"darwin",
+  "uptime":1299968,
+  "memory":{
+    "rss":48488448,
+    "heapTotal":37101568,
+    "heapUsed":2433653
+  }
+}
+----
+
+=== Flows
+
+- *GET* /flows
++
+Shows a list of registered flows.
+The JSON response is an array of flows
++
+.returns
+[source,json]
+----
+[
+  {
+    "id":"flow1",
+    "name":"flow1",
+    "description":"the flow description 1"
+  },
+  {
+    "id":"flow2",
+    "name":"flow2",
+    "description":"the flow description 2"
+  }
+]
+----
+
+- *GET* /flows/:id
++
+Shows the description of a flow. This is the same description as used to register a flow.
++
+.returns
+[source,json]
+----
+{
+    "name":"flow1",
+    "description":"the flow description 1",
+    ...
+}
+----
+
+- *DELETE* /flows/:id
++
+Deletes the flow with the current ID.
++
+.returns
+[source,json]
+----
+{
+  TODO
+}
+----
+
+- *POST* /flows
++
+Registers a new flow.
++
+.send
+[source,json]
+----
+{
+  a valid flow definition
+}
+----
++
+.returns
+[source,json]
+----
+{
+  TODO
+}
+----
