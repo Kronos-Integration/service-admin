@@ -17,7 +17,7 @@ const portA = 12345;
 const portB = 12346;
 
 describe('service manager channel', function () {
-  function initManager(name,port) {
+  function initManager(name, port) {
     return rest.manager(kronos.manager({
       name: name
     }), {
@@ -25,29 +25,30 @@ describe('service manager channel', function () {
     });
   }
 
-  function shutdownManager(manager, done) {
-    return function (error, result) {
-      manager.shutdown().then(function () {
-        if (error) {
-          return done(error); 
-        } else done();
-      }, done);
-    };
+  function shutdownManagers(managers, done) {
+    Promise.all(managers.map(function (m) {
+      return m.shutdown();
+    })).then(function () {
+      done();
+    }, function (error) {
+      done(error);
+    });
   }
 
 
   describe('health', function () {
     it('GET /health', function (done) {
       Promise.all([
-        initManager('managerA',portA),
-        initManager('managerB',portB)
+          initManager('managerA', portA),
+          initManager('managerB', portB)
         ])
-      .then(function (managers) {
-        const managerA = managers[0];
-        const managerB = managers[1];
-        console.log(`managers: ${managers[0].httpServerPort} <=> ${managers[1].httpServerPort}`);
-        done();
-      }, done);
+        .then(function (managers) {
+          const managerA = managers[0];
+          const managerB = managers[1];
+          console.log(`managers: ${managers[0].httpServerPort} <=> ${managers[1].httpServerPort}`);
+
+          shutdownManagers(managers, done);
+        }, done);
     });
   });
 });
