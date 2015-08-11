@@ -36,8 +36,8 @@ describe('service manager channel', function () {
   }
 
 
-  describe('health', function () {
-    it('GET /health', function (done) {
+  describe('channel', function () {
+    it('open', function (done) {
       Promise.all([
           initManager('managerA', portA),
           initManager('managerB', portB)

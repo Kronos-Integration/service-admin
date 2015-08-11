@@ -12,6 +12,7 @@ const request = require('supertest');
 
 const kronos = require('kronos-service-manager');
 const rest = require('../lib/manager.js');
+const jwt = require('koa-jwt');
 
 let testPort = 12345;
 
@@ -47,7 +48,8 @@ describe('service manager REST', function () {
     return rest.manager(kronos.manager({
       flows: flowDecl
     }), {
-      port: testPort
+      port: testPort /*,
+      jwt: { secret: "the secret" }*/
     });
 
     testPort++; // TODO somehow koa-websocket does not shutdown correctly
@@ -87,6 +89,7 @@ describe('service manager REST', function () {
   describe('flows', function () {
     it('GET /flows', function (done) {
       initManager().then(function (manager) {
+        console.log(manager.flowDefinitions);
         request(manager.app.listen())
           .get('/flows')
           .set('Accept', 'application/json')
