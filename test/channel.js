@@ -16,10 +16,39 @@ const rest = require('../lib/manager.js');
 const portA = 12345;
 const portB = 12346;
 
+const flowA = {
+  "flowA": {
+    "steps": {
+      "s1": {
+        "type": "kronos-copy",
+        "endpoints": {
+          "in": "stdin",
+          "out": `http://localhost:${portB}/endpoint/flowB/s1/in`
+        }
+      }
+    }
+  }
+};
+
+const flowB = {
+  "flowB": {
+    "steps": {
+      "s1": {
+        "type": "kronos-copy",
+        "endpoints": {
+          "in": `http:`,
+          "out": "stdout"
+        }
+      }
+    }
+  }
+};
+
 describe('service manager channel', function () {
-  function initManager(name, port) {
+  function initManager(name, port, flow) {
     return rest.manager(kronos.manager({
-      name: name
+      name: name,
+      flows: flow
     }), {
       port: port
     });
@@ -39,8 +68,8 @@ describe('service manager channel', function () {
   describe('channel', function () {
     it('open', function (done) {
       Promise.all([
-          initManager('managerA', portA),
-          initManager('managerB', portB)
+          initManager('managerA', portA, flowA),
+          initManager('managerB', portB, flowB)
         ])
         .then(function (managers) {
           const managerA = managers[0];
