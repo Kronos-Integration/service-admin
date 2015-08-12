@@ -48,12 +48,12 @@ The JSON response is an array of flows
 ----
 [
   {
-    "id":"flow1",
+    "url":"flow1",
     "name":"flow1",
     "description":"the flow description 1"
   },
   {
-    "id":"flow2",
+    "url":"flow2",
     "name":"flow2",
     "description":"the flow description 2"
   }

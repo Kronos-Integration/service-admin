@@ -48,8 +48,9 @@ describe('service manager REST', function () {
     return rest.manager(kronos.manager({
       flows: flowDecl
     }), {
-      port: testPort /*,
-      jwt: { secret: "the secret" }*/
+      port: testPort
+        /*,
+              jwt: { secret: "the secret" }*/
     });
 
     testPort++; // TODO somehow koa-websocket does not shutdown correctly
@@ -97,7 +98,7 @@ describe('service manager REST', function () {
           .expect(function (res) {
             const response = JSON.parse(res.text);
             //console.log(`RES: ${JSON.stringify(response)}`);
-            if (response[0].name !== 'flow1') throw Error("flow flow1 missing");
+            if (response[0].url !== 'flow1') throw Error("flow flow1 missing");
           })
           .expect(200)
           .end(shutdownManager(manager, done));
