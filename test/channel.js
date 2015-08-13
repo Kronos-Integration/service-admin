@@ -23,7 +23,7 @@ const flowA = {
         "type": "kronos-copy",
         "endpoints": {
           "in": "stdin",
-          "out": `http://localhost:${portB}/endpoint/flowB/s1/in`
+          "out": `kronos+http://localhost:${portB}/endpoint/flowB/s1/in`
         }
       }
     }
@@ -36,7 +36,7 @@ const flowB = {
       "s1": {
         "type": "kronos-copy",
         "endpoints": {
-          "in": `http:`,
+          "in": `kronos+http:`,
           "out": "stdout"
         }
       }
@@ -74,7 +74,7 @@ describe('service manager channel', function () {
         .then(function (managers) {
           const managerA = managers[0];
           const managerB = managers[1];
-          console.log(`managers: ${managers[0].httpServerPort} <=> ${managers[1].httpServerPort}`);
+          console.log(`managers: ${managers[0]} <=> ${managers[1]}`);
 
           shutdownManagers(managers, done);
         }, done);
