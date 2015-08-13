@@ -20,6 +20,7 @@ Returns some status information about the running server.
 [source,json]
 ----
 {
+  "name":"manager name",
   "versions":{
     "http_parser":"2.5.0",
     "node":"2.0.0",
