@@ -47,10 +47,12 @@ const flowB = {
 describe('service manager channel', function () {
   function initManager(name, port, flow) {
     return rest.manager(kronos.manager({
-      name: name,
-      flows: flow
+      name: name
     }), {
       port: port
+    }).then(function (manager) {
+      manager.declareFlows(flow);
+      return manager;
     });
   }
 
@@ -59,9 +61,7 @@ describe('service manager channel', function () {
       return m.shutdown();
     })).then(function () {
       done();
-    }, function (error) {
-      done(error);
-    });
+    }, done);
   }
 
 
@@ -74,7 +74,12 @@ describe('service manager channel', function () {
         .then(function (managers) {
           const managerA = managers[0];
           const managerB = managers[1];
-          console.log(`managers: ${managers[0]} <=> ${managers[1]}`);
+          //console.log(`managers: ${managerA} <=> ${managerB}`);
+          //console.log(`flowA: ${JSON.stringify(managerA.flowDefinitions.flowA)}`);
+          //console.log(`flowB: ${JSON.stringify(managerB.flowDefinitions.flowB)}`);
+
+          managerA.intializeFlow('flowA');
+          managerB.intializeFlow('flowB');
 
           shutdownManagers(managers, done);
         }, done);
