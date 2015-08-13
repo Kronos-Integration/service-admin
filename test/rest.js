@@ -46,6 +46,7 @@ describe('service manager REST', function () {
 
   function initManager() {
     return rest.manager(kronos.manager({
+      name: 'myManager',
       flows: flowDecl
     }), {
       port: testPort
@@ -81,6 +82,7 @@ describe('service manager REST', function () {
           .expect(function (res) {
             const response = JSON.parse(res.text);
             if (!response.uptime > 0) throw Error("uptime > 0 ?");
+            if (response.name !== 'myManager') throw Error("name");
           })
           .end(shutdownManager(manager, done));
       }, done);
