@@ -66,6 +66,8 @@ describe('service manager channel', function () {
 
 
   describe('channel', function () {
+    this.timeout(5000);
+
     it('open', function (done) {
       Promise.all([
           initManager('managerA', portA, flowA),
@@ -82,7 +84,8 @@ describe('service manager channel', function () {
 
           managerA.intializeFlow('flowA');
 
-          setTimeout(function() {shutdownManagers(managers, done);}, 2000);
+          // wait a bit to manually check http
+          setTimeout(function() { shutdownManagers(managers, done); }, 2000);
         }, done);
     });
   });
