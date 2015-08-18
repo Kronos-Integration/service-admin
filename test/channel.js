@@ -80,6 +80,17 @@ describe('service manager channel', function () {
           //console.log(`flowA: ${JSON.stringify(managerA.flowDefinitions.flowA)}`);
           //console.log(`flowB: ${JSON.stringify(managerB.flowDefinitions.flowB)}`);
 
+          request(managerB.app.listen())
+            .get('/endpoints')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .expect(function (res) {
+              const response = JSON.parse(res.text);
+              console.log(`endpoints: ${res.text}`);
+              if (response.name !== 'myManager') throw Error("name");
+            });
+
           managerB.intializeFlow('flowB');
 
           managerA.intializeFlow('flowA');
