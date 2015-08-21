@@ -45,14 +45,13 @@ const flowB = {
 };
 
 describe('service manager channel', function () {
-  function initManager(name, port, flow) {
+  function initManagerWithFlow(name, port, flow) {
     return rest.manager(kronos.manager({
       name: name
     }), {
       port: port
     }).then(function (manager) {
-      manager.registerFlows(flow);
-      return manager;
+      return manager.registerFlows(flow);
     });
   }
 
@@ -70,33 +69,40 @@ describe('service manager channel', function () {
 
     it('open', function (done) {
       Promise.all([
-          initManager('managerA', portA, flowA),
-          initManager('managerB', portB, flowB)
+          initManagerWithFlow('managerA', portA, flowA),
+          initManagerWithFlow('managerB', portB, flowB)
         ])
-        .then(function (managers) {
-          const managerA = managers[0];
-          const managerB = managers[1];
-          //console.log(`managers: ${managerA} <=> ${managerB}`);
-          //console.log(`flowA: ${JSON.stringify(managerA.flowDefinitions.flowA)}`);
-          //console.log(`flowB: ${JSON.stringify(managerB.flowDefinitions.flowB)}`);
+        .then(function (flows) {
+          try {
+            const flowA = flows[0];
+            const flowB = flows[1];
+            console.log(`flows: ${flows}`);
+            console.log(`managerB: ${flowB.manager}`);
 
-          request(managerB.app.listen())
-            .get('/endpoints')
-            .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
-            .expect(200)
-            .expect(function (res) {
-              const response = JSON.parse(res.text);
-              console.log(`endpoints: ${res.text}`);
-              if (response.name !== 'myManager') throw Error("name");
-            });
+            request(flowB.manager.app.listen())
+              .get('/endpoints')
+              .set('Accept', 'application/json')
+              .expect('Content-Type', /json/)
+              .expect(200)
+              .expect(function (res) {
+                const response = JSON.parse(res.text);
+                console.log(`endpoints: ${res.text}`);
+                if (response.name !== 'myManager') throw Error("name");
+              });
 
-          managerB.intializeFlow('flowB');
+            flowB.start().then(
+              function () {
+                flowA.start();
+              }
+            );
 
-          managerA.intializeFlow('flowA');
-
-          // wait a bit to manually check http
-          setTimeout(function() { shutdownManagers(managers, done); }, 2000);
+            // wait a bit to manually check http
+            setTimeout(function () {
+              shutdownManagers(managers, done);
+            }, 2000);
+          } catch (e) {
+            done(e);
+          }
         }, done);
     });
   });
