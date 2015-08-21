@@ -51,7 +51,7 @@ describe('service manager channel', function () {
     }), {
       port: port
     }).then(function (manager) {
-      manager.declareFlows(flow);
+      manager.registerFlows(flow);
       return manager;
     });
   }

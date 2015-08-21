@@ -51,12 +51,14 @@ The JSON response is an array of flows
   {
     "url":"flow1",
     "name":"flow1",
-    "description":"the flow description 1"
+    "description":"the flow description 1",
+    "state" : "running"
   },
   {
     "url":"flow2",
     "name":"flow2",
-    "description":"the flow description 2"
+    "description":"the flow description 2",
+    "state" : "paused"
   }
 ]
 ----
