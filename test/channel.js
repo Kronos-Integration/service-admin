@@ -13,8 +13,8 @@ const request = require('supertest');
 const kronos = require('kronos-service-manager');
 const rest = require('../lib/manager.js');
 
-const portA = 12345;
-const portB = 12346;
+const portA = 12346;
+const portB = 12347;
 
 const flowA = {
   "flowA": {
@@ -55,12 +55,18 @@ describe('service manager channel', function () {
     });
   }
 
-  function shutdownManagers(managers, done) {
-    Promise.all(managers.map(function (m) {
-      return m.shutdown();
-    })).then(function () {
-      done();
-    }, done);
+  function shutdownManagers(managers, done, e) {
+    try {
+      Promise.all(managers.map(function (m) {
+        return m.shutdown();
+      })).then(function () {
+        done(e);
+      }, function () {
+        done(e);
+      });
+    } catch (e) {
+      done(e);
+    }
   }
 
 
@@ -98,10 +104,10 @@ describe('service manager channel', function () {
 
             // wait a bit to manually check http
             setTimeout(function () {
-              shutdownManagers(managers, done);
+              shutdownManagers([flowA.manager, flowB.manager], done);
             }, 2000);
           } catch (e) {
-            done(e);
+            shutdownManagers([flowA.manager, flowB.manager], done, e);
           }
         }, done);
     });
