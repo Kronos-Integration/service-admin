@@ -164,5 +164,31 @@ describe('service manager REST', function () {
           .end(shutdownManager(manager, done));
       }, done);
     });
+
+    it('POST /flows with error', function (done) {
+      initManager().then(function (manager) {
+        request(manager.app.listen())
+          .post('/flows')
+          .send({
+            "a": {
+              "steps": {
+                "s1": {
+                  "type": "no-such-type"
+                }
+              }
+            }
+          })
+          .set('Accept', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .expect(function (res) {
+            console.log(res.text);
+            //const response = JSON.parse(res.text);
+            //if (response.name !== 'flow1') throw Error("flow flow1 missing");
+          })
+          .end(shutdownManager(manager, done));
+      }, done);
+    });
+
   });
 });
