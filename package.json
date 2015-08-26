@@ -31,5 +31,8 @@
   "repository": {
     "type": "git",
     "url": "ssh://donkey@mfelten.de/Groups/donkey/git/kronos-service-manager-rest.git"
+  },
+  "engines": {
+    "iojs": ">=2.5.0"
   }
 }
