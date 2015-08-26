@@ -105,6 +105,7 @@ Registers a new flow.
 [source,json]
 ----
 {
-  TODO
+  "flow1" : { "state" : "ok" },
+  "flow2" : { "state" : "error", "problems" : [{ "scope" : { ... }},{ "scope" : { ... }}]}
 }
 ----
