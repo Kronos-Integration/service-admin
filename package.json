@@ -16,7 +16,8 @@
     "istanbul-harmony": "0.3.16",
     "mocha": "2.2.5",
     "mocha-html-reporter": "^0.0.1",
-    "supertest": "^1.0.1"
+    "supertest": "^1.0.1",
+    "supertest-as-promised": "^2.0.2"
   },
   "dependencies": {
     "koa": "^1.0.0",

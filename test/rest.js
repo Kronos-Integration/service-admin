@@ -8,8 +8,8 @@ chai.use(require("chai-as-promised"));
 const assert = chai.assert;
 const expect = chai.expect;
 const should = chai.should();
-const request = require('supertest');
-
+//const request = require('supertest');
+const request = require("supertest-as-promised")(Promise);
 const kronos = require('kronos-service-manager');
 const rest = require('../lib/manager.js');
 const jwt = require('koa-jwt');
