@@ -52,6 +52,7 @@ describe('service manager REST', function () {
         /*,
               jwt: { secret: "the secret" }*/
     }).then(function (manager) {
+      require('kronos-service-manager-addon').registerWithManager(manager);
       manager.registerFlows(flowDecl);
       return manager;
     });

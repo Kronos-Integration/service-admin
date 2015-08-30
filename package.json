@@ -17,7 +17,8 @@
     "mocha": "2.2.5",
     "mocha-html-reporter": "^0.0.1",
     "supertest": "^1.0.1",
-    "supertest-as-promised": "^2.0.2"
+    "supertest-as-promised": "^2.0.2",
+    "kronos-service-manager-addon": "git+ssh://donkey@mfelten.de/Groups/donkey/git/kronos-service-manager-addon.git"
   },
   "dependencies": {
     "koa": "^1.0.0",
