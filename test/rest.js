@@ -46,12 +46,14 @@ describe('service manager REST', function () {
 
   function initManager() {
     return rest.manager(kronos.manager({
-      name: 'myManager',
-      flows: flowDecl
+      name: 'myManager'
     }), {
       port: testPort
         /*,
               jwt: { secret: "the secret" }*/
+    }).then(function (manager) {
+      manager.registerFlows(flowDecl);
+      return manager;
     });
 
     testPort++; // TODO somehow koa-websocket does not shutdown correctly
