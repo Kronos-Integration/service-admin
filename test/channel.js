@@ -84,9 +84,8 @@ describe('service manager channel', function () {
           try {
             const flowA = flows[0];
             const flowB = flows[1];
-            console.log(`flows: ${flows}`);
-            console.log(`managerA: ${flowA.manager}`);
-            console.log(`managerB: ${flowB.manager}`);
+            console.log(`${flowA} state: ${flowA.state} manager: ${flowA.manager}`);
+            console.log(`${flowB} state: ${flowB.state} manager: ${flowB.manager}`);
 
             request(flowB.manager.app.listen())
               .get('/endpoints')
