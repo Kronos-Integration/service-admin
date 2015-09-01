@@ -51,6 +51,8 @@ describe('service manager channel', function () {
     }), {
       port: port
     }).then(function (manager) {
+      require('kronos-service-manager-addon').registerWithManager(manager);
+
       return manager.registerFlows(flow);
     });
   }
