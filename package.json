@@ -16,7 +16,7 @@
     "chai-as-promised": "5.1.0",
     "istanbul-harmony": "0.3.16",
     "kronos-service-manager-addon": "git+ssh://donkey@mfelten.de/Groups/donkey/git/kronos-service-manager-addon.git",
-    "mocha": "^2.3.1",
+    "mocha": "^2.3.2",
     "mocha-html-reporter": "^0.0.1",
     "supertest": "^1.1.0",
     "supertest-as-promised": "^2.0.2"
