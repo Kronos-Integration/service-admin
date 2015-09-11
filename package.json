@@ -36,7 +36,7 @@
     "url": "ssh://donkey@mfelten.de/Groups/donkey/git/kronos-service-manager-rest.git"
   },
   "engines": {
-    "iojs": ">=2.5.0"
+    "node": ">=4.0.0"
   },
   "apidoc": {
     "description": "apiDoc basic example",
