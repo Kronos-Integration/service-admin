@@ -75,7 +75,7 @@ describe('service manager channel', function () {
   describe('channel', function () {
     this.timeout(5000);
 
-    it('open', function (done) {
+    xit('open', function (done) {
       Promise.all([
           initManagerWithFlow('managerA', portA, flowA),
           initManagerWithFlow('managerB', portB, flowB)
