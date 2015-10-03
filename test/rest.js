@@ -8,7 +8,6 @@ chai.use(require("chai-as-promised"));
 const assert = chai.assert;
 const expect = chai.expect;
 const should = chai.should();
-//const request = require('supertest');
 const request = require("supertest-as-promised")(Promise);
 const kronos = require('kronos-service-manager');
 const rest = require('../lib/manager.js');
@@ -18,18 +17,22 @@ let testPort = 12345;
 
 describe('service manager REST', function () {
   const flowDecl = {
-    "flow1": {
-      "steps": {
-        "s1": {
-          "type": "kronos-copy",
-          "config": {
-            "key1": "value1"
-          },
-          "endpoints": {
-            "in": "stdin",
-            "out": "stdout"
-          }
+    "name": "flow1",
+    "steps": {
+      "s0": {
+        "type": "kronos-stdin",
+        "endpoints": {
+          "out": "s1/in"
         }
+      },
+      "s1": {
+        "type": "kronos-copy",
+        "endpoints": {
+          "out": "s2/in"
+        }
+      },
+      "s2": {
+        "type": "kronos-stdout"
       }
     }
   };
@@ -53,7 +56,7 @@ describe('service manager REST', function () {
               jwt: { secret: "the secret" }*/
     }).then(function (manager) {
       require('kronos-service-manager-addon').registerWithManager(manager);
-      manager.registerFlows(flowDecl);
+      manager.registerFlow(flowDecl);
       return manager;
     });
 
@@ -103,7 +106,7 @@ describe('service manager REST', function () {
           .expect(function (res) {
             const response = JSON.parse(res.text);
             //console.log(`RES: ${JSON.stringify(response)}`);
-            if (response[0].url !== 'flow1') throw Error("flow flow1 missing");
+            if (response[0].url !== 'flow1') throw Error("flow missing");
           })
           .expect(200)
           .end(shutdownManager(manager, done));
