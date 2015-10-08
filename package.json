@@ -1,6 +1,6 @@
 {
   "name": "kronos-service-manager-rest",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "kronos server manager with rest api",
   "main": "lib/manager.js",
   "scripts": {
@@ -36,7 +36,7 @@
     "url": "ssh://donkey@mfelten.de/Groups/donkey/git/kronos-service-manager-rest.git"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=4.1.2"
   },
   "apidoc": {
     "description": "apiDoc basic example",
