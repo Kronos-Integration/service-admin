@@ -9,7 +9,13 @@
     "apidoc": "apidoc -i lib -o apidoc",
     "ci-test-report": "mocha --harmony --reporter mocha-html-reporter test/*.js"
   },
-  "author": "Markus Felten <markus.felten@gmx.de>",
+  "contributors": [{
+    "name": "Torsten Link",
+    "email": "torstenlink@gmx.de"
+  }, {
+    "name": "Markus Felten",
+    "email": "markus.felten@gmx.de"
+  }],
   "license": "BSD-2-Clause",
   "devDependencies": {
     "chai": "3.2.0",
