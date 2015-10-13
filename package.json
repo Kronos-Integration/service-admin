@@ -9,20 +9,23 @@
     "apidoc": "apidoc -i lib -o apidoc",
     "ci-test-report": "mocha --harmony --reporter mocha-html-reporter test/*.js"
   },
-  "contributors": [{
-    "name": "Torsten Link",
-    "email": "torstenlink@gmx.de"
-  }, {
-    "name": "Markus Felten",
-    "email": "markus.felten@gmx.de"
-  }],
+  "contributors": [
+    {
+      "name": "Torsten Link",
+      "email": "torstenlink@gmx.de"
+    },
+    {
+      "name": "Markus Felten",
+      "email": "markus.felten@gmx.de"
+    }
+  ],
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "chai": "3.2.0",
+    "chai": "3.3.0",
     "chai-as-promised": "5.1.0",
     "istanbul-harmony": "0.3.16",
     "kronos-service-manager-addon": "git+ssh://donkey@mfelten.de/Groups/donkey/git/kronos-service-manager-addon.git",
-    "mocha": "^2.3.2",
+    "mocha": "2.3.3",
     "mocha-html-reporter": "^0.0.1",
     "supertest": "^1.1.0",
     "supertest-as-promised": "^2.0.2"
@@ -33,8 +36,8 @@
     "koa-route": "^2.4.2",
     "koa-websocket": "^1.1.0",
     "kronos-service-manager": "git+ssh://donkey@mfelten.de/Groups/donkey/git/kronos-service-manager.git",
-    "raw-body": "^2.1.2",
-    "request": "^2.61.0",
+    "raw-body": "2.1.4",
+    "request": "2.65.0",
     "scope-reporter": "2.1.0"
   },
   "repository": {
