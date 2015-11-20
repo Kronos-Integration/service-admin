@@ -6,8 +6,7 @@
   "scripts": {
     "cover": "node --harmony ./node_modules/istanbul/lib/cli.js cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --R spec --U exports test",
     "test": "mocha --harmony test/*.js",
-    "apidoc": "apidoc -i lib -o apidoc",
-    "ci-test-report": "mocha --harmony --reporter mocha-html-reporter test/*.js"
+    "apidoc": "apidoc -i lib -o apidoc"
   },
   "contributors": [{
     "name": "Torsten Link",
@@ -21,9 +20,8 @@
     "chai": "3.3.0",
     "chai-as-promised": "5.1.0",
     "istanbul": "0.4.0",
-    "kronos-step-stdio": "https://github.com/Kronos-Integration/kronos-step-stdio.git",
+    "kronos-step-stdio": "^1.0.0",
     "mocha": "2.3.3",
-    "mocha-html-reporter": "^0.0.1",
     "supertest": "^1.1.0",
     "supertest-as-promised": "^2.0.2"
   },
