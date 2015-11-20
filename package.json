@@ -17,12 +17,12 @@
   }],
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "chai": "3.3.0",
+    "chai": "3.4.1",
     "chai-as-promised": "5.1.0",
     "istanbul": "0.4.0",
     "kronos-step-stdio": "^1.0.0",
-    "kronos-flow": "^1.0.0",
-    "mocha": "2.3.3",
+    "kronos-flow": "^1.2.0",
+    "mocha": "2.3.4",
     "supertest": "^1.1.0",
     "supertest-as-promised": "^2.0.2"
   },
@@ -31,7 +31,7 @@
     "koa-jwt": "^1.1.1",
     "koa-route": "^2.4.2",
     "koa-websocket": "^1.1.0",
-    "kronos-service-manager": "^1.0.2",
+    "kronos-service-manager": "^1.0.5",
     "raw-body": "2.1.4",
     "request": "2.65.0",
     "scope-reporter": "2.1.0"
