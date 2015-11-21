@@ -3,19 +3,20 @@
 
 "use strict";
 
-const chai = require('chai');
+const chai = require('chai'),
+  assert = chai.assert,
+  expect = chai.expect,
+  should = chai.should(),
+  request = require("supertest-as-promised")(Promise),
+  kronos = require('kronos-service-manager'),
+  admin = require('../lib/manager.js'),
+  wt = require('koa-jwt');
+
 chai.use(require("chai-as-promised"));
-const assert = chai.assert;
-const expect = chai.expect;
-const should = chai.should();
-const request = require("supertest-as-promised")(Promise);
-const kronos = require('kronos-service-manager');
-const rest = require('../lib/manager.js');
-const jwt = require('koa-jwt');
 
 let testPort = 12345;
 
-describe('service manager REST', function () {
+describe('service manager admin', function () {
   const flowDecl = {
     "name": "flow1",
     "steps": {
@@ -48,7 +49,7 @@ describe('service manager REST', function () {
   }
 
   function initManager() {
-    return rest.manager(kronos.manager({
+    return admin.manager(kronos.manager({
       name: 'myManager'
     }), {
       port: testPort
@@ -57,44 +58,12 @@ describe('service manager REST', function () {
     }).then(function (manager) {
       require('kronos-step-stdio').registerWithManager(manager);
       require('kronos-flow').registerWithManager(manager);
-      manager.registerFlow(flowDecl);
+      //manager.registerFlow(flowDecl);
       return manager;
     });
 
     testPort++; // TODO somehow koa-websocket does not shutdown correctly
   }
-
-  describe('health', function () {
-    it('GET /health', function (done) {
-      initManager().then(function (manager) {
-        request(manager.app.listen())
-          .get('/health')
-          .expect(200)
-          .expect(function (res) {
-            if (res.text !== 'OK') throw Error("not OK");
-          })
-          .end(shutdownManager(manager, done));
-      }, done);
-    });
-  });
-
-  describe('state', function () {
-    it('GET /state', function (done) {
-      initManager().then(function (manager) {
-        request(manager.app.listen())
-          .get('/state')
-          .set('Accept', 'application/json')
-          .expect('Content-Type', /json/)
-          .expect(200)
-          .expect(function (res) {
-            const response = JSON.parse(res.text);
-            if (!response.uptime > 0) throw Error("uptime > 0 ?");
-            if (response.name !== 'myManager') throw Error("name");
-          })
-          .end(shutdownManager(manager, done));
-      }, done);
-    });
-  });
 
   describe('flows', function () {
     it('GET /flows', function (done) {
