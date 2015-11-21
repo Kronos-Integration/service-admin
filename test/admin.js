@@ -19,6 +19,7 @@ let testPort = 12345;
 describe('service manager admin', function () {
   const flowDecl = {
     "name": "flow1",
+    "type": "kronos-flow",
     "steps": {
       "s0": {
         "type": "kronos-stdin",
@@ -58,7 +59,7 @@ describe('service manager admin', function () {
     }).then(function (manager) {
       require('kronos-step-stdio').registerWithManager(manager);
       require('kronos-flow').registerWithManager(manager);
-      //manager.registerFlow(flowDecl);
+      manager.registerFlow(flowDecl);
       return manager;
     });
 
