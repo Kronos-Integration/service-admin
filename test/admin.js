@@ -59,7 +59,7 @@ describe('service manager admin', function () {
     }).then(function (manager) {
       require('kronos-step-stdio').registerWithManager(manager);
       require('kronos-flow').registerWithManager(manager);
-      manager.registerFlow(flowDecl);
+      manager.registerFlow(manager.getStepInstance(flowDecl));
       return manager;
     });
 
@@ -69,7 +69,6 @@ describe('service manager admin', function () {
   describe('flows', function () {
     it('GET /flows', function (done) {
       initManager().then(function (manager) {
-        console.log(manager.flowDefinitions);
         request(manager.app.listen())
           .get('/flows')
           .set('Accept', 'application/json')
