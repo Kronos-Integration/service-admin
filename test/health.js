@@ -14,7 +14,7 @@ const chai = require('chai'),
 
 chai.use(require("chai-as-promised"));
 
-let testPort = 12345;
+let testPort = 12349;
 
 describe('service manager admin', function () {
   function shutdownManager(manager, done) {
