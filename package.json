@@ -9,13 +9,16 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "apidoc": "apidoc -i lib -o apidoc"
   },
-  "contributors": [{
-    "name": "Torsten Link",
-    "email": "torstenlink@gmx.de"
-  }, {
-    "name": "Markus Felten",
-    "email": "markus.felten@gmx.de"
-  }],
+  "contributors": [
+    {
+      "name": "Torsten Link",
+      "email": "torstenlink@gmx.de"
+    },
+    {
+      "name": "Markus Felten",
+      "email": "markus.felten@gmx.de"
+    }
+  ],
   "license": "BSD-2-Clause",
   "devDependencies": {
     "chai": "3.4.1",
@@ -23,7 +26,7 @@
     "istanbul": "0.4.0",
     "kronos-step-stdio": "^1.0.0",
     "kronos-step": "^2.7.1",
-    "kronos-flow": "^1.2.0",
+    "kronos-flow": "^1.2.1",
     "mocha": "2.3.4",
     "supertest": "^1.1.0",
     "supertest-as-promised": "^2.0.2",
