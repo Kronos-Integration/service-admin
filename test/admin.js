@@ -121,7 +121,7 @@ describe('service manager admin', function () {
       }, done);
     });
 
-    xit('POST /flows', function (done) {
+    it('POST /flows', function (done) {
       initManager().then(function (manager) {
         request(manager.app.listen())
           .post('/flows')
@@ -142,16 +142,16 @@ describe('service manager admin', function () {
       }, done);
     });
 
-    xit('POST /flows with error', function (done) {
+    it('POST /flows with error', function (done) {
       initManager().then(function (manager) {
         request(manager.app.listen())
           .post('/flows')
           .send({
-            "a": {
-              "steps": {
-                "s1": {
-                  "type": "no-such-type"
-                }
+            "name": "a",
+            "type": "kronos-flow",
+            "steps": {
+              "s1": {
+                "type": "no-such-type"
               }
             }
           })
