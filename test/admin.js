@@ -159,7 +159,7 @@ describe('service manager admin', function () {
           .expect('Content-Type', /json/)
           .expect(200)
           .expect(function (res) {
-            console.log(res.text);
+            console.log("RES:" + res.text);
             //const response = JSON.parse(res.text);
             //if (response.name !== 'flow1') throw Error("flow flow1 missing");
           })
