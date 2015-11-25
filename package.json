@@ -37,7 +37,7 @@
     "koa-jwt": "^1.1.1",
     "koa-route": "^2.4.2",
     "koa-websocket": "^1.1.0",
-    "kronos-service-manager": "^1.1.1",
+    "kronos-service-manager": "^1.1.2",
     "raw-body": "2.1.4",
     "request": "2.67.0"
   },
