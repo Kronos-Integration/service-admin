@@ -1,0 +1,42 @@
+{
+  "name": "admin",
+  "type": "kronos-flow",
+  "steps": {
+    "http": {
+      "type": "kronos-http-routing",
+      "routes": {
+        "/flow": {
+          "method": "POST",
+          "target": "control/in"
+        },
+        "/flow/:id/start": {
+          "method": "POST",
+          "target": "control/command",
+          "content": {
+            "flow": "${id}",
+            "action": "start"
+          }
+        },
+        "/flow/:id/stop": {
+          "method": "POST",
+          "target": "control/command",
+          "content": {
+            "flow": "${id}",
+            "action": "stop"
+          }
+        },
+        "/flow/:id": {
+          "method": "DELETE",
+          "target": "control/command",
+          "content": {
+            "flow": "${id}",
+            "action": "delete"
+          }
+        }
+      }
+    },
+    "control": {
+      "type": "kronos-flow-control"
+    }
+  }
+}

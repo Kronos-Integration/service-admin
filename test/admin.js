@@ -76,7 +76,7 @@ describe('service manager admin', function () {
           .expect(function (res) {
             const response = JSON.parse(res.text);
             //console.log(`RES: ${JSON.stringify(response)}`);
-            if (response[0].url !== 'flow1') throw Error("flow missing");
+            if (response[1].url !== 'flow1') throw Error("flow missing");
           })
           .expect(200)
           .end(shutdownManager(manager, done));
