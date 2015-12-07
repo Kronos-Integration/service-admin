@@ -9,16 +9,13 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "apidoc": "apidoc -i lib -o apidoc"
   },
-  "contributors": [
-    {
-      "name": "Torsten Link",
-      "email": "torstenlink@gmx.de"
-    },
-    {
-      "name": "Markus Felten",
-      "email": "markus.felten@gmx.de"
-    }
-  ],
+  "contributors": [{
+    "name": "Torsten Link",
+    "email": "torstenlink@gmx.de"
+  }, {
+    "name": "Markus Felten",
+    "email": "markus.felten@gmx.de"
+  }],
   "license": "BSD-2-Clause",
   "devDependencies": {
     "chai": "3.4.1",
@@ -40,8 +37,7 @@
     "kronos-flow-control-step": "^1.0.0",
     "kronos-http-routing-step": "git+https://github.com/Kronos-Integration/kronos-http-routing-step.git",
     "kronos-service-manager": "^1.5.0",
-    "raw-body": "2.1.5",
-    "request": "2.67.0"
+    "raw-body": "2.1.5"
   },
   "repository": {
     "type": "git",
