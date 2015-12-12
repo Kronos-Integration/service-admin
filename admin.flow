@@ -1,5 +1,6 @@
 {
   "name": "admin",
+  "description" : "flow administration",
   "type": "kronos-flow",
   "steps": {
     "http": {
