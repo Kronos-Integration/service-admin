@@ -5,6 +5,7 @@
   "steps": {
     "http": {
       "type": "kronos-http-routing",
+      "listener" : "admin",
       "routes": {
         "/flow": {
           "method": "POST",
