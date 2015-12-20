@@ -9,7 +9,7 @@ const chai = require('chai'),
   should = chai.should(),
   request = require("supertest-as-promised")(Promise),
   kronos = require('kronos-service-manager'),
-  admin = require('../lib/manager.js'),
+  admin = require('../lib/adminService'),
   wt = require('koa-jwt');
 
 chai.use(require("chai-as-promised"));
@@ -41,7 +41,7 @@ describe('service manager admin', function () {
 
   function shutdownManager(manager, done) {
     return function (error, result) {
-      manager.shutdown().then(function () {
+      manager.shutdown().then(() => {
         if (error) {
           return done(error); 
         } else done();
@@ -50,20 +50,14 @@ describe('service manager admin', function () {
   }
 
   function initManager() {
-    return admin.manager(kronos.manager({
-      name: 'myManager'
-    }), {
-      port: testPort
-        /*,
-              jwt: { secret: "the secret" }*/
-    }).then(function (manager) {
+    return kronos.manager().then(manager => {
       require('kronos-step-stdio').registerWithManager(manager);
-      require('kronos-flow').registerWithManager(manager);
+      admin.registerWithManager(manager);
       manager.registerFlow(manager.getStepInstance(flowDecl));
+
+      testPort++; // TODO somehow koa-websocket does not shutdown correctly
       return manager;
     });
-
-    testPort++; // TODO somehow koa-websocket does not shutdown correctly
   }
 
   describe('flows', function () {
