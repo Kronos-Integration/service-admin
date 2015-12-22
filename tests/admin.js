@@ -50,8 +50,11 @@ describe('service manager admin', function () {
       }).then(manager => {
         require('kronos-step-stdio').registerWithManager(manager);
         admin.registerWithManager(manager);
+        return Promise.resolve(manager);
+        /*
         const as = manager.serviceGet('admin');
         return as.start().then(service => Promise.resolve(manager));
+        */
       });
     }
     return myManager;
