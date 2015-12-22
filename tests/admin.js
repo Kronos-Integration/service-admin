@@ -140,7 +140,7 @@ describe('service manager admin', function () {
     });
 
     it('POST /flows with error', function (done) {
-      initManager().then(function (manager) {
+      getManager().then(function (manager) {
         request(as.app.listen())
           .post('/flows')
           .send({
@@ -160,7 +160,7 @@ describe('service manager admin', function () {
             //const response = JSON.parse(res.text);
             //if (response.name !== 'flow1') throw Error("flow flow1 missing");
           })
-          .end(shutdownManager(manager, done));
+          .end(done);
       }, done);
     });
   });
