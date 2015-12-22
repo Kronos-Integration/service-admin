@@ -25,7 +25,13 @@ describe('service manager admin', function () {
   }
 
   function initManager() {
-    return kronos.manager().then(manager => {
+    return kronos.manager({
+      services: {
+        admin: {
+          logLevel: "error"
+        }
+      }
+    }).then(manager => {
       require('kronos-step-stdio').registerWithManager(manager);
       admin.registerWithManager(manager);
       const as = manager.serviceGet('admin');
@@ -36,18 +42,19 @@ describe('service manager admin', function () {
   describe('health', function () {
     it('GET /health', function (done) {
       initManager().then(function (manager) {
+        const as = manager.services.admin;
 
-        console.log(
-          `Admin: ${manager.services.admin} ${manager.services.admin.state} ${manager.services.admin.server}`
-        );
-
-        request(admin.server.listen())
-          .get('/health')
-          .expect(200)
-          .expect(function (res) {
-            if (res.text !== 'OK') throw Error("not OK");
-          })
-          .end(shutdownManager(manager, done));
+        try {
+          request(as.server.listen())
+            .get('/health')
+            .expect(200)
+            .expect(function (res) {
+              if (res.text !== 'OK') throw Error("not OK");
+            })
+            .end(shutdownManager(manager, done));
+        } catch (e) {
+          done(e);
+        }
       }, done);
     });
   });
