@@ -36,53 +36,52 @@ describe('service manager admin', function () {
     }
   };
 
-  function shutdownManager(manager, done) {
-    return function (error, result) {
-      manager.shutdown().then(() => {
-        if (error) {
-          return done(error); 
-        } else done();
-      }, done);
-    };
-  }
+  var myManager;
 
-  function initManager() {
-    return kronos.manager().then(manager => {
-      require('kronos-step-stdio').registerWithManager(manager);
-
-      admin.registerWithManager(manager);
-
-      manager.registerFlow(manager.getStepInstance(flowDecl));
-
-      const as = manager.serviceGet('admin');
-      return as.start().then(service => Promise.resolve(manager));
-    });
+  function getManager() {
+    if (!myManager) {
+      myManager = kronos.manager({
+        services: {
+          admin: {
+            logLevel: "trace",
+            port: 4711
+          }
+        }
+      }).then(manager => {
+        require('kronos-step-stdio').registerWithManager(manager);
+        admin.registerWithManager(manager);
+        const as = manager.serviceGet('admin');
+        return as.start().then(service => Promise.resolve(manager));
+      });
+    }
+    return myManager;
   }
 
   describe('flows', function () {
     it('GET /flows', function (done) {
-      initManager().then(function (manager) {
+      getManager().then(function (manager) {
+        const as = manager.services.admin;
 
-        console.log(
-          `Admin: ${manager.services.admin} ${manager.services.admin.state} ${manager.services.admin.server}`
-        );
-
-        request(manager.app.listen())
-          .get('/flows')
-          .set('Accept', 'application/json')
-          .expect('Content-Type', /json/)
-          .expect(function (res) {
-            const response = JSON.parse(res.text);
-            //console.log(`RES: ${JSON.stringify(response)}`);
-            if (response[1].url !== 'flow1') throw Error("flow missing");
-          })
-          .expect(200)
-          .end(shutdownManager(manager, done));
+        try {
+          request(as.app.listen())
+            .get('/flows')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(function (res) {
+              const response = JSON.parse(res.text);
+              //console.log(`RES: ${JSON.stringify(response)}`);
+              if (response[1].url !== 'flow1') throw Error("flow missing");
+            })
+            .expect(200)
+            .end(done);
+        } catch (e) {
+          console.error(e);
+        }
       }, done);
     });
     it('GET /flows/flow1', function (done) {
-      initManager().then(function (manager) {
-        request(manager.app.listen())
+      getManager().then(function (manager) {
+        request(as.app.listen())
           .get('/flows/flow1')
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
@@ -92,13 +91,13 @@ describe('service manager admin', function () {
             const response = JSON.parse(res.text);
             if (response.name !== 'flow1') throw Error("flow flow1 missing");
           })
-          .end(shutdownManager(manager, done));
+          .end(done);
       }, done);
     });
 
     it('DELETE /flows/flow1', function (done) {
-      initManager().then(function (manager) {
-        request(manager.app.listen())
+      getManager().then(function (manager) {
+        request(as.app.listen())
           .delete('/flows/flow1')
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
@@ -115,13 +114,13 @@ describe('service manager admin', function () {
                       console.log(`RES: ${JSON.stringify(response)}`);
                     })
           */
-          .end(shutdownManager(manager, done));
+          .end(done);
       }, done);
     });
 
     it('POST /flows', function (done) {
-      initManager().then(function (manager) {
-        request(manager.app.listen())
+      getManager().then(function (manager) {
+        request(as.app.listen())
           .post('/flows')
           .send({
             "name": "a",
@@ -136,13 +135,13 @@ describe('service manager admin', function () {
             //const response = JSON.parse(res.text);
             //if (response.name !== 'flow1') throw Error("flow flow1 missing");
           })
-          .end(shutdownManager(manager, done));
+          .end(done);
       }, done);
     });
 
     it('POST /flows with error', function (done) {
       initManager().then(function (manager) {
-        request(manager.app.listen())
+        request(as.app.listen())
           .post('/flows')
           .send({
             "name": "a",
