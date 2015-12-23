@@ -1,19 +1,20 @@
 {
   "name": "admin",
-  "description" : "flow administration",
+  "description": "flow administration",
   "type": "kronos-flow",
+  "autostart": true,
   "steps": {
     "http": {
       "type": "kronos-http-routing",
-      "listener" : "admin",
+      "listener": "admin",
       "routes": {
         "/flow": {
           "method": "POST",
-          "target": "control/in"
+          "target": "control1/in"
         },
         "/flow/:id/start": {
           "method": "POST",
-          "target": "control/command",
+          "target": "control2/command",
           "content": {
             "flow": "${id}",
             "action": "start"
@@ -21,7 +22,7 @@
         },
         "/flow/:id/stop": {
           "method": "POST",
-          "target": "control/command",
+          "target": "control3/command",
           "content": {
             "flow": "${id}",
             "action": "stop"
@@ -29,7 +30,7 @@
         },
         "/flow/:id": {
           "method": "DELETE",
-          "target": "control/command",
+          "target": "control4/command",
           "content": {
             "flow": "${id}",
             "action": "delete"
@@ -37,7 +38,16 @@
         }
       }
     },
-    "control": {
+    "control1": {
+      "type": "kronos-flow-control"
+    },
+    "control2": {
+      "type": "kronos-flow-control"
+    },
+    "control3": {
+      "type": "kronos-flow-control"
+    },
+    "control4": {
       "type": "kronos-flow-control"
     }
   }
