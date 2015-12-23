@@ -9,13 +9,16 @@
     "test": "mocha --harmony tests/*.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
-  "contributors": [{
-    "name": "Torsten Link",
-    "email": "torstenlink@gmx.de"
-  }, {
-    "name": "Markus Felten",
-    "email": "markus.felten@gmx.de"
-  }],
+  "contributors": [
+    {
+      "name": "Torsten Link",
+      "email": "torstenlink@gmx.de"
+    },
+    {
+      "name": "Markus Felten",
+      "email": "markus.felten@gmx.de"
+    }
+  ],
   "license": "BSD-2-Clause",
   "devDependencies": {
     "chai": "3.4.1",
@@ -30,8 +33,8 @@
   },
   "dependencies": {
     "koa-route": "^3.0.0",
-    "kronos-adapter-inbound-http": "^3.2.1",
-    "kronos-flow": "1.3.1",
+    "kronos-adapter-inbound-http": "^3.3.0",
+    "kronos-flow": "^1.4.0",
     "kronos-flow-control-step": "1.0.2",
     "kronos-http-routing-step": "2.1.0",
     "kronos-service-manager": "^2.7.0",
