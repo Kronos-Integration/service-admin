@@ -10,11 +10,11 @@
       "routes": {
         "/flow": {
           "method": "POST",
-          "target": "control1/in"
+          "target": "control/in"
         },
         "/flow/:id/start": {
           "method": "POST",
-          "target": "control2/command",
+          "target": "control/command",
           "content": {
             "flow": "${id}",
             "action": "start"
@@ -22,7 +22,7 @@
         },
         "/flow/:id/stop": {
           "method": "POST",
-          "target": "control3/command",
+          "target": "control/command",
           "content": {
             "flow": "${id}",
             "action": "stop"
@@ -30,7 +30,7 @@
         },
         "/flow/:id": {
           "method": "DELETE",
-          "target": "control4/command",
+          "target": "control/command",
           "content": {
             "flow": "${id}",
             "action": "delete"
@@ -38,17 +38,8 @@
         }
       }
     },
-    "control1": {
+    "control": {
       "type": "kronos-flow-control"
     },
-    "control2": {
-      "type": "kronos-flow-control"
-    },
-    "control3": {
-      "type": "kronos-flow-control"
-    },
-    "control4": {
-      "type": "kronos-flow-control"
-    }
   }
 }
