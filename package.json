@@ -26,7 +26,7 @@
     "chai": "3.4.1",
     "chai-as-promised": "5.2.0",
     "istanbul": "0.4.1",
-    "kronos-step": "^2.10.1",
+    "kronos-step": "^2.10.2",
     "kronos-step-stdio": "^2.0.0",
     "mocha": "2.3.4",
     "semantic-release": "6.0.3",
@@ -39,7 +39,7 @@
     "kronos-flow": "^1.4.0",
     "kronos-flow-control-step": "1.0.2",
     "kronos-http-routing-step": "^2.2.0",
-    "kronos-service-manager": "^2.10.1",
+    "kronos-service-manager": "^2.11.0",
     "raw-body": "2.1.5"
   },
   "repository": {
