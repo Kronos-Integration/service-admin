@@ -41,6 +41,7 @@ describe('service manager admin', function () {
   function getManager() {
     if (!myManager) {
       myManager = kronos.manager({
+        logLevel: "trace",
         services: {
           admin: {
             logLevel: "trace",
@@ -48,13 +49,17 @@ describe('service manager admin', function () {
           }
         }
       }).then(manager => {
-        require('kronos-step-stdio').registerWithManager(manager);
-        admin.registerWithManager(manager);
+        try {
+          require('kronos-step-stdio').registerWithManager(manager);
+          require('kronos-flow').registerWithManager(manager);
+          require('kronos-adapter-inbound-http').registerWithManager(manager);
+          require('kronos-http-routing-step').registerWithManager(manager);
+          require('kronos-flow-control-step').registerWithManager(manager);
+          admin.registerWithManager(manager);
+        } catch (e) {
+          console.log(e);
+        }
         return Promise.resolve(manager);
-        /*
-        const as = manager.serviceGet('admin');
-        return as.start().then(service => Promise.resolve(manager));
-        */
       });
     }
     return myManager;
@@ -66,7 +71,7 @@ describe('service manager admin', function () {
         const as = manager.services.admin;
 
         try {
-          request(as.app.listen())
+          request(as.server.listen())
             .get('/flows')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -84,7 +89,7 @@ describe('service manager admin', function () {
     });
     it('GET /flows/flow1', function (done) {
       getManager().then(function (manager) {
-        request(as.app.listen())
+        request(as.server.listen())
           .get('/flows/flow1')
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
@@ -100,7 +105,7 @@ describe('service manager admin', function () {
 
     it('DELETE /flows/flow1', function (done) {
       getManager().then(function (manager) {
-        request(as.app.listen())
+        request(as.server.listen())
           .delete('/flows/flow1')
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
@@ -123,7 +128,7 @@ describe('service manager admin', function () {
 
     it('POST /flows', function (done) {
       getManager().then(function (manager) {
-        request(as.app.listen())
+        request(as.server.listen())
           .post('/flows')
           .send({
             "name": "a",
@@ -144,7 +149,7 @@ describe('service manager admin', function () {
 
     it('POST /flows with error', function (done) {
       getManager().then(function (manager) {
-        request(as.app.listen())
+        request(as.server.listen())
           .post('/flows')
           .send({
             "name": "a",
