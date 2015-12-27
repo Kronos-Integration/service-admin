@@ -36,9 +36,9 @@
   "dependencies": {
     "koa-route": "^3.0.0",
     "kronos-adapter-inbound-http": "^3.4.0",
-    "kronos-flow": "^1.4.0",
-    "kronos-flow-control-step": "1.0.2",
-    "kronos-http-routing-step": "^2.2.0",
+    "kronos-flow": "^1.4.1",
+    "kronos-flow-control-step": "^1.1.0",
+    "kronos-http-routing-step": "^2.3.0",
     "kronos-service-manager": "^2.11.0",
     "raw-body": "2.1.5"
   },
