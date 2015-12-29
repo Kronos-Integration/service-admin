@@ -35,6 +35,14 @@
             "flow": "${id}",
             "action": "delete"
           }
+        },
+        "/flow/:id": {
+          "method": "GET",
+          "target": "control/command",
+          "content": {
+            "flow": "${id}",
+            "action": "get"
+          }
         }
       }
     },
