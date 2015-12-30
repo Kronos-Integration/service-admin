@@ -39,7 +39,7 @@
     "kronos-flow": "^1.4.1",
     "kronos-flow-control-step": "^1.4.0",
     "kronos-http-routing-step": "^2.4.1",
-    "kronos-service-manager": "^2.11.0",
+    "kronos-service-manager": "^2.12.0",
     "kronos-step": "^2.12.0",
     "raw-body": "2.1.5"
   },
