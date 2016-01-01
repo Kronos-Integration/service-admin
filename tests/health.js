@@ -33,7 +33,7 @@ describe('service manager admin', function () {
       }
     }).then(manager => {
       require('kronos-flow').registerWithManager(manager);
-      require('kronos-adapter-inbound-http').registerWithManager(manager);
+      require('kronos-koa-service').registerWithManager(manager);
       require('kronos-http-routing-step').registerWithManager(manager);
       require('kronos-flow-control-step').registerWithManager(manager);
 
