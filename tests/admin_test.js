@@ -25,12 +25,6 @@ describe('service manager admin', function () {
         }
       },
       "s1": {
-        "type": "kronos-copy",
-        "endpoints": {
-          "out": "s2/in"
-        }
-      },
-      "s2": {
         "type": "kronos-stdout"
       }
     }
