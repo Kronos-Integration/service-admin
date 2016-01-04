@@ -30,7 +30,7 @@ describe('service manager admin', function () {
     }
   };
 
-  var myManager;
+  let myManager;
 
   function getManager() {
     if (!myManager) {
@@ -60,7 +60,7 @@ describe('service manager admin', function () {
   }
 
   describe('flows', function () {
-    it('GET /flows', function (done) {
+    xit('GET /flows', function (done) {
       getManager().then(function (manager) {
         const as = manager.services.admin;
 
@@ -81,7 +81,7 @@ describe('service manager admin', function () {
         }
       }, done);
     });
-    it('GET /flows/flow1', function (done) {
+    xit('GET /flows/flow1', function (done) {
       getManager().then(function (manager) {
         request(as.server.listen())
           .get('/flows/flow1')
@@ -97,7 +97,7 @@ describe('service manager admin', function () {
       }, done);
     });
 
-    it('DELETE /flows/flow1', function (done) {
+    xit('DELETE /flows/flow1', function (done) {
       getManager().then(function (manager) {
         request(as.server.listen())
           .delete('/flows/flow1')
@@ -120,7 +120,7 @@ describe('service manager admin', function () {
       }, done);
     });
 
-    it('POST /flows', function (done) {
+    xit('POST /flows', function (done) {
       getManager().then(function (manager) {
         request(as.server.listen())
           .post('/flows')
@@ -141,7 +141,7 @@ describe('service manager admin', function () {
       }, done);
     });
 
-    it('POST /flows with error', function (done) {
+    xit('POST /flows with error', function (done) {
       getManager().then(function (manager) {
         request(as.server.listen())
           .post('/flows')
