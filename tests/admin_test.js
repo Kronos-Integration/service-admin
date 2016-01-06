@@ -54,7 +54,11 @@ describe('service manager admin', function () {
           console.log(e);
         }
         return Promise.resolve(manager);
-      });
+      }).then(manager =>
+        new Promise((fullfilled, rejected) => {
+          setTimeout(() => fullfilled(manager), 300);
+        })
+      );
     }
     return myManager;
   }
