@@ -7,12 +7,14 @@
     "http": {
       "type": "kronos-http-routing",
       "listener": "admin",
-      "routes": {
-        "/flow": {
+      "endpoints": {
+        "a": {
+          "path": "/flow",
           "method": "POST",
           "target": "control/in"
         },
-        "/flow/:id/start": {
+        "b": {
+          "path": "/flow/:id/start",
           "method": "POST",
           "target": "control/command",
           "content": {
@@ -20,7 +22,8 @@
             "action": "start"
           }
         },
-        "/flow/:id/stop": {
+        "c": {
+          "path": "/flow/:id/stop",
           "method": "POST",
           "target": "control/command",
           "content": {
@@ -28,7 +31,8 @@
             "action": "stop"
           }
         },
-        "/flow/:id": {
+        "d": {
+          "path": "/flow/:id",
           "method": "DELETE",
           "target": "control/command",
           "content": {
@@ -36,7 +40,8 @@
             "action": "delete"
           }
         },
-        "/flow/:id": {
+        "e": {
+          "path": "/flow/:id",
           "method": "GET",
           "target": "control/command",
           "content": {
