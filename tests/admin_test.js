@@ -45,7 +45,7 @@ describe('service manager admin', function () {
       }).then(manager => {
         try {
           require('kronos-step-stdio').registerWithManager(manager);
-          require('kronos-koa-service').registerWithManager(manager);
+          require('kronos-service-koa').registerWithManager(manager);
           require('kronos-flow').registerWithManager(manager);
           require('kronos-http-routing-step').registerWithManager(manager);
           require('kronos-flow-control-step').registerWithManager(manager);
