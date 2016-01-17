@@ -37,7 +37,7 @@
     "koa-route": "^3.0.0",
     "kronos-flow": "^1.6.3",
     "kronos-flow-control-step": "^1.7.1",
-    "kronos-http-routing-step": "^2.6.1",
+    "kronos-http-routing-step": "^2.6.2",
     "kronos-service-koa": "^1.0.0",
     "raw-body": "2.1.5"
   },
