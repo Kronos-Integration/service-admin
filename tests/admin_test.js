@@ -11,9 +11,7 @@ const chai = require('chai'),
   kronos = require('kronos-service-manager'),
   admin = require('../lib/adminService');
 
-chai.use(require("chai-as-promised"));
-
-describe('service manager admin', function () {
+describe('service manager admin', () => {
   const flowDecl = {
     "name": "flow1",
     "type": "kronos-flow",
@@ -63,9 +61,9 @@ describe('service manager admin', function () {
     return myManager;
   }
 
-  describe('flows', function () {
-    xit('GET /flows', function (done) {
-      getManager().then(function (manager) {
+  describe('flows', () => {
+    xit('GET /flows', done => {
+      getManager().then(manager => {
         const as = manager.services.admin;
 
         try {
@@ -85,8 +83,8 @@ describe('service manager admin', function () {
         }
       }, done);
     });
-    xit('GET /flows/flow1', function (done) {
-      getManager().then(function (manager) {
+    xit('GET /flows/flow1', done => {
+      getManager().then(manager => {
         request(as.server.listen())
           .get('/flows/flow1')
           .set('Accept', 'application/json')
@@ -101,8 +99,8 @@ describe('service manager admin', function () {
       }, done);
     });
 
-    xit('DELETE /flows/flow1', function (done) {
-      getManager().then(function (manager) {
+    xit('DELETE /flows/flow1', done => {
+      getManager().then(manager => {
         request(as.server.listen())
           .delete('/flows/flow1')
           .set('Accept', 'application/json')
@@ -124,8 +122,8 @@ describe('service manager admin', function () {
       }, done);
     });
 
-    xit('POST /flows', function (done) {
-      getManager().then(function (manager) {
+    xit('POST /flows', done => {
+      getManager().then(manager => {
         request(as.server.listen())
           .post('/flows')
           .send({
@@ -145,8 +143,8 @@ describe('service manager admin', function () {
       }, done);
     });
 
-    xit('POST /flows with error', function (done) {
-      getManager().then(function (manager) {
+    xit('POST /flows with error', done => {
+      getManager().then(manager => {
         request(as.server.listen())
           .post('/flows')
           .send({
