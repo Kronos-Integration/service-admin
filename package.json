@@ -28,7 +28,7 @@
     "istanbul": "0.4.1",
     "kronos-step-stdio": "^2.1.2",
     "kronos-service-manager": "^2.14.0",
-    "mocha": "2.3.4",
+    "mocha": "2.4.1",
     "semantic-release": "6.0.3",
     "supertest": "^1.1.0",
     "supertest-as-promised": "^2.0.2"
