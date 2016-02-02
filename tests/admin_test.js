@@ -28,42 +28,35 @@ describe('service manager admin', () => {
     }
   };
 
-  let myManager;
-
-  function getManager() {
-    if (!myManager) {
-      myManager = kronos.manager({
-        logLevel: "trace",
-        services: {
-          admin: {
-            logLevel: "trace",
-            port: 4711
-          }
-        }
-      }).then(manager => {
-        try {
-          require('kronos-step-stdio').registerWithManager(manager);
-          require('kronos-service-koa').registerWithManager(manager);
-          require('kronos-flow').registerWithManager(manager);
-          require('kronos-http-routing-step').registerWithManager(manager);
-          require('kronos-flow-control-step').registerWithManager(manager);
-          admin.registerWithManager(manager);
-        } catch (e) {
-          console.log(e);
-        }
-        return Promise.resolve(manager);
-      }).then(manager =>
-        new Promise((fullfilled, rejected) => {
-          setTimeout(() => fullfilled(manager), 300);
-        })
-      );
+  let myManager = kronos.manager({
+    kronos: {
+      logLevel: "trace",
+    },
+    admin: {
+      logLevel: "trace",
+      port: 4711
     }
-    return myManager;
-  }
+  }).then(manager => {
+    try {
+      require('kronos-step-stdio').registerWithManager(manager);
+      require('kronos-service-koa').registerWithManager(manager);
+      require('kronos-flow').registerWithManager(manager);
+      require('kronos-http-routing-step').registerWithManager(manager);
+      require('kronos-flow-control-step').registerWithManager(manager);
+      admin.registerWithManager(manager);
+    } catch (e) {
+      console.log(e);
+    }
+    return Promise.resolve(manager);
+  }).then(manager =>
+    new Promise((fullfilled, rejected) => {
+      setTimeout(() => fullfilled(manager), 300);
+    })
+  );
 
   describe('flows', () => {
     xit('GET /flows', done => {
-      getManager().then(manager => {
+      myManager.then(manager => {
         const as = manager.services.admin;
 
         try {
@@ -71,7 +64,7 @@ describe('service manager admin', () => {
             .get('/flows')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
-            .expect(function (res) {
+            .expect(res => {
               const response = JSON.parse(res.text);
               //console.log(`RES: ${JSON.stringify(response)}`);
               if (response[1].url !== 'flow1') throw Error("flow missing");
@@ -84,13 +77,13 @@ describe('service manager admin', () => {
       }, done);
     });
     xit('GET /flows/flow1', done => {
-      getManager().then(manager => {
+      myManager.then(manager => {
         request(as.server.listen())
           .get('/flows/flow1')
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
           .expect(200)
-          .expect(function (res) {
+          .expect(res => {
             //console.log(`reponse: ${res.text}`);
             const response = JSON.parse(res.text);
             if (response.name !== 'flow1') throw Error("flow flow1 missing");
@@ -100,13 +93,13 @@ describe('service manager admin', () => {
     });
 
     xit('DELETE /flows/flow1', done => {
-      getManager().then(manager => {
+      myManager.then(manager => {
         request(as.server.listen())
           .delete('/flows/flow1')
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
           .expect(200)
-          .expect(function (res) {
+          .expect(res => {
             const response = JSON.parse(res.text);
             if (Object.keys(response).length > 0) throw Error("delete error");
           })
@@ -123,7 +116,7 @@ describe('service manager admin', () => {
     });
 
     xit('POST /flows', done => {
-      getManager().then(manager => {
+      myManager.then(manager => {
         request(as.server.listen())
           .post('/flows')
           .send({
@@ -134,7 +127,7 @@ describe('service manager admin', () => {
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
           .expect(200)
-          .expect(function (res) {
+          .expect(res => {
             console.log(res.text);
             //const response = JSON.parse(res.text);
             //if (response.name !== 'flow1') throw Error("flow flow1 missing");
@@ -144,7 +137,7 @@ describe('service manager admin', () => {
     });
 
     xit('POST /flows with error', done => {
-      getManager().then(manager => {
+      myManager.then(manager => {
         request(as.server.listen())
           .post('/flows')
           .send({
@@ -159,7 +152,7 @@ describe('service manager admin', () => {
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
           .expect(200)
-          .expect(function (res) {
+          .expect(res => {
             console.log("RES:" + res.text);
             //const response = JSON.parse(res.text);
             //if (response.name !== 'flow1') throw Error("flow flow1 missing");
