@@ -36,27 +36,23 @@ describe('service manager admin', () => {
       logLevel: "trace",
       port: 4711
     }
-  }).then(manager => {
-    try {
-      require('kronos-step-stdio').registerWithManager(manager);
-      require('kronos-service-koa').registerWithManager(manager);
-      require('kronos-flow').registerWithManager(manager);
-      require('kronos-http-routing-step').registerWithManager(manager);
-      require('kronos-flow-control-step').registerWithManager(manager);
-      admin.registerWithManager(manager);
-    } catch (e) {
-      console.log(e);
-    }
-    return Promise.resolve(manager);
   }).then(manager =>
-    new Promise((fullfilled, rejected) => {
-      setTimeout(() => fullfilled(manager), 300);
-    })
-  );
+    Promise.all([
+      require('kronos-flow').registerWithManager(manager),
+      require('kronos-flow-control-step').registerWithManager(manager),
+      require('kronos-step-stdio').registerWithManager(manager),
+      require('kronos-http-routing-step').registerWithManager(manager),
+      admin.registerWithManager(manager)
+    ]).then(() => Promise.resolve(manager), console.log)
+  ).catch(console.log);
+
+  console.log(myManager);
 
   describe('flows', () => {
-    xit('GET /flows', done => {
-      myManager.then(manager => {
+    xit('GET /flows', () => {
+      return myManager.then(manager => {
+        console.log(`${Object.keys(manager.services)}`);
+
         const as = manager.services.admin;
 
         try {
@@ -70,11 +66,12 @@ describe('service manager admin', () => {
               if (response[1].url !== 'flow1') throw Error("flow missing");
             })
             .expect(200)
-            .end(done);
+            /*.end(done) */
+          ;
         } catch (e) {
           console.error(e);
         }
-      }, done);
+      } /*, done*/ );
     });
     xit('GET /flows/flow1', done => {
       myManager.then(manager => {
