@@ -36,20 +36,17 @@ describe('service manager admin', () => {
       logLevel: "trace",
       port: 4711
     }
-  }).then(manager =>
-    Promise.all([
-      require('kronos-flow').registerWithManager(manager),
-      require('kronos-flow-control-step').registerWithManager(manager),
-      require('kronos-step-stdio').registerWithManager(manager),
-      require('kronos-http-routing-step').registerWithManager(manager),
-      admin.registerWithManager(manager)
-    ]).then(() => Promise.resolve(manager), console.log)
-  ).catch(console.log);
+  }, [require('kronos-flow'),
+    require('kronos-flow-control-step'),
+    require('kronos-step-stdio'),
+    require('kronos-http-routing-step'),
+    admin
+  ]);
 
   console.log(myManager);
 
   describe('flows', () => {
-    xit('GET /flows', () => {
+    it('GET /flows', () => {
       return myManager.then(manager => {
         console.log(`${Object.keys(manager.services)}`);
 
