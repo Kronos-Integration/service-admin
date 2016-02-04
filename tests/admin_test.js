@@ -43,8 +43,6 @@ describe('service manager admin', () => {
     admin
   ]);
 
-  console.log(myManager);
-
   describe('flows', () => {
     it('GET /flows', () => {
       return myManager.then(manager => {
@@ -59,7 +57,7 @@ describe('service manager admin', () => {
             .expect('Content-Type', /json/)
             .expect(res => {
               const response = JSON.parse(res.text);
-              //console.log(`RES: ${JSON.stringify(response)}`);
+              console.log(`RES: ${JSON.stringify(response)}`);
               if (response[1].url !== 'flow1') throw Error("flow missing");
             })
             .expect(200)
