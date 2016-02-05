@@ -42,18 +42,11 @@ describe('service admin', () => {
     require('kronos-http-routing-step')
   ]);
 
-  describe('register admin service', () =>
+  it('register admin service', () =>
     myManager.then(manager =>
-      admin.registerWithManager(manager).then(() => {
-        it('has admin service', () => assert.equal(manager.services.admin.name, 'admin'));
-
-        return manager.services.admin.start().then(() => {
-          console.log(`*** STATE ${manager.services.admin.state}`);
-          it('admin service is running', () => assert.equal(manager.services.admin.state, 'running'));
-        }).catch(e => {
-          console.log(e);
-        });
-      })
+      admin.registerWithManager(manager).then(() => manager.services.admin.start().then(() =>
+        assert.equal(manager.services.admin.state, 'running')
+      ))
     )
   );
 
@@ -72,6 +65,7 @@ describe('service admin', () => {
         .expect(200)
         .end());
     });
+
     xit('GET /flows/flow1', () =>
       myManager.then(manager =>
         request(manager.services.admin.server.listen())
@@ -106,11 +100,11 @@ describe('service admin', () => {
       myManager.then(manager =>
         request(manager.services.admin.server.listen())
         .post('/flows')
-        .send({
+        .send(JSON.stringify({
           "name": "a",
           "type": "kronos-flow",
           "steps": {}
-        })
+        }))
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200)
@@ -127,7 +121,7 @@ describe('service admin', () => {
       myManager.then(manager =>
         request(manager.services.admin.server.listen())
         .post('/flows')
-        .send({
+        .send(JSON.stringify({
           "name": "a",
           "type": "kronos-flow",
           "steps": {
@@ -135,7 +129,7 @@ describe('service admin', () => {
               "type": "no-such-type"
             }
           }
-        })
+        }))
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200)
