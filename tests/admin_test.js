@@ -34,7 +34,7 @@ describe('service admin', () => {
     },
     admin: {
       logLevel: "trace",
-      port: 4711
+      port: 4712
     }
   }, [require('kronos-flow'),
     require('kronos-flow-control-step'),
