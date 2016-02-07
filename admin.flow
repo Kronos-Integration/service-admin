@@ -9,6 +9,7 @@
       "listener": "admin",
       "endpoints": {
         "a": {
+          "serviceName" : "loadFlow",
           "path": "/flow",
           "method": "POST",
           "target": "control/in"
