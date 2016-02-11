@@ -42,6 +42,7 @@
           }
         },
         "e": {
+          "serviceName" : "getFlow",
           "path": "/flow/:id",
           "method": "GET",
           "target": "control/command",
