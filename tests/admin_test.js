@@ -1,4 +1,4 @@
-/* global describe, it */
+/* global describe, it, xit, before, after */
 /* jslint node: true, esnext: true */
 
 "use strict";
@@ -39,6 +39,7 @@ describe('service admin', () => {
   }, [require('kronos-flow'),
     require('kronos-flow-control-step'),
     require('kronos-step-stdio'),
+    require('kronos-interceptor-http-request'),
     require('kronos-http-routing-step')
   ]);
 
@@ -86,11 +87,12 @@ describe('service admin', () => {
       myManager.then(manager =>
         request(manager.services.admin.server.listen())
         .delete('/flows/flow1')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200)
+        //        .set('Accept', 'application/json')
+        //        .expect('Content-Type', /json/)
+        //.expect(200)
         .expect(res => {
-          const response = JSON.parse(res.text);
+          console.log(`AA ${res}`);
+          const response = JSON.parse(res.body);
           if (Object.keys(response).length > 0) throw Error("delete error");
         })
         .end()

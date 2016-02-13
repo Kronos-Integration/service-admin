@@ -12,16 +12,13 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "doc": "jsdoc lib/*.js"
   },
-  "contributors": [
-    {
-      "name": "Torsten Link",
-      "email": "torstenlink@gmx.de"
-    },
-    {
-      "name": "Markus Felten",
-      "email": "markus.felten@gmx.de"
-    }
-  ],
+  "contributors": [{
+    "name": "Torsten Link",
+    "email": "torstenlink@gmx.de"
+  }, {
+    "name": "Markus Felten",
+    "email": "markus.felten@gmx.de"
+  }],
   "license": "BSD-2-Clause",
   "devDependencies": {
     "chai": "3.5.0",
@@ -38,7 +35,8 @@
     "koa-route": "^3.0.0",
     "kronos-flow": "^2.0.1",
     "kronos-flow-control-step": "^2.0.1",
-    "kronos-http-routing-step": "^3.3.0",
+    "kronos-http-routing-step": "^4.0.0",
+    "kronos-interceptor-http-request": "^2.0.0",
     "kronos-service-koa": "^2.6.1",
     "raw-body": "2.1.5"
   },
