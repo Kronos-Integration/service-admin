@@ -52,20 +52,23 @@ describe('service admin', () => {
   );
 
   describe('http', () => {
-    xit('GET /flows', () => {
-      return myManager.then(manager =>
-        request(manager.services.admin.server.listen())
-        .get('/flows')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(res => {
-          const response = JSON.parse(res.text);
-          console.log(`RES: ${JSON.stringify(response)}`);
-          if (response[1].url !== 'flow1') throw Error("flow missing");
-        })
-        .expect(200)
-        .end());
-    });
+    xit('GET /flows', () =>
+      myManager.then(manager => {
+        const admin = manager.services.admin;
+        const app = admin.server.listen();
+        return request(app)
+          .get('/flows')
+          //      .set('Accept', 'application/json')
+          //      .expect('Content-Type', /json/)
+          .expect(res => {
+            const response = JSON.parse(res.text);
+            console.log(`RES: ${JSON.stringify(response)}`);
+            if (response[1].url !== 'flow1') throw Error("flow missing");
+          })
+          .expect(200)
+          .end();
+      })
+    );
 
     xit('GET /flows/flow1', () =>
       myManager.then(manager =>
