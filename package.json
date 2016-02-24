@@ -32,7 +32,8 @@
     "semantic-release": "6.2.0",
     "supertest": "^1.2.0",
     "supertest-as-promised": "^3.0.0",
-    "jsdoc": "3.4.0"
+    "jsdoc": "3.4.0",
+    "cz-conventional-changelog": "1.1.5"
   },
   "dependencies": {
     "kronos-flow": "^2.0.1",
@@ -43,9 +44,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Kronos-Integration/kronos-service-admin.git"
+    "url": "git+https://github.com/Kronos-Integration/kronos-service-admin.git"
   },
   "engines": {
     "node": ">=5"
+  },
+  "bugs": {
+    "url": "https://github.com/Kronos-Integration/kronos-service-admin/issues"
+  },
+  "homepage": "https://github.com/Kronos-Integration/kronos-service-admin#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
