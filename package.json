@@ -8,9 +8,9 @@
   "main": "lib/adminService.js",
   "scripts": {
     "cover": "node ./node_modules/istanbul/lib/cli.js cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --R spec --U exports tests/*_test.js",
-    "test": "mocha tests/*_test.js",
+    "test": "node ./node_modules/.bin/mocha tests/*_test.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "doc": "jsdoc lib/*.js"
+    "doc": "node ./node_modules/.bin/jsdoc lib/*.js"
   },
   "contributors": [
     {
@@ -44,7 +44,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kronos-Integration/kronos-service-admin.git"
+    "url": "https://github.com/Kronos-Integration/kronos-service-admin.git"
   },
   "engines": {
     "node": ">=5"
