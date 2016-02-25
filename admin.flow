@@ -11,7 +11,7 @@
         "a": {
           "serviceName": "loadFlow",
           "path": "/flow",
-          "method": "POST",
+          "method": "PUT",
           "target": "control/in",
           "interceptors": [{
             "type": "koa-request"

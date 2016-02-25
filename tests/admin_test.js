@@ -101,10 +101,10 @@ describe('service admin', () => {
         .end()
       ));
 
-    xit('POST /flows', () =>
+    xit('PUT /flows', () =>
       myManager.then(manager =>
         request(manager.services.admin.server.listen())
-        .post('/flows')
+        .put('/flows')
         .send(JSON.stringify({
           "name": "a",
           "type": "kronos-flow",
