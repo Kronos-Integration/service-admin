@@ -12,7 +12,10 @@
           "serviceName": "loadFlow",
           "path": "/flow",
           "method": "POST",
-          "target": "control/in"
+          "target": "control/in",
+          "interceptors": [{
+            "type": "koa-request"
+          }]
         },
         "b": {
           "path": "/flow/:id/start",
