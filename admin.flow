@@ -65,6 +65,17 @@
               "action": "get"
             }
           }]
+        },
+        "f": {
+          "path": "/flow/",
+          "method": "GET",
+          "target": "control/command",
+          "interceptors": [{
+            "type": "koa-data-request",
+            "data": {
+              "action": "list"
+            }
+          }]
         }
       }
     },
