@@ -53,6 +53,24 @@ describe('service admin', () => {
   );
 
   describe('http', () => {
+    xit('GET /software', () =>
+      myManager.then(manager => {
+        const admin = manager.services.admin;
+        const app = admin.server.listen();
+        return request(app)
+          .get('/software')
+          //.set('Accept', 'application/json')
+          //.expect('Content-Type', /json/)
+          .expect(res => {
+            console.log(res);
+            const response = JSON.parse(res);
+            console.log(`RES: ${JSON.stringify(response)}`);
+          })
+          .expect(200)
+          .end();
+      })
+    );
+
     xit('GET /flow', () =>
       myManager.then(manager => {
         const admin = manager.services.admin;

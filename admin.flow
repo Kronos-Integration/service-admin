@@ -76,6 +76,15 @@
               "action": "list"
             }
           }]
+        },
+        "software": {
+          "path": "/software/",
+          "method": "GET",
+          "target": "admin:software",
+          "interceptors": [{
+            "type": "koa-data-request",
+            "data": {}
+          }]
         }
       }
     },
