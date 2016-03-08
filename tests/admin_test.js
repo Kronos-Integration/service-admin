@@ -37,6 +37,7 @@ describe('service admin', () => {
       port: 4712
     }
   }, [require('kronos-flow'),
+    require('kronos-service-registry'),
     require('kronos-flow-control-step'),
     require('kronos-step-stdio'),
     require('kronos-interceptor-http-request'),
@@ -52,16 +53,19 @@ describe('service admin', () => {
   );
 
   describe('http', () => {
-    xit('GET /flows', () =>
+    xit('GET /flow', () =>
       myManager.then(manager => {
         const admin = manager.services.admin;
         const app = admin.server.listen();
+        //console.log(app);
         return request(app)
-          .get('/flows')
-          //      .set('Accept', 'application/json')
-          //      .expect('Content-Type', /json/)
+          .get('/flow')
+          .set('Accept', 'application/json')
+          //.expect('Content-Type', /json/)
           .expect(res => {
-            const response = JSON.parse(res.text);
+            console.log(res);
+
+            const response = JSON.parse(res);
             console.log(`RES: ${JSON.stringify(response)}`);
             if (response[1].url !== 'flow1') throw Error("flow missing");
           })
@@ -70,14 +74,16 @@ describe('service admin', () => {
       })
     );
 
-    xit('GET /flows/flow1', () =>
+    xit('GET /flow/flow1', () =>
       myManager.then(manager =>
         request(manager.services.admin.server.listen())
-        .get('/flows/flow1')
+        .get('/flow/flow1')
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200)
         .expect(res => {
+          console.log(res);
+
           //console.log(`reponse: ${res.text}`);
           const response = JSON.parse(res.text);
           if (response.name !== 'flow1') throw Error("flow flow1 missing");
@@ -86,10 +92,10 @@ describe('service admin', () => {
       )
     );
 
-    xit('DELETE /flows/flow1', () =>
+    xit('DELETE /flow/flow1', () =>
       myManager.then(manager =>
         request(manager.services.admin.server.listen())
-        .delete('/flows/flow1')
+        .delete('/flow/flow1')
         //        .set('Accept', 'application/json')
         //        .expect('Content-Type', /json/)
         //.expect(200)
@@ -101,10 +107,10 @@ describe('service admin', () => {
         .end()
       ));
 
-    xit('PUT /flows', () =>
+    xit('PUT /flow', () =>
       myManager.then(manager =>
         request(manager.services.admin.server.listen())
-        .put('/flows')
+        .put('/flow')
         .send(JSON.stringify({
           "name": "a",
           "type": "kronos-flow",
@@ -122,10 +128,10 @@ describe('service admin', () => {
       )
     );
 
-    xit('POST /flows with error', () =>
+    xit('POST /flow with error', () =>
       myManager.then(manager =>
         request(manager.services.admin.server.listen())
-        .post('/flows')
+        .post('/flow')
         .send(JSON.stringify({
           "name": "a",
           "type": "kronos-flow",
