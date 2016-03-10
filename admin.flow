@@ -4,6 +4,29 @@
   "type": "kronos-flow",
   "autostart": true,
   "steps": {
+    "state": {
+      "type": "kronos-aggregate",
+      "endpoints": {
+        "in": {
+          "in": true
+        },
+        "state": {
+          "out": true,
+          "mandatory": false,
+          "target": "health:state"
+        },
+        "memory": {
+          "out": true,
+          "mandatory": false,
+          "target": "health:memory"
+        },
+        "uptime": {
+          "out": true,
+          "mandatory": false,
+          "target": "health:uptime"
+        }
+      }
+    },
     "http": {
       "type": "kronos-http-routing",
       "listener": "admin",
@@ -79,11 +102,16 @@
         },
         "software": {
           "path": "/software/",
-          "method": "GET",
           "target": "admin:software",
           "interceptors": [{
-            "type": "koa-data-request",
-            "data": {}
+            "type": "koa-data-request"
+          }]
+        },
+        "state": {
+          "path": "/state/",
+          "target": "state:in",
+          "interceptors": [{
+            "type": "koa-data-request"
           }]
         }
       }
