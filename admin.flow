@@ -109,7 +109,7 @@
         },
         "state": {
           "path": "/state/",
-          "target": "state:in",
+          "target": "state/in",
           "interceptors": [{
             "type": "koa-data-request"
           }]
