@@ -12,17 +12,14 @@
         },
         "state": {
           "out": true,
-          "mandatory": false,
           "target": "health:state"
         },
         "memory": {
           "out": true,
-          "mandatory": false,
           "target": "health:memory"
         },
         "uptime": {
           "out": true,
-          "mandatory": false,
           "target": "health:uptime"
         }
       }
