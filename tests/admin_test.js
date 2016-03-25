@@ -7,13 +7,16 @@ const chai = require('chai'),
   assert = chai.assert,
   expect = chai.expect,
   should = chai.should(),
-  request = require("supertest-as-promised")(Promise),
   kronos = require('kronos-service-manager'),
   admin = require('../lib/adminService');
 
+chai.use(require('chai-http'));
+
+const request = chai.request;
+
 describe('service admin', () => {
   const flowDecl = {
-    "name": "flow1",
+    "name": "a",
     "type": "kronos-flow",
     "steps": {
       "s0": {
@@ -32,12 +35,15 @@ describe('service admin', () => {
     kronos: {
       logLevel: "trace",
     },
-    admin: {
-      logLevel: "trace",
-      port: 4712
+    "koa-admin": {
+      logLevel: "trace"
+    },
+    "admin": {
+      logLevel: "trace"
     }
   }, [require('kronos-flow'),
     require('kronos-service-registry'),
+    require('kronos-service-koa'),
     require('kronos-flow-control-step'),
     require('kronos-step-aggregate'),
     require('kronos-step-stdio'),
@@ -49,127 +55,92 @@ describe('service admin', () => {
     myManager.then(manager =>
       admin.registerWithManager(manager).then(() => manager.services.admin.start().then(() =>
         assert.equal(manager.services.admin.state, 'running')
-      ))
+      )).catch(console.log)
     )
   );
 
   describe('http', () => {
-    xit('GET /software', () =>
+    it('GET /software', () =>
       myManager.then(manager => {
-        const admin = manager.services.admin;
+        const admin = manager.services['koa-admin'];
         const app = admin.server.listen();
         return request(app)
-          .get('/software')
-          //.set('Accept', 'application/json')
-          //.expect('Content-Type', /json/)
-          .expect(res => {
-            console.log(res);
-            const response = JSON.parse(res);
-            console.log(`RES: ${JSON.stringify(response)}`);
-          })
-          .expect(200)
-          .end();
+          .get('/software').then(res => {
+            expect(res).to.have.status(200);
+          }).catch(err => {
+            throw err;
+          });
       })
     );
 
-    xit('GET /flow', () =>
+    it('PUT /flow', () =>
       myManager.then(manager => {
-        const admin = manager.services.admin;
+        const admin = manager.services['koa-admin'];
         const app = admin.server.listen();
-        //console.log(app);
         return request(app)
-          .get('/flow')
-          .set('Accept', 'application/json')
-          //.expect('Content-Type', /json/)
-          .expect(res => {
-            console.log(res);
-
-            const response = JSON.parse(res);
-            console.log(`RES: ${JSON.stringify(response)}`);
-            if (response[1].url !== 'flow1') throw Error("flow missing");
-          })
-          .expect(200)
-          .end();
+          .put('/flow/').send(JSON.stringify({
+            "name": "a",
+            "type": "kronos-flow",
+            "steps": {}
+          })).then(res => {
+            expect(res).to.have.status(200);
+          });
       })
     );
 
-    xit('GET /flow/flow1', () =>
-      myManager.then(manager =>
-        request(manager.services.admin.server.listen())
-        .get('/flow/flow1')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200)
-        .expect(res => {
-          console.log(res);
-
-          //console.log(`reponse: ${res.text}`);
-          const response = JSON.parse(res.text);
-          if (response.name !== 'flow1') throw Error("flow flow1 missing");
-        })
-        .end()
-      )
+    it('GET /flow', () =>
+      myManager.then(manager => {
+        manager.registerFlow(manager.createStepInstanceFromConfig(flowDecl, manager));
+        const admin = manager.services['koa-admin'];
+        const app = admin.server.listen();
+        return request(app)
+          .get('/flow').then(res => {
+            expect(res).to.have.status(200);
+          });
+      })
     );
 
-    xit('DELETE /flow/flow1', () =>
-      myManager.then(manager =>
-        request(manager.services.admin.server.listen())
-        .delete('/flow/flow1')
-        //        .set('Accept', 'application/json')
-        //        .expect('Content-Type', /json/)
-        //.expect(200)
-        .expect(res => {
-          console.log(`AA ${res}`);
-          const response = JSON.parse(res.body);
-          if (Object.keys(response).length > 0) throw Error("delete error");
-        })
-        .end()
-      ));
+    it('GET /flow/a', () =>
+      myManager.then(manager => {
+        const admin = manager.services['koa-admin'];
+        const app = admin.server.listen();
 
-    xit('PUT /flow', () =>
-      myManager.then(manager =>
-        request(manager.services.admin.server.listen())
-        .put('/flow')
-        .send(JSON.stringify({
-          "name": "a",
-          "type": "kronos-flow",
-          "steps": {}
-        }))
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200)
-        .expect(res => {
-          console.log(res.text);
-          //const response = JSON.parse(res.text);
-          //if (response.name !== 'flow1') throw Error("flow flow1 missing");
-        })
-        .end()
-      )
+        return request(app)
+          .get('/flow/a').then(res => {
+            expect(res).to.have.status(200);
+          });
+      })
     );
 
-    xit('POST /flow with error', () =>
-      myManager.then(manager =>
-        request(manager.services.admin.server.listen())
-        .post('/flow')
-        .send(JSON.stringify({
-          "name": "a",
-          "type": "kronos-flow",
-          "steps": {
-            "s1": {
-              "type": "no-such-type"
+    it('DELETE /flow/a', () =>
+      myManager.then(manager => {
+        const admin = manager.services['koa-admin'];
+        const app = admin.server.listen();
+        return request(app)
+          .delete('/flow/a').then(res => {
+            expect(res).to.have.status(200);
+          });
+      })
+    );
+
+    it('PUT /flow with error', () =>
+      myManager.then(manager => {
+        const admin = manager.services['koa-admin'];
+        const app = admin.server.listen();
+        return request(app)
+          .put('/flow/').send(JSON.stringify({
+            "name": "a",
+            "type": "kronos-flow",
+            "steps": {
+              "s1": {
+                "type": "no-such-type"
+              }
             }
-          }
-        }))
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200)
-        .expect(res => {
-          console.log("RES:" + res.text);
-          //const response = JSON.parse(res.text);
-          //if (response.name !== 'flow1') throw Error("flow flow1 missing");
-        })
-        .end()
-      )
+          }))
+          .then(res => {
+            expect(res).to.have.status(200);
+          });
+      })
     );
   });
 });

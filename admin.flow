@@ -12,21 +12,24 @@
         },
         "state": {
           "out": true,
+          "mandatory": false,
           "target": "health:state"
         },
         "memory": {
           "out": true,
+          "mandatory": false,
           "target": "health:memory"
         },
         "uptime": {
           "out": true,
+          "mandatory": false,
           "target": "health:uptime"
         }
       }
     },
     "http": {
       "type": "kronos-http-routing",
-      "listener": "admin",
+      "listener": "koa-admin",
       "endpoints": {
         "a": {
           "serviceName": "loadFlow",
