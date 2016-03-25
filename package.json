@@ -36,7 +36,7 @@
     "semantic-release": "6.2.1"
   },
   "dependencies": {
-    "kronos-flow": "2.5.6",
+    "kronos-flow": "2.5.7",
     "kronos-flow-control-step": "2.1.1",
     "kronos-http-routing-step": "4.1.4",
     "kronos-interceptor-http-request": "^2.2.0",
