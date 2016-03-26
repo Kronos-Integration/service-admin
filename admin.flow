@@ -1,5 +1,6 @@
 {
   "name": "admin",
+  "logLevel": "trace",
   "description": "flow administration",
   "type": "kronos-flow",
   "autostart": true,
