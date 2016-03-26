@@ -38,7 +38,7 @@
   "dependencies": {
     "blessed": "^0.1.81",
     "kronos-flow": "2.5.7",
-    "kronos-flow-control-step": "2.1.1",
+    "kronos-flow-control-step": "2.1.2",
     "kronos-http-routing-step": "4.1.4",
     "kronos-interceptor-http-request": "^2.2.0",
     "kronos-service-koa": "2.8.3",
