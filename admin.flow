@@ -13,18 +13,18 @@
         },
         "state": {
           "out": true,
-          "mandatory": false,
-          "target": "health:state"
+          "mandatory": true,
+          "target": "health-check:state"
         },
         "memory": {
           "out": true,
-          "mandatory": false,
-          "target": "health:memory"
+          "mandatory": true,
+          "target": "health-check:memory"
         },
         "uptime": {
           "out": true,
-          "mandatory": false,
-          "target": "health:uptime"
+          "mandatory": true,
+          "target": "health-check:uptime"
         }
       }
     },
