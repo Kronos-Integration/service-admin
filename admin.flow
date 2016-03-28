@@ -7,6 +7,7 @@
   "steps": {
     "state": {
       "type": "kronos-aggregate",
+      "aggregate": "by-endpoint-name",
       "endpoints": {
         "in": {
           "in": true
