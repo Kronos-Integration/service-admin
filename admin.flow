@@ -14,17 +14,14 @@
         },
         "state": {
           "out": true,
-          "mandatory": true,
           "target": "health-check:state"
         },
         "memory": {
           "out": true,
-          "mandatory": true,
           "target": "health-check:memory"
         },
         "uptime": {
           "out": true,
-          "mandatory": true,
           "target": "health-check:uptime"
         }
       }
@@ -81,7 +78,6 @@
         "e": {
           "serviceName": "getFlow",
           "path": "/flow/:id",
-          "method": "GET",
           "target": "control/command",
           "interceptors": [{
             "type": "koa-data-request",
@@ -93,7 +89,6 @@
         },
         "f": {
           "path": "/flow/",
-          "method": "GET",
           "target": "control/command",
           "interceptors": [{
             "type": "koa-data-request",
