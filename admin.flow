@@ -83,7 +83,12 @@
             "type": "koa-data-request",
             "data": {
               "flow": "${id}",
-              "action": "get"
+              "action": "get",
+              "options": {
+                "includeName": true,
+                "includeRuntimeInfo": true,
+                "includeDefaults": false
+              }
             }
           }]
         },
