@@ -43,7 +43,7 @@
     "kronos-http-routing-step": "4.1.8",
     "kronos-interceptor-http-request": "2.3.0",
     "kronos-service": "2.13.2",
-    "kronos-service-koa": "2.8.7",
+    "kronos-service-koa": "2.8.8",
     "kronos-step-aggregate": "1.2.0",
     "ssh2": "^0.5.0"
   },
