@@ -42,7 +42,7 @@
     "kronos-flow-control-step": "2.2.5",
     "kronos-http-routing-step": "4.1.10",
     "kronos-interceptor-http-request": "2.3.0",
-    "kronos-service": "2.13.2",
+    "kronos-service": "2.14.0",
     "kronos-service-koa": "2.8.8",
     "kronos-step-aggregate": "1.2.2",
     "ssh2": "^0.5.0"
