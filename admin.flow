@@ -29,6 +29,7 @@
     "http": {
       "type": "kronos-http-routing",
       "listener": "koa-admin",
+      "mount": "/api",
       "endpoints": {
         "a": {
           "serviceName": "loadFlow",
@@ -93,7 +94,7 @@
           }]
         },
         "f": {
-          "path": "/flow/",
+          "path": "/flow",
           "target": "control/command",
           "interceptors": [{
             "type": "koa-data-request",

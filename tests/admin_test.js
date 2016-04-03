@@ -66,7 +66,7 @@ describe('service admin', () => {
         const admin = manager.services['koa-admin'];
         const app = admin.server.listen();
         return request(app)
-          .get('/software').then(res => {
+          .get('/api/software').then(res => {
             expect(res).to.have.status(200);
           }).catch(err => {
             throw err;
@@ -79,7 +79,7 @@ describe('service admin', () => {
         const admin = manager.services['koa-admin'];
         const app = admin.server.listen();
         return request(app)
-          .put('/flow/').send(JSON.stringify({
+          .put('/api/flow/').send(JSON.stringify({
             "name": "a",
             "type": "kronos-flow",
             "steps": {}
@@ -95,7 +95,7 @@ describe('service admin', () => {
         const admin = manager.services['koa-admin'];
         const app = admin.server.listen();
         return request(app)
-          .get('/flow').then(res => {
+          .get('/api/flow').then(res => {
             expect(res).to.have.status(200);
           });
       })
@@ -107,7 +107,7 @@ describe('service admin', () => {
         const app = admin.server.listen();
 
         return request(app)
-          .get('/flow/a').then(res => {
+          .get('/api/flow/a').then(res => {
             expect(res).to.have.status(200);
           });
       })
@@ -118,7 +118,7 @@ describe('service admin', () => {
         const admin = manager.services['koa-admin'];
         const app = admin.server.listen();
         return request(app)
-          .delete('/flow/a').then(res => {
+          .delete('/api/flow/a').then(res => {
             expect(res).to.have.status(200);
           });
       })
@@ -129,7 +129,7 @@ describe('service admin', () => {
         const admin = manager.services['koa-admin'];
         const app = admin.server.listen();
         return request(app)
-          .put('/flow/').send(JSON.stringify({
+          .put('/api/flow/').send(JSON.stringify({
             "name": "a",
             "type": "kronos-flow",
             "steps": {
