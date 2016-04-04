@@ -117,6 +117,22 @@
             }
           }]
         },
+        "h": {
+          "path": "/service/:id",
+          "target": "kronos:command",
+          "interceptors": [{
+            "type": "koa-data-request",
+            "data": {
+              "service": "${id}",
+              "action": "get",
+              "options": {
+                "includeName": true,
+                "includeRuntimeInfo": true,
+                "includeDefaults": false
+              }
+            }
+          }]
+        },
         "software": {
           "path": "/software/",
           "target": "admin:software",
