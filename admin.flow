@@ -140,6 +140,11 @@
             "type": "koa-data-request"
           }]
         },
+        "state_socket": {
+          "path": "/state",
+          "target": "state/in",
+          "socket": true
+        },
         "state": {
           "path": "/state/",
           "target": "state/in",
