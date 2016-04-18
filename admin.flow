@@ -146,8 +146,9 @@
           "socket": true
         },
         "state_socket_incoming": {
-          "path": "/state",
+          "path": "/state_incoming",
           "target": "health-check:stateBroadcast",
+          "mandatory": false,
           "socket": true
         },
         "state": {
