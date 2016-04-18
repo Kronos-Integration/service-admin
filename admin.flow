@@ -145,6 +145,11 @@
           "target": "state/in",
           "socket": true
         },
+        "state_socket_incoming": {
+          "path": "/state",
+          "target": "health-check:stateBroadcast",
+          "socket": true
+        },
         "state": {
           "path": "/state/",
           "target": "state/in",
