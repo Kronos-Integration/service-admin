@@ -133,6 +133,14 @@
             }
           }]
         },
+        "nodes": {
+          "path": "/nodes/",
+          "target": "registry:nodes",
+          "mandatory": false,
+          "interceptors": [{
+            "type": "koa-data-request"
+          }]
+        },
         "software": {
           "path": "/software/",
           "target": "admin:software",
