@@ -139,7 +139,8 @@
           "target": "registry:nodes",
           "mandatory": false,
           "interceptors": [{
-            "type": "koa-data-request"
+            "type": "koa-data-request",
+            "data": { "update": true }
           }]
         },
         "software": {
