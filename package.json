@@ -12,13 +12,16 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "doc": "node ./node_modules/.bin/jsdoc lib/*.js"
   },
-  "contributors": [{
-    "name": "Torsten Link",
-    "email": "torstenlink@gmx.de"
-  }, {
-    "name": "Markus Felten",
-    "email": "markus.felten@gmx.de"
-  }],
+  "contributors": [
+    {
+      "name": "Torsten Link",
+      "email": "torstenlink@gmx.de"
+    },
+    {
+      "name": "Markus Felten",
+      "email": "markus.felten@gmx.de"
+    }
+  ],
   "license": "BSD-2-Clause",
   "devDependencies": {
     "chai": "3.5.0",
@@ -43,7 +46,7 @@
     "kronos-service": "^2.18.2",
     "kronos-service-health-check": "^2.5.0",
     "kronos-service-koa": "^2.14.0",
-    "kronos-step-aggregate": "1.2.2",
+    "kronos-step-aggregate": "1.2.3",
     "ssh2": "^0.5.0"
   },
   "repository": {
