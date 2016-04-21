@@ -128,7 +128,8 @@
               "options": {
                 "includeName": true,
                 "includeRuntimeInfo": true,
-                "includeDefaults": false
+                "includeDefaults": true,
+                "includeConfig": true
               }
             }
           }]
