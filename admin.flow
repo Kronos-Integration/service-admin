@@ -10,10 +10,12 @@
       "aggregate": "by-endpoint-name",
       "endpoints": {
         "in": {
-          "in": true
+          "in": true,
+          "opposite": true
         },
         "state": {
           "out": true,
+          "opposite": true,
           "target": "health-check:state"
         },
         "memory": {
@@ -140,7 +142,9 @@
           "mandatory": false,
           "interceptors": [{
             "type": "koa-data-request",
-            "data": { "update": true }
+            "data": {
+              "update": true
+            }
           }]
         },
         "software": {
@@ -153,12 +157,6 @@
         "state_socket": {
           "path": "/state",
           "target": "state/in",
-          "socket": true
-        },
-        "state_socket_incoming": {
-          "path": "/state_incoming",
-          "target": "health-check:stateBroadcast",
-          "mandatory": false,
           "socket": true
         },
         "state": {
