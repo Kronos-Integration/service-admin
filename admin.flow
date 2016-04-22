@@ -20,10 +20,12 @@
         },
         "memory": {
           "out": true,
+          "opposite": true,
           "target": "health-check:memory"
         },
         "uptime": {
           "out": true,
+          "opposite": true,
           "target": "health-check:uptime"
         }
       }
