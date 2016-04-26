@@ -1,6 +1,5 @@
 {
   "name": "admin",
-  "logLevel": "trace",
   "description": "flow administration",
   "type": "kronos-flow",
   "autostart": true,
@@ -143,11 +142,14 @@
           "target": "registry:nodes",
           "mandatory": false,
           "interceptors": [{
-            "type": "koa-data-request",
-            "data": {
-              "update": true
-            }
+            "type": "koa-data-request"
           }]
+        },
+        "nodes_socket": {
+          "path": "/nodes",
+          "target": "registry:nodes",
+          "mandatory": false,
+          "socket": true
         },
         "software": {
           "path": "/software/",
