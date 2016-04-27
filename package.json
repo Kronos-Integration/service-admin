@@ -53,7 +53,7 @@
     "url": "https://github.com/Kronos-Integration/kronos-service-admin.git"
   },
   "engines": {
-    "node": ">=5"
+    "node": ">=6"
   },
   "bugs": {
     "url": "https://github.com/Kronos-Integration/kronos-service-admin/issues"
