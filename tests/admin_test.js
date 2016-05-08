@@ -49,6 +49,7 @@ describe('service admin', () => {
     require('kronos-step-aggregate'),
     require('kronos-step-stdio'),
     require('kronos-interceptor-http-request'),
+    require('kronos-interceptor-decode-json'),
     require('kronos-http-routing-step')
   ]);
 
