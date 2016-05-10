@@ -22,6 +22,11 @@
           "opposite": true,
           "target": "health-check:memory"
         },
+        "cpu": {
+          "out": true,
+          "opposite": true,
+          "target": "health-check:cpu"
+        },
         "uptime": {
           "out": true,
           "opposite": true,
@@ -41,6 +46,8 @@
           "target": "control/in",
           "interceptors": [{
             "type": "koa-request"
+          }, {
+            "type": "decode-json"
           }]
         },
         "b": {
