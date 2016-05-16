@@ -144,6 +144,17 @@
             }
           }]
         },
+        "node": {
+          "path": "/node/",
+          "target": "registry:command",
+          "mandatory": false,
+          "interceptors": [{
+            "type": "koa-data-request",
+            "data": {
+              "action": "config"
+            }
+          }]
+        },
         "nodes": {
           "path": "/nodes/",
           "target": "registry:nodes",
