@@ -62,12 +62,12 @@ describe('service admin', () => {
   );
 
   describe('http', () => {
-    it('GET /software', () =>
+    it('GET /localnode/software', () =>
       myManager.then(manager => {
         const admin = manager.services['koa-admin'];
         const app = admin.server.listen();
         return request(app)
-          .get('/api/software').then(res => {
+          .get('/api/localnode/software').then(res => {
             expect(res).to.have.status(200);
           }).catch(err => {
             throw err;
@@ -75,12 +75,12 @@ describe('service admin', () => {
       })
     );
 
-    it('PUT /flow', () =>
+    it('PUT /localnode/flow', () =>
       myManager.then(manager => {
         const admin = manager.services['koa-admin'];
         const app = admin.server.listen();
         return request(app)
-          .put('/api/flow/').send(JSON.stringify({
+          .put('/api/localnode/flow/').send(JSON.stringify({
             name: 'a',
             type: 'kronos-flow',
             steps: {}
@@ -90,48 +90,48 @@ describe('service admin', () => {
       })
     );
 
-    it('GET /flow', () =>
+    it('GET /localnode/flow', () =>
       myManager.then(manager => {
         manager.registerFlow(manager.createStepInstanceFromConfig(flowDecl, manager));
         const admin = manager.services['koa-admin'];
         const app = admin.server.listen();
         return request(app)
-          .get('/api/flow').then(res => {
+          .get('/api/localnode/flow').then(res => {
             expect(res).to.have.status(200);
           });
       })
     );
 
-    it('GET /flow/a', () =>
+    it('GET /localnode/flow/a', () =>
       myManager.then(manager => {
         const admin = manager.services['koa-admin'];
         const app = admin.server.listen();
 
         return request(app)
-          .get('/api/flow/a').then(res => {
+          .get('/api/localnode/flow/a').then(res => {
             expect(res).to.have.status(200);
           });
       })
     );
 
-    it('DELETE /flow/a', () =>
+    it('DELETE /localnode/flow/a', () =>
       myManager.then(manager => {
         const admin = manager.services['koa-admin'];
         const app = admin.server.listen();
         return request(app)
-          .delete('/api/flow/a').then(res => {
+          .delete('/api/localnode/flow/a').then(res => {
             expect(res).to.have.status(200);
           });
       })
     );
 
-    xit('PUT /flow with error', () => {
+    xit('PUT /localnode/flow with error', () => {
       try {
         return myManager.then(manager => {
           const admin = manager.services['koa-admin'];
           const app = admin.server.listen();
           return request(app)
-            .put('/api/flow/').send(JSON.stringify({
+            .put('/api/localnode/flow/').send(JSON.stringify({
               name: 'a',
               type: 'kronos-flow',
               steps: {

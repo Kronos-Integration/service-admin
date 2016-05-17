@@ -1,6 +1,6 @@
 {
   "name": "admin",
-  "description": "flow administration",
+  "description": "kronos administration",
   "type": "kronos-flow",
   "autostart": true,
   "steps": {
@@ -41,7 +41,7 @@
       "endpoints": {
         "a": {
           "serviceName": "loadFlow",
-          "path": "/flow",
+          "path": "/:nodeid/flow",
           "method": "PUT",
           "target": "control/in",
           "interceptors": [{
@@ -51,7 +51,7 @@
           }]
         },
         "b": {
-          "path": "/flow/:id/start",
+          "path": "/:nodeid/flow/:id/start",
           "method": "POST",
           "target": "control/command",
           "interceptors": [{
@@ -63,7 +63,7 @@
           }]
         },
         "c": {
-          "path": "/flow/:id/stop",
+          "path": "/:nodeid/flow/:id/stop",
           "method": "POST",
           "target": "control/command",
           "interceptors": [{
@@ -75,7 +75,7 @@
           }]
         },
         "d": {
-          "path": "/flow/:id",
+          "path": "/:nodeid/flow/:id",
           "method": "DELETE",
           "target": "control/command",
           "interceptors": [{
@@ -88,7 +88,7 @@
         },
         "e": {
           "serviceName": "getFlow",
-          "path": "/flow/:id",
+          "path": "/:nodeid/flow/:id",
           "target": "control/command",
           "interceptors": [{
             "type": "koa-data-request",
@@ -104,7 +104,7 @@
           }]
         },
         "f": {
-          "path": "/flow",
+          "path": "/:nodeid/flow",
           "target": "control/command",
           "interceptors": [{
             "type": "koa-data-request",
@@ -114,7 +114,7 @@
           }]
         },
         "g": {
-          "path": "/service",
+          "path": "/:nodeid/service",
           "target": "kronos:command",
           "interceptors": [{
             "type": "koa-data-request",
@@ -128,7 +128,7 @@
           }]
         },
         "h": {
-          "path": "/service/:id",
+          "path": "/:nodeid/service/:id",
           "target": "kronos:command",
           "interceptors": [{
             "type": "koa-data-request",
@@ -170,7 +170,7 @@
           "socket": true
         },
         "software": {
-          "path": "/software/",
+          "path": "/:nodeid/software/",
           "target": "admin:software",
           "interceptors": [{
             "type": "koa-data-request"
@@ -182,7 +182,7 @@
           "socket": true
         },
         "state": {
-          "path": "/state/",
+          "path": "/:nodeid/state/",
           "target": "state/in",
           "interceptors": [{
             "type": "koa-data-request"
