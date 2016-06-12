@@ -39,7 +39,7 @@
     "blessed": "^0.1.81",
     "kronos-endpoint": "^2.13.1",
     "kronos-flow": "^2.5.23",
-    "kronos-flow-control-step": "^3.0.8",
+    "kronos-flow-control-step": "^3.0.9",
     "kronos-http-routing-step": "^4.3.15",
     "kronos-interceptor-decode-json": "^1.0.1",
     "kronos-interceptor-http-request": "^3.0.0",
