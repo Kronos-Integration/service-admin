@@ -169,6 +169,21 @@
           "mandatory": false,
           "socket": true
         },
+        "nodes": {
+          "path": "/kv/",
+          "target": "registry:kv",
+          "mandatory": false,
+          "interceptors": [{
+            "type": "koa-data-request"
+          }]
+        },
+        "nodes_socket": {
+          "path": "/kv",
+          "target": "registry:kv",
+          "mandatory": false,
+          "socket": true
+        },
+
         "software": {
           "path": "/:nodeid/software/",
           "target": "admin:software",
