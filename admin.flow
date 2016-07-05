@@ -169,7 +169,7 @@
           "mandatory": false,
           "socket": true
         },
-        "nodes": {
+        "kv": {
           "path": "/kv/",
           "target": "registry:kv",
           "mandatory": false,
@@ -177,13 +177,12 @@
             "type": "koa-data-request"
           }]
         },
-        "nodes_socket": {
+        "kv_socket": {
           "path": "/kv",
           "target": "registry:kv",
           "mandatory": false,
           "socket": true
         },
-
         "software": {
           "path": "/:nodeid/software/",
           "target": "admin:software",
