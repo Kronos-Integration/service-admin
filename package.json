@@ -43,7 +43,7 @@
     "kronos-http-routing-step": "^4.3.22",
     "kronos-interceptor-decode-json": "^1.0.3",
     "kronos-interceptor-http-request": "^3.1.0",
-    "kronos-service": "^4.1.5",
+    "kronos-service": "^4.1.6",
     "kronos-service-health-check": "^2.9.19",
     "kronos-service-koa": "^3.0.6",
     "kronos-step-aggregate": "^1.4.6",
