@@ -47,7 +47,7 @@
     "kronos-service-health-check": "^2.9.20",
     "kronos-service-koa": "^3.0.7",
     "kronos-step-aggregate": "^1.4.6",
-    "model-attributes": "^2.2.6",
+    "model-attributes": "^2.2.16",
     "ssh2": "^0.5.4"
   },
   "repository": {
