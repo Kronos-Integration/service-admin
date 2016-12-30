@@ -3,15 +3,27 @@
 'use strict';
 
 const path = require('path'),
-	process = require('process'),
-	ssh2 = require('ssh2'),
-	mat = require('model-attributes'),
-	{
-		ReceiveEndpoint
-	} = require('kronos-endpoint'),
-	{
-		Service, defineServiceConsumerProperties
-	} = require('kronos-service');
+	process = require('process');
+
+import {
+	sshServer
+}
+from './ssh';
+
+import { 
+	mergeAttributes, createAttributes
+}
+from 'model-attributes';
+
+import {
+	ReceiveEndpoint
+}
+from 'kronos-endpoint';
+
+import {
+	Service, defineServiceConsumerProperties
+}
+from 'kronos-service';
 
 /**
  *
@@ -22,7 +34,7 @@ class ServiceAdmin extends Service {
 	}
 
 	static get configurationAttributes() {
-		return mat.mergeAttributes(mat.createAttributes({
+		return mergeAttributes(createAttributes({
 			ssh: {
 				description: 'ssh admin interface',
 				attributes: {
@@ -63,7 +75,7 @@ class ServiceAdmin extends Service {
 				}
 			}, this.owner, true).then(() => {
 				if (this.config.ssh) {
-					this.sshServer = require('./ssh')(this, this.config.ssh);
+					this.sshServer = sshServer(this, this.config.ssh);
 				}
 
 				return this.owner.loadFlowFromFile(path.join(__dirname, '..', 'admin.flow'));
@@ -89,9 +101,15 @@ class ServiceAdmin extends Service {
 	}
 }
 
-module.exports.registerWithManager = manager =>
-	manager.registerServiceFactory(ServiceAdmin).then(admin =>
+function registerWithManager(manager) {
+	return manager.registerServiceFactory(ServiceAdmin).then(admin =>
 		manager.declareService({
 			type: admin.name,
 			name: admin.name
 		}));
+}
+
+export {
+	ServiceAdmin,
+	registerWithManager
+};
