@@ -7,8 +7,12 @@ const chai = require('chai'),
   assert = chai.assert,
   expect = chai.expect,
   should = chai.should(),
-  kronos = require('kronos-service-manager'),
-  admin = require('../lib/adminService');
+  {
+    manager
+  } = require('kronos-service-manager'),
+  {
+    registerWithManager
+  } = require('../dist/module');
 
 chai.use(require('chai-http'));
 
@@ -31,7 +35,7 @@ describe('service admin', () => {
     }
   };
 
-  let myManager = kronos.manager({
+  let myManager = manager({
     kronos: {
       logLevel: 'trace',
     },
@@ -55,7 +59,7 @@ describe('service admin', () => {
 
   it('register admin service', () =>
     myManager.then(manager =>
-      admin.registerWithManager(manager).then(() => manager.services.admin.start().then(() =>
+      registerWithManager(manager).then(() => manager.services.admin.start().then(() =>
         assert.equal(manager.services.admin.state, 'running')
       )).catch(console.log)
     )

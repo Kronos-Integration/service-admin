@@ -11,7 +11,7 @@ const MAX_NAME_LEN = 10;
 
 function noop(v) {}
 
-module.exports = function (service, config) {
+function sshServer(service, config) {
   const manager = service.owner;
 
   const server = new Server(config, client => {
@@ -224,4 +224,8 @@ module.exports = function (service, config) {
   });
 
   return server;
+}
+
+export {
+  sshServer
 };
