@@ -38,7 +38,7 @@
     "kronos-step-stdio": "^3.0.18",
     "markdown-doctest": "^0.9.1",
     "mocha": "^3.2.0",
-    "rollup": "^0.39.2",
+    "rollup": "^0.40.0",
     "semantic-release": "^6.3.5"
   },
   "dependencies": {
