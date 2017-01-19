@@ -33,14 +33,14 @@
     "chai-http": "^3.0.0",
     "cz-conventional-changelog": "^1.2.0",
     "jsdoc-to-markdown": "^2.0.1",
-    "kronos-service-manager": "^3.5.5",
-    "kronos-service-registry": "^1.4.3",
+    "kronos-service-manager": "^3.5.7",
+    "kronos-service-registry": "^1.4.5",
     "kronos-step-stdio": "^3.0.18",
     "markdown-doctest": "^0.9.1",
     "mocha": "^3.2.0",
+    "nyc": "^10.1.2",
     "rollup": "^0.41.4",
-    "semantic-release": "^6.3.6",
-    "nyc": "^10.0.0"
+    "semantic-release": "^6.3.6"
   },
   "dependencies": {
     "blessed": "^0.1.81",
@@ -48,13 +48,13 @@
     "kronos-flow": "^2.5.34",
     "kronos-flow-control-step": "^3.0.11",
     "kronos-http-routing-step": "^4.3.24",
-    "kronos-interceptor-decode-json": "^1.0.8",
-    "kronos-interceptor-http-request": "^3.2.3",
-    "kronos-service": "^4.5.1",
-    "kronos-service-health-check": "^2.10.3",
-    "kronos-service-koa": "^3.3.1",
+    "kronos-interceptor-decode-json": "^1.0.9",
+    "kronos-interceptor-http-request": "^3.2.6",
+    "kronos-service": "^4.5.3",
+    "kronos-service-health-check": "^2.10.6",
+    "kronos-service-koa": "^3.3.3",
     "kronos-step-aggregate": "^1.4.6",
-    "model-attributes": "^3.0.3",
+    "model-attributes": "^3.0.5",
     "ssh2": "^0.5.4"
   },
   "repository": {
