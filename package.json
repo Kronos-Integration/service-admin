@@ -32,7 +32,7 @@
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
     "cz-conventional-changelog": "^1.2.0",
-    "jsdoc-to-markdown": "^2.0.1",
+    "jsdoc-to-markdown": "^3.0.0",
     "kronos-service-manager": "^3.5.7",
     "kronos-service-registry": "^1.4.5",
     "kronos-step-stdio": "^3.0.18",
