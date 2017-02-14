@@ -48,7 +48,7 @@
     "kronos-flow": "^2.5.34",
     "kronos-flow-control-step": "^3.0.11",
     "kronos-http-routing-step": "^4.3.24",
-    "kronos-interceptor-decode-json": "^1.0.9",
+    "kronos-interceptor-decode-json": "^1.0.10",
     "kronos-interceptor-http-request": "^3.2.6",
     "kronos-service": "^4.5.4",
     "kronos-service-health-check": "^2.10.7",
