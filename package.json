@@ -33,8 +33,8 @@
     "chai-http": "^3.0.0",
     "cz-conventional-changelog": "^2.0.0",
     "jsdoc-to-markdown": "^3.0.0",
-    "kronos-service-manager": "^3.5.7",
-    "kronos-service-registry": "^1.4.5",
+    "kronos-service-manager": "^3.5.8",
+    "kronos-service-registry": "^1.4.6",
     "kronos-step-stdio": "^3.0.18",
     "markdown-doctest": "^0.9.1",
     "mocha": "^3.2.0",
@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "blessed": "^0.1.81",
-    "kronos-endpoint": "^2.14.8",
+    "kronos-endpoint": "^2.14.9",
     "kronos-flow": "^2.5.34",
     "kronos-flow-control-step": "^3.0.11",
     "kronos-http-routing-step": "^4.3.24",
@@ -52,9 +52,9 @@
     "kronos-interceptor-http-request": "^3.2.6",
     "kronos-service": "^4.5.4",
     "kronos-service-health-check": "^2.10.7",
-    "kronos-service-koa": "^3.3.4",
+    "kronos-service-koa": "^3.3.5",
     "kronos-step-aggregate": "^1.4.6",
-    "model-attributes": "^3.0.5",
+    "model-attributes": "^3.0.7",
     "ssh2": "^0.5.4"
   },
   "repository": {
