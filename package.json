@@ -51,8 +51,8 @@
     "kronos-interceptor-decode-json": "^1.0.10",
     "kronos-interceptor-http-request": "^3.2.6",
     "kronos-service": "^4.5.4",
-    "kronos-service-health-check": "^2.10.7",
-    "kronos-service-koa": "^3.3.5",
+    "kronos-service-health-check": "^2.10.8",
+    "kronos-service-koa": "^3.3.6",
     "kronos-step-aggregate": "^1.4.6",
     "model-attributes": "^3.0.7",
     "ssh2": "^0.5.4"
