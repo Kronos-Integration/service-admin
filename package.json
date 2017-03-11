@@ -39,7 +39,7 @@
     "markdown-doctest": "^0.9.1",
     "mocha": "^3.2.0",
     "nyc": "^10.1.2",
-    "rollup": "^0.41.4",
+    "rollup": "^0.41.5",
     "semantic-release": "^6.3.6"
   },
   "dependencies": {
@@ -52,9 +52,9 @@
     "kronos-interceptor-http-request": "^3.2.6",
     "kronos-service": "^4.5.4",
     "kronos-service-health-check": "^2.10.8",
-    "kronos-service-koa": "^3.3.6",
+    "kronos-service-koa": "^3.3.7",
     "kronos-step-aggregate": "^1.4.6",
-    "model-attributes": "^3.0.7",
+    "model-attributes": "^3.0.8",
     "ssh2": "^0.5.4"
   },
   "repository": {
