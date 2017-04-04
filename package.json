@@ -38,8 +38,8 @@
     "kronos-step-stdio": "^3.0.18",
     "markdown-doctest": "^0.9.1",
     "mocha": "^3.2.0",
-    "nyc": "^10.1.2",
-    "rollup": "^0.41.5",
+    "nyc": "^10.2.0",
+    "rollup": "^0.41.6",
     "semantic-release": "^6.3.6"
   },
   "dependencies": {
@@ -62,7 +62,7 @@
     "url": "https://github.com/Kronos-Integration/kronos-service-admin.git"
   },
   "engines": {
-    "node": ">=7.7.2"
+    "node": ">=7.8.0"
   },
   "bugs": {
     "url": "https://github.com/Kronos-Integration/kronos-service-admin/issues"
