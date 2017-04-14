@@ -62,7 +62,7 @@
     "url": "https://github.com/Kronos-Integration/kronos-service-admin.git"
   },
   "engines": {
-    "node": ">=7.8.0"
+    "node": ">=7.9.0"
   },
   "bugs": {
     "url": "https://github.com/Kronos-Integration/kronos-service-admin/issues"
@@ -81,5 +81,10 @@
       "lcov"
     ],
     "report-dir": "./coverage"
+  },
+  "template": {
+    "repository": {
+      "url": "https://github.com/Kronos-Tools/npm-package-template.git"
+    }
   }
 }
