@@ -1,72 +1,50 @@
 {
   "name": "kronos-service-admin",
+  "scripts": {
+    "precover": "npm run prepublish",
+    "cover": "nyc npm test",
+    "pretest": "npm run prepublish",
+    "test": "mocha tests/*_test.js",
+    "posttest": "markdown-doctest",
+    "prepublish": "rollup --output=dist/index.js -c -- {{module}}",
+    "docs": "jsdoc2md -l off -t doc/README.hbs -f src/*.js >README.md",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "devDependencies": {
+    "jsdoc-to-markdown": "^3.0.0",
+    "markdown-doctest": "^0.9.1",
+    "chai": "^4.1.0",
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.3",
+    "rollup": "^0.45.1",
+    "semantic-release": "^6.3.6"
+  },
+  "engines": {
+    "node": ">=8.1.4"
+  },
   "version": "0.0.0-semantic-release",
-  "description": "kronos server manager admin service",
+  "description": "{{description}}",
+  "main": "dist/index.js",
   "keywords": [
+    "npm-package-template",
     "kronos-service"
   ],
-  "main": "dist/module.js",
-  "module": "src/ServiceAdmin.js",
-  "scripts": {
-    "cover": "nyc npm test",
-    "test": "mocha tests/*_test.js",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "docs": "jsdoc2md -l off -t doc/README.hbs -f src/*.js >README.md",
-    "prepublish": "rollup --output=dist/module.js -c -- src/ServiceAdmin.js",
-    "pretest": "npm run prepublish",
-    "posttest": "markdown-doctest",
-    "precover": "npm run prepublish"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kronos-Integration/kronos-service-admin.git"
   },
+  "bugs": {
+    "url": "https://github.com/Kronos-Integration/kronos-service-admin/issues"
+  },
+  "homepage": "https://github.com/Kronos-Integration/kronos-service-admin#readme",
+  "dependencies": {},
   "contributors": [
-    {
-      "name": "Torsten Link",
-      "email": "torstenlink@gmx.de"
-    },
     {
       "name": "Markus Felten",
       "email": "markus.felten@gmx.de"
     }
   ],
   "license": "BSD-2-Clause",
-  "devDependencies": {
-    "chai": "^4.0.2",
-    "chai-http": "^3.0.0",
-    "jsdoc-to-markdown": "^3.0.0",
-    "kronos-service-manager": "^3.5.9",
-    "kronos-service-registry": "^1.4.7",
-    "kronos-step-stdio": "^3.0.18",
-    "markdown-doctest": "^0.9.1",
-    "mocha": "^3.4.2",
-    "nyc": "^11.0.3",
-    "rollup": "^0.45.1",
-    "semantic-release": "^6.3.6"
-  },
-  "dependencies": {
-    "blessed": "^0.1.81",
-    "kronos-endpoint": "^2.14.10",
-    "kronos-flow": "^2.5.34",
-    "kronos-flow-control-step": "^3.0.11",
-    "kronos-http-routing-step": "^4.3.24",
-    "kronos-interceptor-decode-json": "^1.0.10",
-    "kronos-interceptor-http-request": "^3.2.7",
-    "kronos-service": "^4.5.5",
-    "kronos-service-health-check": "^2.10.10",
-    "kronos-service-koa": "^3.3.8",
-    "kronos-step-aggregate": "^1.4.6",
-    "model-attributes": "^3.0.10",
-    "ssh2": "^0.5.5"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Kronos-Integration/kronos-service-admin.git"
-  },
-  "engines": {
-    "node": ">=8.1.4"
-  },
-  "bugs": {
-    "url": "https://github.com/Kronos-Integration/kronos-service-admin/issues"
-  },
-  "homepage": "https://github.com/Kronos-Integration/kronos-service-admin#readme",
   "nyc": {
     "include": [
       "dist/**/*.js"
