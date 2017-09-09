@@ -184,7 +184,7 @@
           "socket": true
         },
         "software": {
-          "path": "/:nodeid/software/",
+          "path": "/:nodeid/software",
           "target": "admin:software",
           "interceptors": [{
             "type": "koa-data-request"
