@@ -2,14 +2,12 @@
   "name": "kronos-service-admin",
   "version": "0.0.0-semantic-release",
   "description": "kronos server manager admin service",
-  "keywords": [
-    "kronos-service"
-  ],
+  "keywords": ["kronos-service"],
   "main": "dist/module.js",
   "module": "src/ServiceAdmin.js",
   "scripts": {
     "cover": "nyc npm test",
-    "test": "mocha tests/*_test.js",
+    "test": "mocha tests/*-test.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "docs": "jsdoc2md -l off -t doc/README.hbs -f src/*.js >README.md",
     "pretest": "rollup -c",
@@ -68,12 +66,8 @@
   },
   "homepage": "https://github.com/Kronos-Integration/kronos-service-admin#readme",
   "nyc": {
-    "include": [
-      "dist/**/*.js"
-    ],
-    "reporter": [
-      "lcov"
-    ],
+    "include": ["dist/**/*.js"],
+    "reporter": ["lcov"],
     "report-dir": "./coverage"
   },
   "template": {
