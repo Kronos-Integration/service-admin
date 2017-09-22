@@ -39,7 +39,7 @@
     "mocha": "^3.5.3",
     "nyc": "^11.2.1",
     "rollup": "^0.50.0",
-    "semantic-release": "^8.0.0"
+    "semantic-release": "^8.0.1"
   },
   "dependencies": {
     "blessed": "^0.1.81",
