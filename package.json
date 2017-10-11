@@ -33,7 +33,7 @@
     "chai-http": "^3.0.0",
     "jsdoc-to-markdown": "^3.0.0",
     "kronos-service-manager": "3.5.10",
-    "kronos-service-registry": "1.4.8",
+    "kronos-service-registry": "1.4.9",
     "kronos-step-stdio": "^3.0.18",
     "markdown-doctest": "^0.9.1",
     "mocha": "^3.5.3",
