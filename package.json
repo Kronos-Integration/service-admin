@@ -36,10 +36,10 @@
     "kronos-service-registry": "1.4.9",
     "kronos-step-stdio": "^3.0.18",
     "markdown-doctest": "^0.9.1",
-    "mocha": "^3.5.3",
-    "nyc": "^11.2.1",
+    "mocha": "^4.0.1",
+    "nyc": "^11.3.0",
     "rollup": "^0.50.0",
-    "semantic-release": "^8.0.4"
+    "semantic-release": "^8.2.2"
   },
   "dependencies": {
     "blessed": "^0.1.81",
@@ -61,7 +61,7 @@
     "url": "git+https://github.com/Kronos-Integration/kronos-service-admin.git"
   },
   "engines": {
-    "node": ">=8.6.0"
+    "node": ">=8.8.0"
   },
   "bugs": {
     "url": "https://github.com/Kronos-Integration/kronos-service-admin/issues"
