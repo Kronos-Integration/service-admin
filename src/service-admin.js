@@ -68,7 +68,7 @@ export class ServiceAdmin extends Service {
       true
     );
 
-    if (this.config.ssh) {
+    if (this.config.ssh !== undefined) {
       this.sshServer = sshServer(this, this.config.ssh);
     }
 

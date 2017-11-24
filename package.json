@@ -29,7 +29,10 @@
   ],
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "chai-http": "^3.0.0",
+    "ava": "^0.23.0",
+    "babel-preset-env": "^1.6.1",
+    "got": "^8.0.0",
+    "jsdoc-babel": "^0.3.0",
     "jsdoc-to-markdown": "^3.0.2",
     "kronos-service-manager": "3.5.10",
     "kronos-service-registry": "1.4.9",
@@ -37,12 +40,9 @@
     "markdown-doctest": "^0.9.1",
     "nyc": "^11.3.0",
     "rollup": "^0.51.8",
-    "semantic-release": "^9.1.1",
-    "jsdoc-babel": "^0.3.0",
-    "ava": "^0.23.0",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-multi-entry": "^2.0.2",
-    "babel-preset-env": "^1.6.1",
+    "semantic-release": "^9.1.1",
     "xo": "^0.19.0"
   },
   "dependencies": {
@@ -73,12 +73,13 @@
   "homepage": "https://github.com/Kronos-Integration/kronos-service-admin#readme",
   "nyc": {
     "include": [
-      "dist/**/*.js"
+      "build/*-test.js",
+      "src/**/*.js"
     ],
     "reporter": [
       "lcov"
     ],
-    "report-dir": "./coverage"
+    "report-dir": "./build/coverage"
   },
   "template": {
     "repository": {
