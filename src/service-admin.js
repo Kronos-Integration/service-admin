@@ -56,6 +56,7 @@ export class ServiceAdmin extends Service {
 
   async _start() {
     await super._start();
+
     await defineServiceConsumerProperties(
       this,
       {

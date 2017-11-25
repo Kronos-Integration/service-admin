@@ -33,16 +33,18 @@ async function makeManager() {
       }
     },
     [
-      require('kronos-flow'),
       require('kronos-service-registry'),
       require('kronos-service-koa'),
       require('kronos-service-health-check'),
+      require('kronos-interceptor-http-request'),
+      require('kronos-interceptor-decode-json'),
+      require('kronos-flow')
+
+      /*
       require('kronos-flow-control-step'),
       require('kronos-step-aggregate'),
       require('kronos-step-stdio'),
-      require('kronos-interceptor-http-request'),
-      require('kronos-interceptor-decode-json'),
-      require('kronos-http-routing-step')
+      require('kronos-http-routing-step')*/
     ]
   );
 }
