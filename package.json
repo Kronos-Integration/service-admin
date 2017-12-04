@@ -54,7 +54,7 @@
     "kronos-interceptor-http-request": "^3.2.10",
     "kronos-service": "4.10.0",
     "kronos-service-health-check": "2.10.11",
-    "kronos-service-koa": "^3.3.11",
+    "kronos-service-koa": "^3.3.15",
     "kronos-step-aggregate": "^1.4.6",
     "model-attributes": "^3.0.10",
     "ssh2": "^0.5.5"
