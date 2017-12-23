@@ -35,7 +35,7 @@
     "jsdoc-babel": "^0.3.0",
     "jsdoc-to-markdown": "^3.0.2",
     "kronos-service-manager": "3.5.10",
-    "kronos-service-registry": "1.4.9",
+    "kronos-service-registry": "1.4.10",
     "kronos-step-stdio": "^3.0.18",
     "markdown-doctest": "^0.9.1",
     "nyc": "^11.4.1",
