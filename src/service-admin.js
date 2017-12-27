@@ -7,7 +7,7 @@ import { ReceiveEndpoint } from 'kronos-endpoint';
 import { Service, defineServiceConsumerProperties } from 'kronos-service';
 
 /**
- *
+ * Kronos administration service
  */
 export class ServiceAdmin extends Service {
   /**
@@ -40,8 +40,8 @@ export class ServiceAdmin extends Service {
     );
   }
 
-  constructor(config, owner) {
-    super(config, owner);
+  constructor(...args) {
+    super(...args);
 
     this.addEndpoint(
       new ReceiveEndpoint('software', this)
