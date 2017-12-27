@@ -10,6 +10,9 @@ import { Service, defineServiceConsumerProperties } from 'kronos-service';
  *
  */
 export class ServiceAdmin extends Service {
+  /**
+   * @return {string} 'admin'
+   */
   static get name() {
     return 'admin';
   }
@@ -79,8 +82,9 @@ export class ServiceAdmin extends Service {
   }
 
   async _stop() {
+    await super._stop();
+
     if (this.sshServer) {
-      await super._stop();
       return new Promise((fullfill, reject) => {
         this.sshServer.close(err => {
           if (err) {
@@ -92,8 +96,6 @@ export class ServiceAdmin extends Service {
         });
       });
     }
-
-    return super._stop();
   }
 }
 
