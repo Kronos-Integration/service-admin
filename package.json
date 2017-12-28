@@ -1,23 +1,12 @@
 {
   "name": "kronos-service-admin",
   "version": "0.0.0-semantic-release",
+  "main": "dist/service-admin.js",
+  "module": "src/service-admin.js",
   "description": "kronos server manager admin service",
   "keywords": [
     "kronos-service"
   ],
-  "main": "dist/service-admin.js",
-  "module": "src/service-admin.js",
-  "scripts": {
-    "cover": "nyc --temp-directory build/nyc ava",
-    "test": "ava",
-    "semantic-release": "semantic-release",
-    "docs": "documentation readme src/service-admin.js --section=API",
-    "pretest": "rollup -c tests/rollup.config.js",
-    "posttest": "npm run prepare && markdown-doctest",
-    "precover": "rollup -c tests/rollup.config.js",
-    "prepare": "rollup -c",
-    "lint": "documentation lint src/service-admin.js"
-  },
   "contributors": [
     {
       "name": "Torsten Link",
@@ -29,19 +18,16 @@
     }
   ],
   "license": "BSD-2-Clause",
-  "devDependencies": {
-    "ava": "^0.24.0",
-    "got": "^8.0.1",
-    "kronos-service-manager": "3.5.10",
-    "kronos-service-registry": "1.4.10",
-    "kronos-step-stdio": "^3.0.18",
-    "markdown-doctest": "^0.9.1",
-    "nyc": "^11.4.1",
-    "rollup": "^0.53.0",
-    "rollup-plugin-multi-entry": "^2.0.2",
-    "semantic-release": "^11.1.0",
-    "xo": "^0.19.0",
-    "documentation": "^5.3.5"
+  "scripts": {
+    "cover": "nyc --temp-directory build/nyc ava",
+    "test": "ava",
+    "semantic-release": "semantic-release",
+    "docs": "documentation readme src/service-admin.js --section=API",
+    "pretest": "rollup -c tests/rollup.config.js",
+    "posttest": "npm run prepare && markdown-doctest",
+    "precover": "rollup -c tests/rollup.config.js",
+    "prepare": "rollup -c",
+    "lint": "documentation lint src/service-admin.js"
   },
   "dependencies": {
     "blessed": "^0.1.81",
@@ -58,35 +44,31 @@
     "model-attributes": "^3.0.10",
     "ssh2": "^0.5.5"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Kronos-Integration/kronos-service-admin.git"
+  "devDependencies": {
+    "ava": "^0.24.0",
+    "got": "^8.0.1",
+    "kronos-service-manager": "3.5.10",
+    "kronos-service-registry": "1.4.10",
+    "kronos-step-stdio": "^3.0.18",
+    "markdown-doctest": "^0.9.1",
+    "nyc": "^11.4.1",
+    "rollup": "^0.53.0",
+    "rollup-plugin-multi-entry": "^2.0.2",
+    "semantic-release": "^11.1.0",
+    "xo": "^0.19.0",
+    "documentation": "^5.3.5"
   },
   "engines": {
     "node": ">=8.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kronos-Integration/kronos-service-admin.git"
   },
   "bugs": {
     "url": "https://github.com/Kronos-Integration/kronos-service-admin/issues"
   },
   "homepage": "https://github.com/Kronos-Integration/kronos-service-admin#readme",
-  "nyc": {
-    "include": [
-      "build/*-test.js",
-      "src/**/*.js"
-    ],
-    "reporter": [
-      "lcov"
-    ],
-    "report-dir": "./build/coverage"
-  },
-  "template": {
-    "repository": {
-      "url": "https://github.com/arlac77/npm-package-template.git"
-    }
-  },
-  "xo": {
-    "space": true
-  },
   "ava": {
     "files": [
       "build/*-test.js"
@@ -97,5 +79,23 @@
     "require": [
       "babel-register"
     ]
+  },
+  "nyc": {
+    "include": [
+      "build/*-test.js",
+      "src/**/*.js"
+    ],
+    "reporter": [
+      "lcov"
+    ],
+    "report-dir": "./build/coverage"
+  },
+  "xo": {
+    "space": true
+  },
+  "template": {
+    "repository": {
+      "url": "https://github.com/arlac77/npm-package-template.git"
+    }
   }
 }
