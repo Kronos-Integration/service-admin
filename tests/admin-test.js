@@ -11,7 +11,7 @@ async function makeManager() {
       s0: {
         type: 'kronos-stdin',
         endpoints: {
-          out: 's1/in'
+          out: 's1.in'
         }
       },
       s1: {

@@ -53,6 +53,10 @@ export class ServiceAdmin extends Service {
     };
   }
 
+  /**
+   * Always start immediate
+   * @return {boolean} true
+   */
   get autostart() {
     return true;
   }
@@ -72,8 +76,8 @@ export class ServiceAdmin extends Service {
       true
     );
 
-    if (this.config.ssh !== undefined) {
-      this.sshServer = sshServer(this, this.config.ssh);
+    if (this.ssh !== undefined) {
+      this.sshServer = sshServer(this, this.ssh);
     }
 
     return this.owner.loadFlowFromFile(
