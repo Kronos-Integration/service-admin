@@ -1,6 +1,9 @@
 {
   "name": "kronos-service-admin",
   "version": "0.0.0-semantic-release",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/service-admin.js",
   "module": "src/service-admin.js",
   "description": "kronos server manager admin service",
