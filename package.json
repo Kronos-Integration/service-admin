@@ -43,7 +43,7 @@
     "kronos-interceptor-http-request": "^3.2.10",
     "kronos-service": "4.17.0",
     "kronos-service-health-check": "2.11.0",
-    "kronos-service-koa": "^4.0.3",
+    "kronos-service-koa": "^4.0.4",
     "kronos-step-aggregate": "^1.4.6",
     "model-attributes": "^3.0.10",
     "ssh2": "^0.6.0"
