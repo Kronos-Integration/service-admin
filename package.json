@@ -49,7 +49,7 @@
   "devDependencies": {
     "ava": "^1.0.0-rc.2",
     "got": "^9.4.0",
-    "documentation": "^8.1.2",
+    "documentation": "^9.0.0",
     "kronos-service-manager": "3.5.10",
     "kronos-service-registry": "1.5.0",
     "kronos-step-stdio": "^3.0.18",
