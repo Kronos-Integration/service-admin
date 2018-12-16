@@ -54,7 +54,7 @@
     "kronos-service-registry": "1.5.0",
     "kronos-step-stdio": "^3.0.18",
     "markdown-doctest": "^0.9.1",
-    "rollup": "^0.67.4",
+    "rollup": "^0.68.0",
     "semantic-release": "^15.13.0",
     "travis-deploy-once": "^5.0.11",
     "rollup-plugin-commonjs": "^9.2.0",
