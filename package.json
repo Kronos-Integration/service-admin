@@ -42,7 +42,7 @@
     "kronos-service-koa": "^4.0.7",
     "kronos-step-aggregate": "^1.4.6",
     "model-attributes": "^3.0.10",
-    "ssh2": "^0.6.2"
+    "ssh2": "^0.7.1"
   },
   "devDependencies": {
     "ava": "^1.0.1",
