@@ -7,7 +7,6 @@
 [![Coverage Status](https://coveralls.io/repos/Kronos-Integration/kronos-service-admin/badge.svg)](https://coveralls.io/r/Kronos-Integration/kronos-service-admin)
 [![Known Vulnerabilities](https://snyk.io/test/github/Kronos-Integration/kronos-service-admin/badge.svg)](https://snyk.io/test/github/Kronos-Integration/kronos-service-admin)
 [![GitHub Issues](https://img.shields.io/github/issues/Kronos-Integration/kronos-service-admin.svg?style=flat-square)](https://github.com/Kronos-Integration/kronos-service-admin/issues)
-[![Stories in Ready](https://badge.waffle.io/Kronos-Integration/kronos-service-admin.svg?label=ready&title=Ready)](http://waffle.io/Kronos-Integration/kronos-service-admin)
 [![Dependency Status](https://david-dm.org/Kronos-Integration/kronos-service-admin.svg)](https://david-dm.org/Kronos-Integration/kronos-service-admin)
 [![devDependency Status](https://david-dm.org/Kronos-Integration/kronos-service-admin/dev-status.svg)](https://david-dm.org/Kronos-Integration/kronos-service-admin#info=devDependencies)
 [![docs](http://inch-ci.org/github/Kronos-Integration/kronos-service-admin.svg?branch=master)](http://inch-ci.org/github/Kronos-Integration/kronos-service-admin)
