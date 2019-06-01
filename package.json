@@ -45,7 +45,7 @@
     "ssh2": "^0.8.4"
   },
   "devDependencies": {
-    "ava": "^1.4.1",
+    "ava": "^2.0.0",
     "builtin-modules": "^3.1.0",
     "c8": "^5.0.1",
     "documentation": "^11.0.0",
