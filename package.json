@@ -1,6 +1,7 @@
 {
   "name": "kronos-service-admin",
   "version": "0.0.0-semantic-release",
+  "type": "module",
   "publishConfig": {
     "access": "public"
   },
@@ -89,7 +90,7 @@
   },
   "template": {
     "repository": {
-      "url": "https://github.com/arlac77/npm-package-template.git"
+      "url": "https://github.com/arlac77/npm-package-template-esm-only.git"
     }
   }
 }
