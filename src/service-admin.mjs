@@ -1,15 +1,15 @@
 const path = require('path'),
   process = require('process');
 
-import { sshServer } from './ssh';
+import { sshServer } from './ssh.mjs';
 import { mergeAttributes, createAttributes } from 'model-attributes';
-import { ReceiveEndpoint } from 'kronos-endpoint';
-import { Service, defineServiceConsumerProperties } from 'kronos-service';
+import { ReceiveEndpoint } from '@kronos-integration/endpoint';
+import { Service, defineServiceConsumerProperties } from '@kronos-integration/service';
 
 /**
  * Kronos administration service
  */
-export class ServiceAdmin extends Service {
+export default class ServiceAdmin extends Service {
   /**
    * @return {string} 'admin'
    */
@@ -101,12 +101,4 @@ export class ServiceAdmin extends Service {
       });
     }
   }
-}
-
-export async function registerWithManager(manager) {
-  const admin = await manager.registerServiceFactory(ServiceAdmin);
-  return manager.declareService({
-    type: admin.name,
-    name: admin.name
-  });
 }
