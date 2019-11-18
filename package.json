@@ -32,7 +32,7 @@
   "dependencies": {
     "@kronos-integration/endpoint": "^3.2.0",
     "@kronos-integration/service": "^6.1.5",
-    "@kronos-integration/service-health-check": ">=3.0.7",
+    "@kronos-integration/service-health-check": ">=3.0.9",
     "model-attributes": "^4.1.2",
     "ssh2": "^0.8.6"
   },
