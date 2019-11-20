@@ -30,9 +30,9 @@
     "test": "ava"
   },
   "dependencies": {
-    "@kronos-integration/endpoint": "^3.2.0",
+    "@kronos-integration/endpoint": "^3.3.1",
     "@kronos-integration/service": "^6.1.8",
-    "@kronos-integration/service-health-check": ">=3.0.9",
+    "@kronos-integration/service-health-check": ">=3.0.10",
     "model-attributes": "^4.1.2",
     "ssh2": "^0.8.6"
   },
