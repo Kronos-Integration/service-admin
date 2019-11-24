@@ -30,7 +30,7 @@
     "test": "ava"
   },
   "dependencies": {
-    "@kronos-integration/endpoint": "^3.6.2",
+    "@kronos-integration/endpoint": "^3.6.3",
     "@kronos-integration/service": "^7.0.0",
     "@kronos-integration/service-health-check": ">=4.0.0",
     "model-attributes": "^4.1.3",
