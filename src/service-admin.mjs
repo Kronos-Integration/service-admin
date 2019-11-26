@@ -15,7 +15,6 @@ export class ServiceAdmin extends Service {
     return {
       ...super.endpoints,
       services: {
-        default: true,
         receive: "services"
       }
     };
