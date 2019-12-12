@@ -22,9 +22,9 @@ test("service-admin", async t => {
   t.log(response);
 
   t.deepEqual(response, {
-    'stantalone-provider': {
-      name: "stantalone-provider",
-      type: "stantalone-provider"
+    'standalone-provider': {
+      name: "standalone-provider",
+      type: "standalone-provider"
     },
     admin: { name: "admin", type: "admin" },
     config: { name: "config", type: "config" },
