@@ -3,14 +3,13 @@ import { StandaloneServiceProvider } from "@kronos-integration/service";
 import { ServiceAdmin } from "../src/service-admin.mjs";
 
 const config = {
-  admin: {
-    type: ServiceAdmin
-  }
+  name: "admin",
+  type: ServiceAdmin
 };
 
 test("service-admin", async t => {
   const sp = new StandaloneServiceProvider();
-  const [admin] = await sp.declareServices(config);
+  const admin = await sp.declareService(config);
   await admin.start();
 
   t.is(admin.state, "running");
