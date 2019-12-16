@@ -22,15 +22,17 @@ kronos server manager admin service
 ### Table of Contents
 
 -   [ServiceAdmin](#serviceadmin)
+    -   [name](#name)
 
 ## ServiceAdmin
 
 **Extends Service**
 
-**Parameters**
+Kronos administration service
 
--   `config`  
--   `owner`  
+### name
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'admin'
 
 # install
 

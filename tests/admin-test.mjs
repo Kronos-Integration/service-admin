@@ -15,19 +15,67 @@ test("service-admin", async t => {
 
   t.is(admin.state, "running");
 
-  let response = await admin.endpoints.services.receive(undefined);
+  let response = await admin.endpoints.services.receive();
 
   response = JSON.parse(JSON.stringify(response));
 
   t.log(response);
 
   t.deepEqual(response, {
-    'standalone-provider': {
-      name: "standalone-provider",
-      type: "standalone-provider"
+    admin: {
+      endpoints: {
+        command: { in: true, open: true },
+        config: { in: true, open: true },
+        log: { out: true, open: true, connected: "service(logger).log" },
+        services: { out: true, in: true }
+      },
+      logLevel: "info",
+      name: "admin",
+      state: "running",
+      type: "admin"
     },
-    admin: { name: "admin", type: "admin" },
-    config: { name: "config", type: "config" },
-    logger: { name: "logger", type: "logger" }
+    config: {
+      endpoints: {
+        command: { in: true, open: true },
+        config: { in: true, open: true },
+        log: { out: true, open: true, connected: "service(logger).log" }
+      },
+      logLevel: "info",
+      name: "config",
+      state: "running",
+      type: "config"
+    },
+    logger: {
+      endpoints: {
+        command: { in: true, open: true },
+        config: { in: true, open: true },
+        log: {
+          in: true,
+          out: true,
+          open: true,
+          connected: [
+            "service(admin).log",
+            "service(config).log",
+            "service(logger).log",
+            "service(standalone-provider).log"
+          ]
+        }
+      },
+      logLevel: "info",
+      name: "logger",
+      state: "running",
+      type: "logger"
+    },
+    "standalone-provider": {
+      endpoints: {
+        command: { in: true, open: true },
+        config: { in: true, open: true },
+        log: { out: true, open: true, connected: "service(logger).log" }
+      },
+      logLevel: "info",
+      name: "standalone-provider",
+      state: "stopped",
+      type: "standalone-provider"
+    }
   });
 });
