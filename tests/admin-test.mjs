@@ -62,7 +62,7 @@ test("service-admin", async t => {
       },
       logLevel: "info",
       name: "logger",
-      state: "running",
+      state: "stopped",
       type: "logger"
     },
     "standalone-provider": {
