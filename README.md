@@ -1,7 +1,7 @@
 [![Build Status](https://secure.travis-ci.org/Kronos-Integration/service-admin.png)](http://travis-ci.org/Kronos-Integration/service-admin)
 [![codecov.io](http://codecov.io/github/Kronos-Integration/service-admin/coverage.svg?branch=master)](http://codecov.io/github/Kronos-Integration/service-admin?branch=master)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![downloads](http://img.shields.io/npm/dm/service-admin.svg?style=flat-square)](https://npmjs.org/package/service-admin)
+[![downloads](http://img.shields.io/npm/dm/@kronos-integration/service-admin.svg?style=flat-square)](https://npmjs.org/package/@kronos-integration/service-admin)
 [![GitHub Issues](https://img.shields.io/github/issues/Kronos-Integration/service-admin.svg?style=flat-square)](https://github.com/Kronos-Integration/service-admin/issues)
 [![Greenkeeper](https://badges.greenkeeper.io/Kronos-Integration/service-admin.svg)](https://greenkeeper.io/)
 [![Known Vulnerabilities](https://snyk.io/test/github/Kronos-Integration/service-admin/badge.svg)](https://snyk.io/test/github/Kronos-Integration/service-admin)
