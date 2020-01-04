@@ -6,7 +6,7 @@
   },
   "sideEffects": false,
   "type": "module",
-  "main": "dist/service-admin.mjs",
+  "main": "src/service-admin.mjs",
   "module": "src/service-admin.mjs",
   "description": "kronos server manager admin service",
   "keywords": [
