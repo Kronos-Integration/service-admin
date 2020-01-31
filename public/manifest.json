@@ -1,0 +1,10 @@
+{
+  "name": "@kronos-integration/service-admin",
+  "description": "kronos server manager admin service",
+  "icons": [
+    {
+      "src": "facicon.ico",
+      "sizes": "16x16"
+    }
+  ]
+}
