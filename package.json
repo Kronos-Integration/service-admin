@@ -8,7 +8,7 @@
   "type": "module",
   "main": "./src/service-admin.mjs",
   "exports": {
-    ".": "./rc/service-admin.mjs",
+    ".": "./src/service-admin.mjs",
     "./": "./"
   },
   "description": "kronos server manager admin service",
