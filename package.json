@@ -6,9 +6,9 @@
   },
   "sideEffects": false,
   "type": "module",
-  "main": "src/service-admin.mjs",
+  "main": "./src/service-admin.mjs",
   "exports": {
-    ".": "src/service-admin.mjs",
+    ".": "./rc/service-admin.mjs",
     "./": "./"
   },
   "description": "kronos server manager admin service",
@@ -29,11 +29,11 @@
   "scripts": {
     "test": "ava --timeout 2m",
     "cover": "c8 -x 'tests/**/*' --temp-directory build/tmp ava --timeout 2m && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
-    "docs": "documentation readme src/service-admin.mjs --section=API",
-    "lint": "documentation lint src/service-admin.mjs"
+    "docs": "documentation readme ./src/service-admin.mjs --section=API",
+    "lint": "documentation lint ./src/service-admin.mjs"
   },
   "dependencies": {
-    "@kronos-integration/service": "^8.3.25"
+    "@kronos-integration/service": "^8.3.26"
   },
   "devDependencies": {
     "ava": "^3.8.1",

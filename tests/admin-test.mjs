@@ -1,6 +1,6 @@
 import test from "ava";
 import { StandaloneServiceProvider } from "@kronos-integration/service";
-import { ServiceAdmin } from "../src/service-admin.mjs";
+import { ServiceAdmin } from "@kronos-integration/service-admin";
 
 const config = {
   name: "admin",
