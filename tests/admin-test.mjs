@@ -7,7 +7,7 @@ const config = {
   type: ServiceAdmin
 };
 
-test("service-admin", async t => {
+test("service-admin service entpoint", async t => {
   const sp = new StandaloneServiceProvider();
   const admin = await sp.declareService(config);
   await admin.start();
@@ -18,7 +18,7 @@ test("service-admin", async t => {
 
   response = JSON.parse(JSON.stringify(response));
 
-  t.log(response);
+  //t.log(response);
 
   t.deepEqual(response, {
     admin: {

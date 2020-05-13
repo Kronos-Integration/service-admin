@@ -15,7 +15,17 @@ export class ServiceAdmin extends Service {
     return {
       ...super.endpoints,
       services: {
-        receive: "services"
+        multi: true,
+        receive: "services",
+        didConnect: (endpoint, other) => {
+          if (other.direction === "inout") {
+            const serviceOwner = endpoint.owner.owner;
+            endpoint.send(serviceOwner.services);
+            const listener = () => endpoint.send(serviceOwner.services);
+            serviceOwner.addListener("serviceStateChanged", listener);
+            return () => serviceOwner.removeListener("serviceStateChanged", listener);
+          }
+        }
       }
     };
   }
