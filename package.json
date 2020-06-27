@@ -39,7 +39,7 @@
     "c8": "^7.2.0",
     "documentation": "^13.0.1",
     "got": "^11.2.0",
-    "semantic-release": "^17.1.0"
+    "semantic-release": "^17.1.1"
   },
   "engines": {
     "node": ">=14.3.0"
