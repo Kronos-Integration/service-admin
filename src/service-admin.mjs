@@ -1,4 +1,4 @@
-import { Service } from '@kronos-integration/service';
+import { Service } from "@kronos-integration/service";
 
 /**
  * Kronos administration service
@@ -8,7 +8,7 @@ export class ServiceAdmin extends Service {
    * @return {string} 'admin'
    */
   static get name() {
-    return 'admin';
+    return "admin";
   }
 
   static get endpoints() {
@@ -23,7 +23,8 @@ export class ServiceAdmin extends Service {
             endpoint.send(serviceOwner.services);
             const listener = () => endpoint.send(serviceOwner.services);
             serviceOwner.addListener("serviceStateChanged", listener);
-            return () => serviceOwner.removeListener("serviceStateChanged", listener);
+            return () =>
+              serviceOwner.removeListener("serviceStateChanged", listener);
           }
         }
       }

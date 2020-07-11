@@ -32,7 +32,7 @@
     "lint": "documentation lint ./src/service-admin.mjs"
   },
   "dependencies": {
-    "@kronos-integration/service": "^8.5.12"
+    "@kronos-integration/service": "^8.5.15"
   },
   "devDependencies": {
     "ava": "^3.10.1",
@@ -42,7 +42,7 @@
     "semantic-release": "^17.1.1"
   },
   "engines": {
-    "node": ">=14.3.0"
+    "node": ">=14.5.0"
   },
   "repository": {
     "type": "git",
