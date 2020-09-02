@@ -1,5 +1,8 @@
 import test from "ava";
-import { StandaloneServiceProvider } from "@kronos-integration/service";
+import {
+  StandaloneServiceProvider,
+  Service
+} from "@kronos-integration/service";
 import { ServiceAdmin } from "@kronos-integration/service-admin";
 
 const config = {
@@ -77,4 +80,42 @@ test("service-admin service entpoint", async t => {
       type: "standalone-provider"
     }
   });
+});
+
+test("service-admin push from services endpoint", async t => {
+  const sp = new StandaloneServiceProvider();
+  await sp.declareServices({
+    admin: {
+      type: ServiceAdmin
+    },
+    test: {
+      type: Service,
+      endpoints: {
+        test: "service(admin).services"
+      }
+    }
+  });
+
+  const admin = sp.services.admin;
+  const ts = sp.services.test;
+
+  const updates = [];
+  ts.endpoints.test.receive = update => {
+    update = JSON.parse(JSON.stringify(update));
+
+    updates.push(update);
+  };
+
+  t.is(ts.name, "test");
+
+  await admin.start();
+  t.is(admin.state, "running");
+
+  await ts.start();
+
+  t.is(updates.length, 4);
+
+  t.is(updates[2].test.state, "stopped");
+  t.is(updates[3].test.state, "starting");
+  //console.log(updates);
 });
