@@ -35,7 +35,7 @@
     "@kronos-integration/service": "^9.2.13"
   },
   "devDependencies": {
-    "ava": "^3.12.1",
+    "ava": "^3.13.0",
     "c8": "^7.3.1",
     "documentation": "^13.0.2",
     "got": "^11.6.0",
