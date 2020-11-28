@@ -1,7 +1,7 @@
 import { Service } from "@kronos-integration/service";
 
 /**
- * Kronos administration service
+ * Kronos administration service.
  */
 export class ServiceAdmin extends Service {
   /**
