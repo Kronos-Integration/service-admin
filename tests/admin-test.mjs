@@ -25,6 +25,7 @@ test("service-admin service entpoint", async t => {
 
   t.deepEqual(response, {
     admin: {
+      description: "This service is the base class for service implementations",
       endpoints: {
         command: { in: true, open: true },
         config: { in: true, open: true },
@@ -34,9 +35,15 @@ test("service-admin service entpoint", async t => {
       logLevel: "info",
       name: "admin",
       state: "running",
+      timeout: {
+        restart: 20,
+        start: 20,
+        stop: 20
+      },
       type: "admin"
     },
     config: {
+      description: "Config providing service",
       endpoints: {
         command: { in: true, open: true },
         config: { in: true, open: true },
@@ -45,9 +52,15 @@ test("service-admin service entpoint", async t => {
       logLevel: "info",
       name: "config",
       state: "running",
+      timeout: {
+        restart: 20,
+        start: 20,
+        stop: 20
+      },
       type: "config"
     },
     logger: {
+      description: "Log consuming service",
       endpoints: {
         command: { in: true, open: true },
         config: { in: true, open: true },
@@ -66,9 +79,15 @@ test("service-admin service entpoint", async t => {
       logLevel: "info",
       name: "logger",
       state: "stopped",
+      timeout: {
+        restart: 20,
+        start: 20,
+        stop: 20
+      },
       type: "logger"
     },
     "standalone-provider": {
+      description: "This service to control services",
       endpoints: {
         command: { in: true, open: true },
         config: { in: true, open: true },
@@ -77,6 +96,11 @@ test("service-admin service entpoint", async t => {
       logLevel: "info",
       name: "standalone-provider",
       state: "stopped",
+      timeout: {
+        restart: 20,
+        start: 20,
+        stop: 20
+      },
       type: "standalone-provider"
     }
   });
