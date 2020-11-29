@@ -22,7 +22,7 @@ kronos server manager admin service
 
 **Extends Service**
 
-Kronos administration service
+Kronos administration service.
 
 ### name
 
