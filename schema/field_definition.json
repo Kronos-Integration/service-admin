@@ -1,0 +1,165 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"description": "Defines the base field properties of a field definition",
+	"type": "object",
+	"additionalProperties": false,
+	"required": ["fieldType", "mandatory", "severity"],
+
+	"definitions": {
+		"severity": {
+			"type": "string",
+			"enum": ["abort_file", "abort_scope", "skip_record", "skip_field"]
+		},
+		"boolean": {
+			"onOf": [{
+				"type": "boolean"
+			}, {
+				"type": "object",
+				"properties": {
+					"val": {
+						"type": "boolean"
+					},
+					"severity": {
+						"$ref": "#/definitions/severity"
+					}
+				}
+			}]
+		},
+
+		"string": {
+			"onOf": [{
+				"type": "string"
+			}, {
+				"type": "object",
+				"properties": {
+					"val": {
+						"type": "string"
+					},
+					"severity": {
+						"$ref": "#/definitions/severity"
+					}
+				}
+			}]
+		},
+
+		"number": {
+			"onOf": [{
+				"type": "number"
+			}, {
+				"type": "object",
+				"properties": {
+					"val": {
+						"type": "number"
+					},
+					"severity": {
+						"$ref": "#/definitions/severity"
+					}
+				}
+			}]
+		}
+	},
+
+	"properties": {
+		"fieldType": {
+			"oneOf": [{
+				"properties": {
+					"type": {
+						"enum": ["boolean"]
+					}
+				},
+				"required": ["type"],
+				"additionalProperties": false
+			}, {
+				"properties": {
+					"type": {
+						"enum": ["date"]
+					},
+					"minDate": {
+						"$ref": "#/definitions/string"
+					},
+					"maxDate": {
+						"$ref": "#/definitions/string"
+					}
+				},
+				"required": ["type"],
+				"additionalProperties": false
+			}, {
+				"properties": {
+					"type": {
+						"enum": ["string", "email"]
+					},
+					"fieldCase": {
+						"enum": ["case_sensitive", "upper", "lower"]
+					},
+					"minLength": {
+						"$ref": "#/definitions/number"
+					},
+					"maxLength": {
+						"$ref": "#/definitions/number"
+					},
+					"regEx": {
+						"$ref": "#/definitions/string"
+					}
+				},
+				"required": ["type"],
+				"additionalProperties": false
+			}, {
+				"properties": {
+					"type": {
+						"enum": ["number", "integer", "float"]
+					},
+					"decimalSeparator": {
+						"enum": [".", ","]
+					},
+					"min": {
+						"$ref": "#/definitions/number"
+					},
+					"max": {
+						"$ref": "#/definitions/number"
+					}
+				},
+				"required": ["type"],
+				"additionalProperties": false
+			}]
+		},
+
+		"mandatory": {
+			"$ref": "#/definitions/boolean"
+		},
+
+		"severity": {
+			"$ref": "#/definitions/severity"
+		},
+
+		"defaultValue": {
+			"type": "string"
+		},
+
+		"multiField": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": ["delimiter"],
+			"properties": {
+				"delimiter": {
+					"type": "string"
+				},
+				"escapeChar": {
+					"type": "string"
+				},
+				"sortFields": {
+					"type": "boolean"
+				},
+				"uniqueFields": {
+					"type": "boolean"
+				},
+				"removeWhiteSpace": {
+					"type": "boolean"
+				},
+				"removeEmpty": {
+					"type": "boolean"
+				}
+
+			}
+		}
+	}
+}
