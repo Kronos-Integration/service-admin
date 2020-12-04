@@ -1,0 +1,106 @@
+=== Field definition overview
+Defines a field or column which should be processed. The goal is to build a description for
+file imports where all the checks could be created out of the description.
+
+For each field type different possible constraints are existing. For a string field for example
+it is possible to specify the min or max length.
+
+Also it is possible to define the severity per constraint.
+
+[source,json]
+-----
+include::../../schema/field_definition.json[]
+-----
+
+Defines the type of the field. The allowed values are:
+
+fieldType ::
+	Defines the type of the field. The allowed values are:
+
+	boolean :::
+
+	string :::
+		fieldCase ::::
+			Defines if the field value will be stay as it is or if it is changed.
+			case_sensitive :::::
+				The values stays as it is and when comparing the data the case makes a difference.
+			upper :::::
+				The field value will be stored in upper case
+			lower :::::
+				The field value will be stored in lower case
+		minLength ::::
+			The minimum length of the string
+		maxLength ::::
+			The maximum length of the string
+		regEx ::::
+			A regular expression the string must full fill
+
+	email :::
+		fieldCase ::::
+			Defines if the field value will be stay as it is or if it is changed.
+			case_sensitive:::::
+				The values stays as it is and when comparing the data the case makes a difference.
+			upper :::::
+				The field value will be stored in upper case
+			lower :::::
+				The field value will be stored in lower case
+		minLength ::::
+			The minimum length of the string
+		maxLength ::::
+			The maximum length of the string
+		regEx ::::
+			A regular expression the string must full fill
+
+	date :::
+		minDate ::::
+		 The minimum date (exclusive).
+		maxDate ::::
+		The maximum date (exclusive)
+
+	number :::
+		min ::::
+			The minimum (exclusive)
+		max ::::
+			The maximum (exclusive)
+	integer :::
+		min ::::
+			The minimum (exclusive)
+		max ::::
+			The maximum (exclusive)
+	float :::
+		min ::::
+			The minimum (exclusive)
+		max ::::
+			The maximum (exclusive)
+
+mandatory ::
+	Defines if this column is mandatory or not.
+
+severity ::
+	Defines what to do when an error has occurred.
+	abort_file :::
+		Abort the whole file. No record from this file will be imported.
+	abort_scope :::
+		Abort all records with the same scope.
+	skip_record :::
+		Just skip this record
+	skip_field :::
+		Just skip the content of this field
+
+defaultValue ::
+	Defines a default value for this field.
+
+multiField ::
+		If set to true then this field is a multifield.
+	delimiter :::
+		The delimiter used to delimit the field values.
+	escapeChar :::
+		The escape character used to escape the delimiter.
+	sortFields :::
+		Should the field values be sorted.
+	uniqueFields :::
+		Should duplicates be delted?
+	removeWhiteSpace :::
+		Removes all the whitespace characters at the start and end of a field. Like Trim would do it.
+	removeEmpty :::
+		Should empty fields be removed?
