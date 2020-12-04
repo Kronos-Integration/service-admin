@@ -6,4 +6,5 @@ doc
 .test
 .tmp
 .vscode
+rollup.config.js
 .github
