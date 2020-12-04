@@ -1,0 +1,6 @@
+== Abstract Message
+The message is the base for the Kronos-steps. It is currently under havy development and not stable.
+So this doc is also not ready.
+
+
+include::./message.adoc[]
