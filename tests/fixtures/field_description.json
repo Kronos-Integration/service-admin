@@ -1,0 +1,88 @@
+{
+	"app": {
+		"fieldType": {
+			"type": "string",
+			"fieldCase": "upper",
+			"minLength": 4
+		},
+		"mandatory": true,
+		"severity": "skip_field"
+	},
+
+	"account": {
+		"fieldType": {
+			"type": "string",
+			"fieldCase": "case_sensitive",
+			"minLength": 2
+		},
+		"mandatory": true,
+		"severity": "abort_scope"
+	},
+
+	"lastlogin": {
+		"fieldType": {
+			"type": "date",
+			"minDate": "01.01.1980"
+		},
+		"mandatory": true,
+		"severity": "skip_field"
+	},
+
+	"entitlements": {
+		"fieldType": "string",
+		"mandatory": true,
+		"defaultValue": "<NO Entitlement>",
+
+		"multiField": {
+			"delimiter": "|",
+			"escapeChar": "\\",
+			"sortFields": true,
+			"uniqueFields": true,
+			"removeWhiteSpace": true,
+			"removeEmpty": true
+		}
+	},
+
+	"branches": {
+		"fieldType": {
+			"type": "string",
+			"fieldCase": "lower"
+		},
+		"mandatory": false,
+		"severity": "skip_field"
+	},
+
+	"technical": {
+		"fieldType": "boolean",
+		"mandatory": false,
+		"defaultValue": false
+	},
+
+	"start": {
+		"fieldType": {
+			"type": "date",
+			"minDate": "01.01.1980"
+		},
+		"mandatory": false,
+		"severity": "skip_field"
+	},
+
+	"end": {
+		"fieldType": {
+			"type": "date",
+			"minDate": "01.01.1980"
+		},
+		"mandatory": false,
+		"severity": "skip_field"
+	},
+
+	"email": {
+		"fieldType": {
+			"type": "email",
+			"regEx": ".+@.+"
+		},
+		"mandatory": true,
+		"severity": "skip_field"
+	}
+
+}
