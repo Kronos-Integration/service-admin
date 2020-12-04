@@ -1,0 +1,47 @@
+== Header Options Schema
+Defines if the file has a header and how to use it.
+
+[source,json]
+----
+include::../../schema/header.json[]
+----
+
+expectedHeader::
+	Defines the header as it is expected.
++
+.example with an alternative column name for the second column
+[source,json]
+----
+{
+  "expectedHeader" : ["col 1", ["col 2", "column 2"], "col 3", "col 4"]
+}
+----
+
+fieldNames::
+	Maps the header names to a list of field names. The mapping id done by the order
+	of 'expectedHeader' and 'fieldNames'
+caseSensitive::
+	If set to true, the header comparison is case sensitive.
+strict::
+	If strict is set to true, the expected header must be exactly as the header found in the file.
+additionalColumns::
+	If set to true, the file is allowed to have more columns as defined in the expected header.
+
++
+.example with an own severity for this check
+[source,json]
+----
+{
+  "additionalColumns" : {
+    "val" : true,
+    "severity" : "skip_field"
+  }
+}
+----
+
+missingColumn::
+	If set to false, the file must have at least all the columns defined in the expected header.
+mandatoryColumn::
+	Defines all the mandatory columns.
+severity::
+	Defines the severity if a check fails.
