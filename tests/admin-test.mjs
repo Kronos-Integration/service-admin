@@ -25,7 +25,7 @@ test("service-admin service entpoint", async t => {
 
   t.deepEqual(response, {
     admin: {
-      description: "This service is the base class for service implementations",
+      description: "Live administration of kronos services",
       endpoints: {
         command: { in: true, open: true },
         config: { in: true, open: true },
