@@ -30,6 +30,7 @@ test("service-admin service entpoint", async t => {
         command: { in: true, open: true },
         config: { in: true, open: true },
         log: { out: true, open: true, connected: "service(logger).log" },
+        requests: { out: true },
         services: { out: true, open: true, in: true }
       },
       logLevel: "info",

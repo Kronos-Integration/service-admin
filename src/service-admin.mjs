@@ -1,5 +1,8 @@
 import { Service } from "@kronos-integration/service";
 import { instanciateInterceptors } from "@kronos-integration/endpoint";
+import { LiveProbeInterceptor } from "./live-probe-interceptor.mjs";
+
+export { LiveProbeInterceptor };
 
 /**
  * Kronos administration service.
@@ -33,12 +36,35 @@ export class ServiceAdmin extends Service {
               serviceOwner.removeListener("serviceStateChanged", listener);
           }
         }
+      },
+      requests: {
+        multi: true,
+        didConnect: (endpoint, other) => {
+          const serviceOwner = endpoint.owner.owner;
+          serviceOwner.probeEndpoints.add(endpoint);
+          return () => {
+            serviceOwner.probeEndpoints.delete(endpoint);
+          };
+        }
       }
     };
   }
 
+  constructor(config, ic) {
+    super(config, ic);
+
+    this.probeEndpoints = new Set();
+    this.owner.registerInterceptorFactory(LiveProbeInterceptor);
+  }
+
   async services(params) {
     return this.owner.services;
+  }
+
+  requestProbe(endpoint, ...args) {
+    this.probeEndpoints.forEach(e => {
+      e.receive(endpoint, ...args);
+    });
   }
 
   async execute(command) {
@@ -48,17 +74,17 @@ export class ServiceAdmin extends Service {
     switch (command.action) {
       case "start":
         if (service) {
-          this.services.start();
+          service.start();
         }
         break;
       case "stop":
         if (service) {
-          this.services.stop();
+          service.stop();
         }
         break;
       case "restart":
         if (service) {
-          this.services.restart();
+          service.restart();
         }
         break;
 

@@ -4,7 +4,6 @@ import {
   Service
 } from "@kronos-integration/service";
 import { ServiceAdmin } from "@kronos-integration/service-admin";
-import { LimitingInterceptor } from "@kronos-integration/interceptor";
 
 const config = {
   name: "admin",
@@ -13,7 +12,6 @@ const config = {
 
 test("exec command", async t => {
   const sp = new StandaloneServiceProvider();
-  sp.registerInterceptorFactory(LimitingInterceptor);
 
   await sp.declareServices({
     admin: {
@@ -33,8 +31,21 @@ test("exec command", async t => {
     action: "insert",
     service: "test",
     endpoint: "test",
-    interceptors: [{type:"request-limit"}]
+    interceptors: [{ type: "live-probe" }]
   });
 
-  t.is(sp.services.test.endpoints.test.interceptors.length,1);
+  t.is(sp.services.test.endpoints.test.interceptors[0].type, "live-probe");
+
+  const ts = sp.services.test;
+
+  ts.endpoints.test.receive = update => {
+    console.log("XXX");
+  };
+
+  await admin.endpoints.command.receive({
+    action: "stop",
+    service: "config"
+  });
+
+
 });
