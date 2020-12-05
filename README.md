@@ -16,7 +16,10 @@ kronos server manager admin service
 ### Table of Contents
 
 -   [ServiceAdmin](#serviceadmin)
+    -   [Parameters](#parameters)
     -   [name](#name)
+-   [LiveProbeInterceptor](#liveprobeinterceptor)
+    -   [name](#name-1)
 
 ## ServiceAdmin
 
@@ -24,9 +27,24 @@ kronos server manager admin service
 
 Kronos administration service.
 
+### Parameters
+
+-   `config`  
+-   `ic`  
+
 ### name
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'admin'
+
+## LiveProbeInterceptor
+
+**Extends Interceptor**
+
+Sends request to the admin service
+
+### name
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'live-probe'
 
 # install
 
