@@ -23,6 +23,11 @@ export class ServiceAdmin extends Service {
     return {
       ...super.endpoints,
 
+      command: {
+        in: true,
+        receive: "execute"
+      },
+
       services: {
         multi: true,
         receive: "services",

@@ -46,7 +46,6 @@ test("service-admin service entpoint", async t => {
     config: {
       description: "Config providing service",
       endpoints: {
-        command: { in: true, open: true },
         config: { in: true, open: true },
         log: { out: true, open: true, connected: "service(logger).log" }
       },
@@ -63,7 +62,6 @@ test("service-admin service entpoint", async t => {
     logger: {
       description: "Log consuming service",
       endpoints: {
-        command: { in: true, open: true },
         config: { in: true, open: true },
         log: {
           in: true,
@@ -90,7 +88,6 @@ test("service-admin service entpoint", async t => {
     "standalone-provider": {
       description: "This service to control services",
       endpoints: {
-        command: { in: true, open: true },
         config: { in: true, open: true },
         log: { out: true, open: true, connected: "service(logger).log" }
       },
