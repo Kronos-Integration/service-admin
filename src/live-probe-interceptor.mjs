@@ -12,9 +12,14 @@ export class LiveProbeInterceptor extends Interceptor {
   }
 
   async receive(endpoint, next, ...args) {
+    console.log("live-probe", ...args);
 
-    console.log("live-probe",...args);
-    endpoint.owner.requestProbe(endpoint,...args);
+    if (!this.adminService) {
+      const sp = endpoint.owner.owner;
+      this.adminService = sp.services.admin;
+    }
+
+    this.adminService.requestProbe(endpoint, ...args);
 
     return next(...args);
   }
