@@ -40,10 +40,11 @@ export class ServiceAdmin extends Service {
       requests: {
         multi: true,
         didConnect: (endpoint, other) => {
-          const serviceOwner = endpoint.owner.owner;
-          serviceOwner.probeEndpoints.add(endpoint);
+          const sp = endpoint.owner.owner;
+          const admin = sp.services.admin;
+          admin.probeEndpoints.add(endpoint);
           return () => {
-            serviceOwner.probeEndpoints.delete(endpoint);
+            admin.probeEndpoints.delete(endpoint);
           };
         }
       }
@@ -63,7 +64,8 @@ export class ServiceAdmin extends Service {
 
   requestProbe(endpoint, ...args) {
     this.probeEndpoints.forEach(e => {
-      e.receive(endpoint, ...args);
+      //console.log("requestProbe",e,...args);
+      e.send(endpoint, ...args);
     });
   }
 
