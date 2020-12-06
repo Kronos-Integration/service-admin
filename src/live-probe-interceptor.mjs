@@ -12,8 +12,6 @@ export class LiveProbeInterceptor extends Interceptor {
   }
 
   async receive(endpoint, next, ...args) {
-    console.log("live-probe", ...args);
-
     if (!this.adminService) {
       const sp = endpoint.owner.owner;
       this.adminService = sp.services.admin;
