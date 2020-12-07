@@ -68,10 +68,7 @@ export class ServiceAdmin extends Service {
   }
 
   requestProbe(endpoint, ...args) {
-    this.probeEndpoints.forEach(e => {
-      //console.log("requestProbe",e,...args);
-      e.send(endpoint, ...args);
-    });
+    this.probeEndpoints.forEach(e => e.send(endpoint, ...args));
   }
 
   async execute(command) {

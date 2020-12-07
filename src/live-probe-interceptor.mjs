@@ -1,7 +1,7 @@
 import { Interceptor } from "@kronos-integration/interceptor";
 
 /**
- * Sends request to the admin service
+ * Sends request to the admin service.
  */
 export class LiveProbeInterceptor extends Interceptor {
   /**
