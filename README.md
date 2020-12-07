@@ -40,7 +40,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 **Extends Interceptor**
 
-Sends request to the admin service
+Sends request to the admin service.
 
 ### name
 
