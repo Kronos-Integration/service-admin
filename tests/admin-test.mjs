@@ -94,6 +94,7 @@ test("service-admin service entpoint", async t => {
       logLevel: "info",
       name: "standalone-provider",
       state: "stopped",
+      serviceProvider: true,
       timeout: {
         restart: 20,
         start: 20,
