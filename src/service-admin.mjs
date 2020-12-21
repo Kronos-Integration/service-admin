@@ -63,7 +63,10 @@ export class ServiceAdmin extends Service {
     this.owner.registerInterceptorFactory(LiveProbeInterceptor);
   }
 
-  async services(params) {
+  async services(command) {
+    if(command) {
+      await this.execute(command);
+    }
     return this.owner.services;
   }
 
