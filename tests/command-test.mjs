@@ -46,6 +46,4 @@ test("exec command", async t => {
     action: "stop",
     service: "config"
   });
-
-
 });
