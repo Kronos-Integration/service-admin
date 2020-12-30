@@ -64,12 +64,17 @@ export class ServiceAdmin extends Service {
   }
 
   async services(command) {
-    if(command) {
+    if (command) {
       await this.execute(command);
     }
     return this.owner.services;
   }
 
+  /**
+   * Sends passing requst to all registerd endpoints.
+   * @param {Endpoint} endpoint 
+   * @param {any} args 
+   */
   requestProbe(endpoint, ...args) {
     this.probeEndpoints.forEach(e => e.send(endpoint, ...args));
   }
@@ -78,25 +83,19 @@ export class ServiceAdmin extends Service {
     const owner = this.owner;
     const service = owner.services[command.service];
 
-    switch (command.action) {
-      case "start":
-        if (service) {
-          service.start();
-        }
-        break;
-      case "stop":
-        if (service) {
-          service.stop();
-        }
-        break;
-      case "restart":
-        if (service) {
-          service.restart();
-        }
-        break;
+    if (service) {
+      switch (command.action) {
+        case "start":
+          await service.start();
+          break;
+        case "stop":
+          await service.stop();
+          break;
+        case "restart":
+          await service.restart();
+          break;
 
-      case "insert":
-        if (service) {
+        case "insert":
           const endpoint = service.endpoints[command.endpoint];
           if (endpoint) {
             if (command.interceptors) {
@@ -105,8 +104,8 @@ export class ServiceAdmin extends Service {
               );
             }
           }
-        }
-        break;
+          break;
+      }
     }
   }
 }
