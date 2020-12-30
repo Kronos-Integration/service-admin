@@ -21,6 +21,8 @@ kronos server manager admin service
 
 -   [ServiceAdmin](#serviceadmin)
     -   [Parameters](#parameters)
+    -   [requestProbe](#requestprobe)
+        -   [Parameters](#parameters-1)
     -   [name](#name)
 -   [LiveProbeInterceptor](#liveprobeinterceptor)
     -   [name](#name-1)
@@ -35,6 +37,15 @@ Kronos administration service.
 
 -   `config`  
 -   `ic`  
+
+### requestProbe
+
+Sends passing requst to all registerd endpoints.
+
+#### Parameters
+
+-   `endpoint` **Endpoint** 
+-   `args` **any** 
 
 ### name
 
