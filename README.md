@@ -19,13 +19,23 @@ kronos server manager admin service
 
 ### Table of Contents
 
+-   [LiveProbeInterceptor](#liveprobeinterceptor)
+    -   [name](#name)
 -   [ServiceAdmin](#serviceadmin)
     -   [Parameters](#parameters)
     -   [requestProbe](#requestprobe)
         -   [Parameters](#parameters-1)
-    -   [name](#name)
--   [LiveProbeInterceptor](#liveprobeinterceptor)
     -   [name](#name-1)
+
+## LiveProbeInterceptor
+
+**Extends Interceptor**
+
+Sends request to the admin service.
+
+### name
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'live-probe'
 
 ## ServiceAdmin
 
@@ -50,16 +60,6 @@ Sends passing requst to all registerd endpoints.
 ### name
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'admin'
-
-## LiveProbeInterceptor
-
-**Extends Interceptor**
-
-Sends request to the admin service.
-
-### name
-
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'live-probe'
 
 # install
 
