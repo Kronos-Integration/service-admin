@@ -3,7 +3,7 @@
 [![minified size](https://badgen.net/bundlephobia/min/@kronos-integration/service-admin)](https://bundlephobia.com/result?p=@kronos-integration/service-admin)
 [![downloads](http://img.shields.io/npm/dm/@kronos-integration/service-admin.svg?style=flat-square)](https://npmjs.org/package/@kronos-integration/service-admin)
 [![GitHub Issues](https://img.shields.io/github/issues/Kronos-Integration/service-admin.svg?style=flat-square)](https://github.com/Kronos-Integration/service-admin/issues)
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FKronos-Integration%2Fservice-admin%2Fbadge&style=flat)](https://actions-badge.atrox.dev/Kronos-Integration/service-admin/goto)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FKronos-Integration%2Fservice-admin%2Fbadge\&style=flat)](https://actions-badge.atrox.dev/Kronos-Integration/service-admin/goto)
 [![Styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Known Vulnerabilities](https://snyk.io/test/github/Kronos-Integration/service-admin/badge.svg)](https://snyk.io/test/github/Kronos-Integration/service-admin)
@@ -19,13 +19,13 @@ kronos server manager admin service
 
 ### Table of Contents
 
--   [LiveProbeInterceptor](#liveprobeinterceptor)
-    -   [name](#name)
--   [ServiceAdmin](#serviceadmin)
-    -   [Parameters](#parameters)
-    -   [requestProbe](#requestprobe)
-        -   [Parameters](#parameters-1)
-    -   [name](#name-1)
+*   [LiveProbeInterceptor](#liveprobeinterceptor)
+    *   [name](#name)
+*   [ServiceAdmin](#serviceadmin)
+    *   [Parameters](#parameters)
+    *   [requestProbe](#requestprobe)
+        *   [Parameters](#parameters-1)
+    *   [name](#name-1)
 
 ## LiveProbeInterceptor
 
@@ -45,8 +45,8 @@ Kronos administration service.
 
 ### Parameters
 
--   `config`  
--   `ic`  
+*   `config`  
+*   `ic`  
 
 ### requestProbe
 
@@ -54,8 +54,8 @@ Sends passing requst to all registerd endpoints.
 
 #### Parameters
 
--   `endpoint` **Endpoint** 
--   `args` **any** 
+*   `endpoint` **Endpoint** 
+*   `args` **any** 
 
 ### name
 
