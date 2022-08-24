@@ -45,8 +45,8 @@ Kronos administration service.
 
 ### Parameters
 
-*   `config`  
-*   `ic`  
+*   `config` &#x20;
+*   `ic` &#x20;
 
 ### requestProbe
 
@@ -54,8 +54,8 @@ Sends passing requst to all registerd endpoints.
 
 #### Parameters
 
-*   `endpoint` **Endpoint** 
-*   `args` **any** 
+*   `endpoint` **Endpoint**&#x20;
+*   `args` **any**&#x20;
 
 ### name
 
