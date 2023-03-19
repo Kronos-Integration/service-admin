@@ -56,10 +56,11 @@ export class ServiceAdmin extends Service {
     };
   }
 
+  probeEndpoints = new Set();
+
   constructor(config, ic) {
     super(config, ic);
 
-    this.probeEndpoints = new Set();
     this.owner.registerInterceptorFactory(LiveProbeInterceptor);
   }
 
