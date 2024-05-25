@@ -1,5 +1,5 @@
 import { Service } from "@kronos-integration/service";
-import { instanciateInterceptors } from "@kronos-integration/endpoint";
+import { Endpoint, instanciateInterceptors } from "@kronos-integration/endpoint";
 import { LiveProbeInterceptor } from "./live-probe-interceptor.mjs";
 
 export { LiveProbeInterceptor };
