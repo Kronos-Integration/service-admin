@@ -123,11 +123,8 @@ test("service-admin push from services endpoint", async t => {
   const ts = sp.services.test;
 
   const updates = [];
-  ts.endpoints.test.receive = update => {
-    update = JSON.parse(JSON.stringify(update));
-
-    updates.push(update);
-  };
+  ts.endpoints.test.receive = update =>
+    updates.push(JSON.parse(JSON.stringify(update)));
 
   t.is(ts.name, "test");
 
@@ -138,7 +135,10 @@ test("service-admin push from services endpoint", async t => {
 
   t.is(updates.length, 4);
 
-  t.is(updates[2].test.state, "stopped");
-  t.is(updates[3].test.state, "starting");
-  //console.log(updates);
+  //  console.log(updates.map(u=>u.test.state));
+
+  t.deepEqual(
+    updates.map(u => u.test.state),
+    ["stopped", "stopped", "starting", "running"]
+  );
 });
