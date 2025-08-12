@@ -47,7 +47,7 @@ Kronos administration service.
 
 ### requestProbe
 
-Sends passing requst to all registerd endpoints.
+Sends passing request to all registerd endpoints.
 
 #### Parameters
 
