@@ -72,7 +72,7 @@ export class ServiceAdmin extends Service {
   }
 
   /**
-   * Sends passing requst to all registerd endpoints.
+   * Sends passing request to all registerd endpoints.
    * @param {Endpoint} endpoint 
    * @param {any} args 
    */
