@@ -33,7 +33,7 @@
     "lint:docs": "documentation lint ./src**/*.mjs"
   },
   "dependencies": {
-    "@kronos-integration/service": "^15.2.5"
+    "@kronos-integration/service": "^15.3.0"
   },
   "devDependencies": {
     "ava": "^6.4.1",
@@ -43,7 +43,7 @@
     "semantic-release": "^25.0.2"
   },
   "engines": {
-    "node": ">=24.11.1"
+    "node": ">=24.12.0"
   },
   "repository": {
     "type": "git",
