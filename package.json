@@ -33,7 +33,7 @@
     "lint:docs": "documentation lint ./src**/*.mjs"
   },
   "dependencies": {
-    "@kronos-integration/service": "^15.4.9"
+    "@kronos-integration/service": "^15.4.10"
   },
   "devDependencies": {
     "ava": "^6.4.1",
